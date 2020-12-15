@@ -12,8 +12,8 @@ namespace NewsAgencyApp
 
         protected AuthenticationContext(AuthenticationState state)
         {
-            this.State = state;
             this.subject = new Subject<AuthenticationState>();
+            this.State = state;
         }
 
         internal AuthenticationState State
