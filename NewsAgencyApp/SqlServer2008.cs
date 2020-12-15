@@ -23,7 +23,7 @@ namespace NewsAgencyApp
         {
             if (connection != null && connection.State != System.Data.ConnectionState.Closed)
             {
-                connection.Close();
+                //connection.Close();
             }
         }
 
