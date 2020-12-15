@@ -71,6 +71,8 @@
             this.backupFilePath = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.restoreButton = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.manageArticlesTabPage.SuspendLayout();
             this.manageCategoriesTabPage.SuspendLayout();
@@ -94,6 +96,8 @@
             // 
             // manageArticlesTabPage
             // 
+            this.manageArticlesTabPage.Controls.Add(this.label7);
+            this.manageArticlesTabPage.Controls.Add(this.comboBox3);
             this.manageArticlesTabPage.Controls.Add(this.label2);
             this.manageArticlesTabPage.Controls.Add(this.label1);
             this.manageArticlesTabPage.Controls.Add(this.textBox1);
@@ -205,7 +209,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(490, 55);
+            this.button1.Location = new System.Drawing.Point(487, 90);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 1;
@@ -215,7 +219,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(490, 84);
+            this.button2.Location = new System.Drawing.Point(487, 119);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 2;
@@ -225,7 +229,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(490, 19);
+            this.button3.Location = new System.Drawing.Point(487, 54);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 3;
@@ -234,7 +238,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(490, 113);
+            this.button4.Location = new System.Drawing.Point(487, 148);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 4;
@@ -245,16 +249,16 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(350, 19);
+            this.comboBox1.Location = new System.Drawing.Point(285, 20);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.Size = new System.Drawing.Size(110, 21);
             this.comboBox1.TabIndex = 5;
             // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(64, 20);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(213, 20);
+            this.textBox1.Size = new System.Drawing.Size(147, 20);
             this.textBox1.TabIndex = 6;
             // 
             // label1
@@ -269,7 +273,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(291, 23);
+            this.label2.Location = new System.Drawing.Point(226, 23);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(52, 13);
             this.label2.TabIndex = 8;
@@ -485,6 +489,23 @@
             this.restoreButton.Text = "Restore";
             this.restoreButton.UseVisualStyleBackColor = true;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(401, 23);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(41, 13);
+            this.label7.TabIndex = 10;
+            this.label7.Text = "Author:";
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(448, 20);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(114, 21);
+            this.comboBox3.TabIndex = 9;
+            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -494,7 +515,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "AdminForm";
-            this.Text = "AdminForm";
+            this.Text = "Administrator Portal";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AdminForm_FormClosing);
             this.Load += new System.EventHandler(this.AdminForm_Load);
             this.tabControl1.ResumeLayout(false);
@@ -559,5 +580,7 @@
         private System.Windows.Forms.TextBox backupFilePath;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button restoreButton;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox comboBox3;
     }
 }
