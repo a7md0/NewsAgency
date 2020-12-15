@@ -24,10 +24,10 @@ namespace NewsAgencyApp
             return new Unsubscriber<T>(observers, observer);
         }
 
-        public void Notify(T str)
+        public void Notify(T value)
         {
             foreach (var observer in observers)
-                observer.OnNext(str);
+                observer.OnNext(value);
         }
 
         class Unsubscriber<K> : IDisposable
