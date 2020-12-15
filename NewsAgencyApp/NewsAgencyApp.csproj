@@ -62,10 +62,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthenticatedState.cs" />
-    <Compile Include="AuthenticationObserver.cs" />
+    <Compile Include="Observer.cs" />
     <Compile Include="AuthenticationState.cs" />
     <Compile Include="AuthenticationContext.cs" />
-    <Compile Include="AuthenticationSubject.cs" />
+    <Compile Include="Subject.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="DBMgr.cs" />
     <Compile Include="LoginForm.cs">
