@@ -32,10 +32,10 @@ namespace NewsAgencyApp
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            User user = AuthenticationContext.Instance().Login("admin", "admin");
+            /*User user = AuthenticationContext.Instance().Login("admin", "admin");
             Console.WriteLine(user.Id);
             Console.WriteLine(user.FullName);
-            Console.WriteLine(user.Email);
+            Console.WriteLine(user.Email);*/
         }
 
         private void loginToolStripMenuItem_Click(object sender, EventArgs e)
