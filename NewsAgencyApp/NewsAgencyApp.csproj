@@ -64,7 +64,7 @@
     <Compile Include="AuthenticatedState.cs" />
     <Compile Include="AuthenticationObserver.cs" />
     <Compile Include="AuthenticationState.cs" />
-    <Compile Include="AuthenticationStateContext.cs" />
+    <Compile Include="AuthenticationContext.cs" />
     <Compile Include="AuthenticationSubject.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="DBMgr.cs" />
@@ -85,7 +85,6 @@
     <Compile Include="SqlServer2008.cs" />
     <Compile Include="SuperUser.cs" />
     <Compile Include="UnauthenticatedState.cs" />
-    <Compile Include="Unsubscriber.cs" />
     <Compile Include="User.cs" />
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
