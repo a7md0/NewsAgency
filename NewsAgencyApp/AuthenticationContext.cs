@@ -64,8 +64,6 @@ namespace NewsAgencyApp
             SqlDataReader sdr = query.ExecuteReader();
             User user = null;
 
-            Console.WriteLine(sdr.HasRows);
-
             if (sdr.HasRows == true && sdr.Read())
             {
                 int roleId = Int32.Parse(sdr["RoleId"].ToString());
