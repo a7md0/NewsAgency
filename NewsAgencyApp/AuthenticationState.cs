@@ -4,9 +4,9 @@ namespace NewsAgencyApp
     {
         protected User currentUser;
 
-        protected AuthenticationState()
+        protected AuthenticationState(User user)
         {
-
+            currentUser = user;
         }
 
         public abstract bool CanActivateAdminPortal();
