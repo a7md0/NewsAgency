@@ -61,6 +61,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthenticatedState.cs" />
+    <Compile Include="AuthenticationObserver.cs" />
+    <Compile Include="AuthenticationState.cs" />
+    <Compile Include="AuthenticationStateContext.cs" />
+    <Compile Include="AuthenticationSubject.cs" />
+    <Compile Include="Database.cs" />
+    <Compile Include="DBMgr.cs" />
+    <Compile Include="LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -69,6 +82,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlServer2008.cs" />
+    <Compile Include="SuperUser.cs" />
+    <Compile Include="UnauthenticatedState.cs" />
+    <Compile Include="Unsubscriber.cs" />
+    <Compile Include="User.cs" />
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
