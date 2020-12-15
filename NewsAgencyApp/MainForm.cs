@@ -60,8 +60,17 @@ namespace NewsAgencyApp
 
         private void loginLogoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoginForm loginForm = new LoginForm();
-            loginForm.ShowDialog();
+            if (AuthenticationContext.Instance().State is UnauthenticatedState)
+            {
+                LoginForm loginForm = new LoginForm();
+                loginForm.ShowDialog();
+            } else
+            {
+                DialogResult dialogResult = MessageBox.Show("Are you sure you want to logout?", "Logout", MessageBoxButtons.YesNo);
+
+                if (dialogResult == DialogResult.Yes)
+                    AuthenticationContext.Instance().Logout();
+            }
         }
     }
 }
