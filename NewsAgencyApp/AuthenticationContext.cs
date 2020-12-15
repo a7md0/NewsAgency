@@ -6,21 +6,27 @@ namespace NewsAgencyApp
 {
     class AuthenticationContext
     {
-        protected AuthenticationState state;
         private static AuthenticationContext instance;
-        private AuthenticationSubject subject;
+        private AuthenticationState state;
+        private Subject<AuthenticationState> subject;
 
         protected AuthenticationContext(AuthenticationState state)
         {
-
-            this.state = state;
+            this.State = state;
+            this.subject = new Subject<AuthenticationState>();
         }
 
-        public AuthenticationState State
+        internal AuthenticationState State
         {
             get
             {
                 return state;
+            }
+
+            set
+            {
+                state = value;
+                this.subject.Notify(value);
             }
         }
 
@@ -34,14 +40,19 @@ namespace NewsAgencyApp
             return instance;
         }
 
-        public AuthenticationObserver AuthenticationObserverInstance()
+        public Observer<AuthenticationState> AuthenticationObserverInstance()
         {
+            Observer<AuthenticationState> observer = new Observer<AuthenticationState>();
+            observer.Subscribe(subject);
 
-            return null;
+            return observer;
         }
 
         public User Login(string username, string password)
         {
+            if (!(state is UnauthenticatedState))
+                return null;
+
             var connection = DBMgr.DatabaseFactory().Connection();
 
             SqlCommand query = new SqlCommand("SELECT RoleId, Id, FullName, Username, Email FROM [User] WHERE Username = @username AND Password = HashBytes('MD5', @password);", connection); // 
@@ -65,6 +76,8 @@ namespace NewsAgencyApp
                 user.FullName = sdr["FullName"].ToString();
                 user.Username = sdr["Username"].ToString();
                 user.Email = sdr["Email"].ToString();
+
+                ((UnauthenticatedState)state).Authenticated(user);
             }
 
             return user;
@@ -72,7 +85,10 @@ namespace NewsAgencyApp
 
         public void Logout()
         {
-            //state.Logout();
+            if (!(state is AuthenticatedState))
+                return;
+
+            ((AuthenticatedState)state).Deauthenticated();
         }
     }
 }
