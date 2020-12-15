@@ -4,12 +4,10 @@ namespace NewsAgencyApp
     {
         protected User currentUser;
 
-        public AuthenticationState()
+        protected AuthenticationState()
         {
 
         }
-
-        public abstract void Handle(AuthenticationStateContext context);
 
         public abstract bool CanActivateAdminPortal();
 

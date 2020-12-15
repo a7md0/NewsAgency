@@ -8,17 +8,6 @@ namespace NewsAgencyApp
 
         }
 
-        ~UnauthenticatedState()
-        {
-
-        }
-
-        public override void Handle(AuthenticationStateContext context)
-        {
-
-            context.State = new AuthenticatedState();
-        }
-
         public override bool CanActivateAdminPortal()
         {
 
