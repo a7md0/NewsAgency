@@ -67,13 +67,13 @@
     <Compile Include="AdminPortal\AdminForm.Designer.cs">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AuthenticatedState.cs" />
-    <Compile Include="Observer.cs" />
-    <Compile Include="AuthenticationState.cs" />
-    <Compile Include="AuthenticationContext.cs" />
-    <Compile Include="Subject.cs" />
-    <Compile Include="Database.cs" />
-    <Compile Include="DBMgr.cs" />
+    <Compile Include="Authentication\AuthenticatedState.cs" />
+    <Compile Include="Helper\Observer.cs" />
+    <Compile Include="Authentication\AuthenticationState.cs" />
+    <Compile Include="Authentication\AuthenticationContext.cs" />
+    <Compile Include="Helper\Subject.cs" />
+    <Compile Include="Database\Database.cs" />
+    <Compile Include="Database\DBMgr.cs" />
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,10 +88,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SqlServer2008.cs" />
-    <Compile Include="SuperUser.cs" />
-    <Compile Include="UnauthenticatedState.cs" />
-    <Compile Include="User.cs" />
+    <Compile Include="Database\SqlServer2008.cs" />
+    <Compile Include="Models\SuperUser.cs" />
+    <Compile Include="Authentication\UnauthenticatedState.cs" />
+    <Compile Include="Models\User.cs" />
     <EmbeddedResource Include="AdminPortal\AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </EmbeddedResource>
