@@ -61,8 +61,8 @@
             this.toolStripMenuItem1,
             this.exitToolStripMenuItem});
             this.portalToolStripMenuItem.Name = "portalToolStripMenuItem";
-            this.portalToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
-            this.portalToolStripMenuItem.Text = "Portal";
+            this.portalToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
+            this.portalToolStripMenuItem.Text = "App";
             // 
             // loginLogoutToolStripMenuItem
             // 
@@ -102,11 +102,11 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(336, 117);
+            this.button1.Location = new System.Drawing.Point(336, 113);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(21, 23);
+            this.button1.Size = new System.Drawing.Size(20, 27);
             this.button1.TabIndex = 2;
-            this.button1.Text = "˄";
+            this.button1.Text = "⇈";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // button2
@@ -115,7 +115,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(20, 23);
             this.button2.TabIndex = 3;
-            this.button2.Text = "˅";
+            this.button2.Text = "⇊";
             this.button2.UseVisualStyleBackColor = true;
             // 
             // button3
@@ -133,6 +133,7 @@
             this.adminPortalToolStripMenuItem.Size = new System.Drawing.Size(89, 20);
             this.adminPortalToolStripMenuItem.Text = "Admin Portal";
             this.adminPortalToolStripMenuItem.Visible = false;
+            this.adminPortalToolStripMenuItem.Click += new System.EventHandler(this.adminPortalToolStripMenuItem_Click);
             // 
             // MainForm
             // 

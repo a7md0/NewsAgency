@@ -1,15 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-
-using System.Data;
-using System.Data.SqlClient;
 
 namespace NewsAgencyApp
 {
@@ -71,6 +61,12 @@ namespace NewsAgencyApp
                 if (dialogResult == DialogResult.Yes)
                     AuthenticationContext.Instance().Logout();
             }
+        }
+
+        private void adminPortalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AdminPortal.AdminForm adminForm = new AdminPortal.AdminForm(this);
+            adminForm.ShowDialog();
         }
     }
 }
