@@ -80,6 +80,8 @@ namespace NewsAgencyApp
                 ((UnauthenticatedState)state).Authenticated(user);
             }
 
+            sdr.Close(); // Close SqlDataReader
+
             return user;
         }
 
