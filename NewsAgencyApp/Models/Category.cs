@@ -68,19 +68,19 @@ namespace NewsAgencyApp.Models
             this.numberOfArticles = 0;
         }
 
-        public override Boolean create()
+        public override bool Create()
         {
 
             return false;
         }
 
-        public override Boolean update()
+        public override bool Update()
         {
 
             return false;
         }
 
-        public override Boolean remove()
+        public override bool Remove()
         {
 
             return false;

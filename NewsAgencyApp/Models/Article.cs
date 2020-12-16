@@ -148,7 +148,7 @@ namespace NewsAgencyApp.Models
             this.keywords = keywords;
         }
 
-        public static List<Article> findAll()
+        public static List<Article> FindAll()
         {
             List<Article> articles = new List<Article>();
 
@@ -209,21 +209,82 @@ namespace NewsAgencyApp.Models
             return articles;
         }
 
-        public override Boolean create()
+        public override bool Create()
         {
-            return false;
+            SqlCommand query = new SqlCommand
+            {
+                CommandText = "INSERT INTO [Article] (Title, Content, UserId, CategoryId, Keywords) VALUES (@title, @content, @userId, @categoryId, @keywords);",
+                Connection = DBMgr.DatabaseFactory().Connection(),
+                CommandType = CommandType.Text,
+            };
+
+            query.Parameters.AddWithValue("@title", title);
+            query.Parameters.AddWithValue("@content", content);
+            query.Parameters.AddWithValue("@userId", user.Id);
+            query.Parameters.AddWithValue("@categoryId", category.Id);
+            query.Parameters.AddWithValue("@keywords", keywords);
+
+
+            int affectedRows = query.ExecuteNonQuery();
+
+            return affectedRows > 0;
         }
 
-        public override Boolean update()
+        public override bool Update()
         {
+            SqlCommand query = new SqlCommand
+            {
+                CommandText = @"UPDATE [Article] SET
+                                Title = @title, Content = @content, UserId = @userId, CategoryId = @categoryId, Keywords = @keywords
+                                WHERE Id = @id;",
+                Connection = DBMgr.DatabaseFactory().Connection(),
+                CommandType = CommandType.Text,
+            };
 
-            return false;
+            query.Parameters.AddWithValue("@id", id);
+            query.Parameters.AddWithValue("@title", title);
+            query.Parameters.AddWithValue("@content", content);
+            query.Parameters.AddWithValue("@userId", user.Id);
+            query.Parameters.AddWithValue("@categoryId", category.Id);
+            query.Parameters.AddWithValue("@keywords", keywords);
+
+
+            int affectedRows = query.ExecuteNonQuery();
+
+            return affectedRows > 0;
         }
 
-        public override Boolean remove()
+        public override bool Remove()
         {
+            SqlCommand query = new SqlCommand
+            {
+                CommandText = @"DELETE FROM [Article] WHERE Id = @id;",
+                Connection = DBMgr.DatabaseFactory().Connection(),
+                CommandType = CommandType.Text,
+            };
 
-            return false;
+            query.Parameters.AddWithValue("@id", id);
+
+
+            int affectedRows = query.ExecuteNonQuery();
+
+            return affectedRows > 0;
+        }
+
+        public void Viewed()
+        {
+            SqlCommand query = new SqlCommand
+            {
+                CommandText = "IncreaseArticleViewCount",
+                Connection = DBMgr.DatabaseFactory().Connection(),
+                CommandType = CommandType.StoredProcedure,
+            };
+
+            query.Parameters.Add(new SqlParameter("@articleId", id));
+
+            query.ExecuteNonQuery();
+
+            return;
         }
     }
 }

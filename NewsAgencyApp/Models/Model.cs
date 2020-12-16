@@ -6,8 +6,8 @@ namespace NewsAgencyApp.Models
 {
     abstract class Model
     {
-        public abstract Boolean create();
-        public abstract Boolean update();
-        public abstract Boolean remove();
+        public abstract bool Create();
+        public abstract bool Update();
+        public abstract bool Remove();
     }
 }
