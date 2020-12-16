@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Windows.Forms;
 
+using System.Collections.Generic;
+
 namespace NewsAgencyApp
 {
     public partial class MainForm : Form
     {
+        private List<Models.Article> articles;
+
         public MainForm()
         {
             InitializeComponent();
@@ -29,6 +33,9 @@ namespace NewsAgencyApp
 
             var observer = AuthenticationContext.Instance().AuthenticationObserverInstance();
             observer.nextDelegate = authStateChanged;
+
+            //Models.Article article = new Models.Article("", "", null, null, "");
+            loadArticles();
         }
 
         private void authStateChanged(AuthenticationState state)
@@ -67,6 +74,23 @@ namespace NewsAgencyApp
         {
             AdminPortal.AdminForm adminForm = new AdminPortal.AdminForm(this);
             adminForm.ShowDialog();
+        }
+
+        private void loadArticles()
+        {
+            articles = Models.Article.FindAll();
+            foreach (var article in articles)
+            {
+                Console.WriteLine(article.Id);
+                ListViewItem item = new ListViewItem(article.Title);
+                item.SubItems.Add(article.User.FullName);
+                item.SubItems.Add(article.Category.Name);
+                item.SubItems.Add(article.CreatedAt);
+
+                articlesListView.Items.Add(item);
+
+                articlesListView.View = View.Details;
+            }
         }
     }
 }
