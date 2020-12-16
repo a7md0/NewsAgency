@@ -92,6 +92,12 @@
     <Compile Include="Models\SuperUser.cs" />
     <Compile Include="Authentication\UnauthenticatedState.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="ViewArticle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewArticle.Designer.cs">
+      <DependentUpon>ViewArticle.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AdminPortal\AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -110,6 +116,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ViewArticle.resx">
+      <DependentUpon>ViewArticle.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
