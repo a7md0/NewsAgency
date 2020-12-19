@@ -37,15 +37,20 @@
             this.adminPortalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.articlesListView = new System.Windows.Forms.ListView();
+            this.authorColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.categoryColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.dateColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.authorColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.dateColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.categoryColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             titleColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // titleColumnHeader
+            // 
+            titleColumnHeader.Text = "Title";
+            titleColumnHeader.Width = 160;
             // 
             // menuStrip1
             // 
@@ -118,6 +123,21 @@
             this.articlesListView.TabIndex = 1;
             this.articlesListView.UseCompatibleStateImageBehavior = false;
             // 
+            // authorColumnHeader
+            // 
+            this.authorColumnHeader.Text = "Author";
+            this.authorColumnHeader.Width = 100;
+            // 
+            // categoryColumnHeader
+            // 
+            this.categoryColumnHeader.Text = "Category";
+            this.categoryColumnHeader.Width = 120;
+            // 
+            // dateColumnHeader
+            // 
+            this.dateColumnHeader.Text = "Date";
+            this.dateColumnHeader.Width = 140;
+            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(576, 90);
@@ -145,26 +165,6 @@
             this.button3.Text = "View Article";
             this.button3.UseVisualStyleBackColor = true;
             // 
-            // titleColumnHeader
-            // 
-            titleColumnHeader.Text = "Title";
-            titleColumnHeader.Width = 160;
-            // 
-            // authorColumnHeader
-            // 
-            this.authorColumnHeader.Text = "Author";
-            this.authorColumnHeader.Width = 100;
-            // 
-            // dateColumnHeader
-            // 
-            this.dateColumnHeader.Text = "Date";
-            this.dateColumnHeader.Width = 140;
-            // 
-            // categoryColumnHeader
-            // 
-            this.categoryColumnHeader.Text = "Category";
-            this.categoryColumnHeader.Width = 120;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -178,6 +178,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "News Agency";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

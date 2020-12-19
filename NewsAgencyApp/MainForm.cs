@@ -92,5 +92,14 @@ namespace NewsAgencyApp
                 articlesListView.View = View.Details;
             }
         }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            var connection = DBMgr.DatabaseFactory().Connection();
+            if (connection != null && connection.State != System.Data.ConnectionState.Closed)
+            {
+                connection.Close();
+            }
+        }
     }
 }
