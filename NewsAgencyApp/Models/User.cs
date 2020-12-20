@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Data;
+using System.Data.SqlClient;
+
+using System.Collections.Generic;
 
 namespace NewsAgencyApp.Models
 {
@@ -75,6 +79,38 @@ namespace NewsAgencyApp.Models
                 default:
                     throw new Exception("Unhandled user type");
             }
+        }
+
+        public static List<User> FindAll()
+        {
+            List<User> users = new List<User>();
+
+            SqlCommand query = new SqlCommand
+            {
+                CommandText = "SELECT Id, FullName, Username, Email, RoleId FROM [User];",
+                Connection = DBMgr.DatabaseFactory().Connection(),
+                CommandType = CommandType.Text,
+            };
+
+            SqlDataReader sdr = query.ExecuteReader();
+
+            while (sdr.Read())
+            {
+                int roleId = Int32.Parse(sdr["RoleId"].ToString());
+
+                User user = Models.User.UserFactory(Int32.Parse(sdr["RoleId"].ToString()));
+
+                user.Id = Int32.Parse(sdr["Id"].ToString());
+                user.FullName = sdr["FullName"].ToString();
+                user.Username = sdr["Username"].ToString();
+                user.Email = sdr["Email"].ToString() ?? null;
+
+                users.Add(user);
+            }
+
+            sdr.Close(); // Close SqlDataReader
+
+            return users;
         }
     }
 }
