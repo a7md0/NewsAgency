@@ -70,6 +70,7 @@ namespace NewsAgencyApp.AdminPortal
             this.Close();
         }
 
+        #region ManageArticlesTab
         private void loadArticlesList()
         {
             //articlesListView
@@ -84,7 +85,7 @@ namespace NewsAgencyApp.AdminPortal
 
                 articlesListView.Items.Add(item);
 
-                articlesListView.View = View.Details;
+                articlesListView.View = View.Details; // Important to make the list view show details ( columns )
             }
         }
 
@@ -117,48 +118,6 @@ namespace NewsAgencyApp.AdminPortal
 
             authorsComboBox.SelectedItem = null;
             authorsComboBox.SelectedText = "--Select--";
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void backupButton_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show(String.Format("Backup have been save successfully to {0}", saveFileDialog1.FileName), "Backup");
-        }
-
-        private void button9_Click(object sender, EventArgs e)
-        {
-            openFileDialog1.Filter = "SQL files (*.sql)|*.sql|All files (*.*)|*.*";
-            openFileDialog1.FilterIndex = 2;
-            openFileDialog1.RestoreDirectory = true;
-
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                restoreFilePath.Text = openFileDialog1.FileName;
-            }
-        }
-
-        private void pickBackupPath_Click(object sender, EventArgs e)
-        {
-            saveFileDialog1.Filter = "SQL files (*.sql)|*.sql|All files (*.*)|*.*";
-            saveFileDialog1.FilterIndex = 2;
-            saveFileDialog1.RestoreDirectory = true;
-
-            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
-                backupFilePath.Text = saveFileDialog1.FileName;
         }
 
         private void categoriesComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -250,5 +209,35 @@ namespace NewsAgencyApp.AdminPortal
         {
 
         }
+        #endregion
+
+        #region BackupRestoreTab
+        private void backupButton_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(String.Format("Backup have been save successfully to {0}", saveFileDialog1.FileName), "Backup");
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.Filter = "SQL files (*.sql)|*.sql|All files (*.*)|*.*";
+            openFileDialog1.FilterIndex = 2;
+            openFileDialog1.RestoreDirectory = true;
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                restoreFilePath.Text = openFileDialog1.FileName;
+            }
+        }
+
+        private void pickBackupPath_Click(object sender, EventArgs e)
+        {
+            saveFileDialog1.Filter = "SQL files (*.sql)|*.sql|All files (*.*)|*.*";
+            saveFileDialog1.FilterIndex = 2;
+            saveFileDialog1.RestoreDirectory = true;
+
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                backupFilePath.Text = saveFileDialog1.FileName;
+        }
+        #endregion
     }
 }
