@@ -39,9 +39,9 @@ namespace NewsAgencyApp.AdminPortal
             Models.User user = AuthenticationContext.Instance().State.CurrentUser;
             nametypeToolStripMenuItem.Text = String.Format("{0} ({1})", user.FullName, user.Username);
 
-            loadArticlesList();
-            loadCategoriesList();
-            loadUsersList();
+            setupArticlesListView();
+            setupCategoriesComboBox();
+            setupAuthorsComboBox();
         }
 
         private void authStateChanged(AuthenticationState state)
@@ -71,11 +71,16 @@ namespace NewsAgencyApp.AdminPortal
         }
 
         #region ManageArticlesTab
-        private void loadArticlesList()
+        private void setupArticlesListView()
         {
-            //articlesListView
+            articlesListView.View = View.Details; // Important to make the list view show details ( columns )
 
             articles = Models.Article.FindAll();
+            this.renderArticlesListView();
+        }
+
+        private void renderArticlesListView()
+        {
             foreach (var article in articles)
             {
                 ListViewItem item = new ListViewItem(article.Title);
@@ -84,40 +89,43 @@ namespace NewsAgencyApp.AdminPortal
                 item.SubItems.Add(article.CreatedAt);
 
                 articlesListView.Items.Add(item);
-
-                articlesListView.View = View.Details; // Important to make the list view show details ( columns )
             }
         }
 
-        private void loadCategoriesList()
+        private void setupCategoriesComboBox()
         {
-            categories = Models.Category.FindAll();
-            foreach (var category in categories)
-            {
-                categoriesComboBox.DisplayMember = "Text";
-                categoriesComboBox.ValueMember = "Value";
-
-                categoriesComboBox.Items.Add(new { Text = category.Name, Value = category.Id });
-            }
-
             categoriesComboBox.SelectedItem = null;
             categoriesComboBox.SelectedText = "--Select--";
+
+            categoriesComboBox.DisplayMember = "Text";
+            categoriesComboBox.ValueMember = "Value";
+
+            categories = Models.Category.FindAll();
+            this.renderCategoriesComboBox();
         }
 
-        private void loadUsersList()
+        private void renderCategoriesComboBox()
         {
-            users = Models.User.FindAll();
+            foreach (var category in categories)
+                categoriesComboBox.Items.Add(new { Text = category.Name, Value = category.Id });
+        }
 
-            foreach (var user in users)
-            {
-                authorsComboBox.DisplayMember = "Text";
-                authorsComboBox.ValueMember = "Value";
-
-                authorsComboBox.Items.Add(new { Text = user.FullName, Value = user.Id });
-            }
-
+        private void setupAuthorsComboBox()
+        {
             authorsComboBox.SelectedItem = null;
             authorsComboBox.SelectedText = "--Select--";
+
+            authorsComboBox.DisplayMember = "Text";
+            authorsComboBox.ValueMember = "Value";
+
+            users = Models.User.FindAll();
+            this.renderAuthorsComboBox();
+        }
+
+        private void renderAuthorsComboBox()
+        {
+            foreach (var user in users)
+                authorsComboBox.Items.Add(new { Text = user.FullName, Value = user.Id });
         }
 
         private void categoriesComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -131,9 +139,7 @@ namespace NewsAgencyApp.AdminPortal
                 filters["categoryId"] = string.Format("CategoryId = {0}", id);
             }
             else
-            {
                 filters.Remove("categoryId");
-            }
 
             triggerFindArticles();
         }
@@ -149,45 +155,29 @@ namespace NewsAgencyApp.AdminPortal
                 filters["userId"] = string.Format("UserId = {0}", id);
             }
             else
-            {
                 filters.Remove("userId");
-            }
 
             triggerFindArticles();
         }
 
         private void articleSearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            TextBox search = articleSearchTextBox;
+            TextBox search = (TextBox)sender;
 
             if (search.TextLength > 0)
-            {
-                filters["search"] = string.Format("Title LIKE '%{0}%'", search.Text);
-            }
+                filters["search"] = string.Format("Title LIKE '%{0}%'", search.Text.Trim().Replace(" ", "%"));
             else
-            {
                 filters.Remove("search");
-            }
 
             triggerFindArticles();
         }
 
         private void triggerFindArticles()
         {
-            articlesListView.Items.Clear();
-            articles = Models.Article.FindAll(filters);
+            articlesListView.Items.Clear(); // Clear articles list view items
+            articles = Models.Article.FindAll(filters); // Use built filters and pass them to the findAll method and assign to the current 
 
-            foreach (var article in articles)
-            {
-                ListViewItem item = new ListViewItem(article.Title);
-                item.SubItems.Add(article.User.FullName);
-                item.SubItems.Add(article.Category.Name);
-                item.SubItems.Add(article.CreatedAt);
-
-                articlesListView.Items.Add(item);
-
-                articlesListView.View = View.Details;
-            }
+            this.renderArticlesListView(); // Re-render articles list view
         }
 
         private void createArticleButton_Click(object sender, EventArgs e)
