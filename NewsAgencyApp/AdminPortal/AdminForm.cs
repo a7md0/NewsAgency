@@ -74,6 +74,7 @@ namespace NewsAgencyApp.AdminPortal
         private void setupArticlesListView()
         {
             articlesListView.View = View.Details; // Important to make the list view show details ( columns )
+            articlesListView.FullRowSelect = true; // Select the whole row
 
             articlesList = Models.Article.FindAll();
             this.renderArticlesListView();
@@ -81,6 +82,8 @@ namespace NewsAgencyApp.AdminPortal
 
         private void renderArticlesListView()
         {
+            articlesListView.Items.Clear(); // Clear articles list view items
+
             foreach (var article in articlesList)
             {
                 ListViewItem item = new ListViewItem(article.Title); // Make title the 1st col
@@ -181,10 +184,23 @@ namespace NewsAgencyApp.AdminPortal
 
         private void triggerFindArticles()
         {
-            articlesListView.Items.Clear(); // Clear articles list view items
             articlesList = Models.Article.FindAll(articlesFilters); // Use built filters and pass them to the findAll method and assign to the current 
 
             this.renderArticlesListView(); // Re-render articles list view
+        }
+
+        private Models.Article SelectedArticle()
+        {
+            if (articlesListView.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Select article first", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+
+            var selectedItem = articlesListView.SelectedItems[0];
+            Models.Article article = articlesList[selectedItem.Index];
+
+            return article;
         }
 
         private void createArticleButton_Click(object sender, EventArgs e)
@@ -194,17 +210,46 @@ namespace NewsAgencyApp.AdminPortal
 
         private void viewArticleButton_Click(object sender, EventArgs e)
         {
+            Models.Article article = this.SelectedArticle();
+            if (article == null)
+                return;
 
+            this.showArticle(article);
         }
 
         private void editArticleButton_Click(object sender, EventArgs e)
         {
+            Models.Article article = this.SelectedArticle();
+            if (article == null)
+                return;
 
+            // TODO: Show edit article form
         }
 
         private void removeArticleButton_Click(object sender, EventArgs e)
         {
+            Models.Article article = this.SelectedArticle();
+            if (article == null)
+                return;
 
+            var response = MessageBox.Show("Are you sure that you want to delete this article?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (response == DialogResult.Yes)
+            {
+                bool removeResult = article.Remove();
+                if (removeResult)
+                {
+                    articlesList.Remove(article);
+                    renderArticlesListView();
+                }
+            }
+        }
+
+        private void showArticle(Models.Article article)
+        {
+            ViewArticle viewArticleForm = new ViewArticle();
+            viewArticleForm.Article = article;
+
+            viewArticleForm.ShowDialog();
         }
         #endregion
 
