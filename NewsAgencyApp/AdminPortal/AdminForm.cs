@@ -14,6 +14,10 @@ namespace NewsAgencyApp.AdminPortal
     {
         Form parent;
 
+        List<Models.Article> articles = new List<Models.Article>();
+        List<Models.Category> categories = new List<Models.Category>();
+        List<Models.User> users = new List<Models.User>();
+
         public AdminForm(Form parent)
         {
             InitializeComponent();
@@ -30,8 +34,11 @@ namespace NewsAgencyApp.AdminPortal
             var observer = AuthenticationContext.Instance().AuthenticationObserverInstance();
             observer.nextDelegate = authStateChanged;
 
-            User user = AuthenticationContext.Instance().State.CurrentUser;
+            Models.User user = AuthenticationContext.Instance().State.CurrentUser;
             nametypeToolStripMenuItem.Text = String.Format("{0} ({1})", user.FullName, user.Username);
+
+            loadArticlesList();
+            loadCategoriesList();
         }
 
         private void authStateChanged(AuthenticationState state)
@@ -59,6 +66,37 @@ namespace NewsAgencyApp.AdminPortal
         {
             this.Close();
         }
+
+        private void loadArticlesList()
+        {
+            //articlesListView
+
+            articles = Models.Article.FindAll();
+            foreach (var article in articles)
+            {
+                ListViewItem item = new ListViewItem(article.Title);
+                item.SubItems.Add(article.User.FullName);
+                item.SubItems.Add(article.Category.Name);
+                item.SubItems.Add(article.CreatedAt);
+
+                articlesListView.Items.Add(item);
+
+                articlesListView.View = View.Details;
+            }
+        }
+
+        private void loadCategoriesList()
+        {
+            categories = Models.Category.FindAll();
+            foreach (var category in categories)
+            {
+                categoriesComboBox.DisplayMember = "Text";
+                categoriesComboBox.ValueMember = "Value";
+
+                categoriesComboBox.Items.Add(new { Text = category.Name, Value = category.Id });
+            }
+        }
+
 
         private void button1_Click(object sender, EventArgs e)
         {

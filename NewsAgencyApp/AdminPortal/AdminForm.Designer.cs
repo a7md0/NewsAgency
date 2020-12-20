@@ -30,24 +30,18 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.manageArticlesTabPage = new System.Windows.Forms.TabPage();
-            this.manageCategoriesTabPage = new System.Windows.Forms.TabPage();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.backToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.logoutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this.backToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.nametypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.generateReportsTabPage = new System.Windows.Forms.TabPage();
-            this.backupRestoreTabPage = new System.Windows.Forms.TabPage();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.categoriesComboBox = new System.Windows.Forms.ComboBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.articlesListView = new System.Windows.Forms.ListView();
+            this.manageCategoriesTabPage = new System.Windows.Forms.TabPage();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.button5 = new System.Windows.Forms.Button();
@@ -55,31 +49,41 @@
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.listView2 = new System.Windows.Forms.ListView();
-            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
-            this.backupButton = new System.Windows.Forms.Button();
+            this.generateReportsTabPage = new System.Windows.Forms.TabPage();
+            this.backupRestoreTabPage = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.button9 = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.restoreFilePath = new System.Windows.Forms.TextBox();
+            this.restoreButton = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.button9 = new System.Windows.Forms.Button();
+            this.restoreFilePath = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.pickBackupPath = new System.Windows.Forms.Button();
             this.backupFilePath = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.restoreButton = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.backupButton = new System.Windows.Forms.Button();
+            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.backToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.logoutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.backToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.nametypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.titleColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.authorColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.categoryColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.dateColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl1.SuspendLayout();
             this.manageArticlesTabPage.SuspendLayout();
             this.manageCategoriesTabPage.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
             this.backupRestoreTabPage.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -101,12 +105,12 @@
             this.manageArticlesTabPage.Controls.Add(this.label2);
             this.manageArticlesTabPage.Controls.Add(this.label1);
             this.manageArticlesTabPage.Controls.Add(this.textBox1);
-            this.manageArticlesTabPage.Controls.Add(this.comboBox1);
+            this.manageArticlesTabPage.Controls.Add(this.categoriesComboBox);
             this.manageArticlesTabPage.Controls.Add(this.button4);
             this.manageArticlesTabPage.Controls.Add(this.button3);
             this.manageArticlesTabPage.Controls.Add(this.button2);
             this.manageArticlesTabPage.Controls.Add(this.button1);
-            this.manageArticlesTabPage.Controls.Add(this.listView1);
+            this.manageArticlesTabPage.Controls.Add(this.articlesListView);
             this.manageArticlesTabPage.Location = new System.Drawing.Point(4, 22);
             this.manageArticlesTabPage.Name = "manageArticlesTabPage";
             this.manageArticlesTabPage.Padding = new System.Windows.Forms.Padding(3);
@@ -114,6 +118,109 @@
             this.manageArticlesTabPage.TabIndex = 0;
             this.manageArticlesTabPage.Text = "Manage articles";
             this.manageArticlesTabPage.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(401, 23);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(41, 13);
+            this.label7.TabIndex = 10;
+            this.label7.Text = "Author:";
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(448, 20);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(114, 21);
+            this.comboBox3.TabIndex = 9;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(226, 23);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(52, 13);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Category:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(14, 23);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(44, 13);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Search:";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(64, 20);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(147, 20);
+            this.textBox1.TabIndex = 6;
+            // 
+            // categoriesComboBox
+            // 
+            this.categoriesComboBox.FormattingEnabled = true;
+            this.categoriesComboBox.Location = new System.Drawing.Point(285, 20);
+            this.categoriesComboBox.Name = "categoriesComboBox";
+            this.categoriesComboBox.Size = new System.Drawing.Size(110, 21);
+            this.categoriesComboBox.TabIndex = 5;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(487, 148);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 4;
+            this.button4.Text = "Remove";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(487, 54);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 3;
+            this.button3.Text = "Create";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(487, 119);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 2;
+            this.button2.Text = "Edit";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(487, 90);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "View";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // articlesListView
+            // 
+            this.articlesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.titleColumnHeader,
+            this.authorColumnHeader,
+            this.categoryColumnHeader,
+            this.dateColumnHeader});
+            this.articlesListView.HideSelection = false;
+            this.articlesListView.Location = new System.Drawing.Point(17, 55);
+            this.articlesListView.Name = "articlesListView";
+            this.articlesListView.Size = new System.Drawing.Size(454, 311);
+            this.articlesListView.TabIndex = 0;
+            this.articlesListView.UseCompatibleStateImageBehavior = false;
             // 
             // manageCategoriesTabPage
             // 
@@ -131,153 +238,6 @@
             this.manageCategoriesTabPage.TabIndex = 1;
             this.manageCategoriesTabPage.Text = "Manage categories";
             this.manageCategoriesTabPage.UseVisualStyleBackColor = true;
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.backToolStripMenuItem,
-            this.nametypeToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(604, 24);
-            this.menuStrip1.TabIndex = 1;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // backToolStripMenuItem
-            // 
-            this.backToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.logoutToolStripMenuItem1,
-            this.toolStripMenuItem1,
-            this.backToolStripMenuItem1});
-            this.backToolStripMenuItem.Name = "backToolStripMenuItem";
-            this.backToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
-            this.backToolStripMenuItem.Text = "Portal";
-            // 
-            // logoutToolStripMenuItem1
-            // 
-            this.logoutToolStripMenuItem1.Name = "logoutToolStripMenuItem1";
-            this.logoutToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.logoutToolStripMenuItem1.Text = "Logout";
-            this.logoutToolStripMenuItem1.Click += new System.EventHandler(this.logoutToolStripMenuItem1_Click);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
-            // 
-            // backToolStripMenuItem1
-            // 
-            this.backToolStripMenuItem1.Name = "backToolStripMenuItem1";
-            this.backToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.backToolStripMenuItem1.Text = "Leave";
-            this.backToolStripMenuItem1.Click += new System.EventHandler(this.backToolStripMenuItem1_Click);
-            // 
-            // nametypeToolStripMenuItem
-            // 
-            this.nametypeToolStripMenuItem.Name = "nametypeToolStripMenuItem";
-            this.nametypeToolStripMenuItem.Size = new System.Drawing.Size(95, 20);
-            this.nametypeToolStripMenuItem.Text = "$name ($type)";
-            // 
-            // generateReportsTabPage
-            // 
-            this.generateReportsTabPage.Location = new System.Drawing.Point(4, 22);
-            this.generateReportsTabPage.Name = "generateReportsTabPage";
-            this.generateReportsTabPage.Size = new System.Drawing.Size(577, 385);
-            this.generateReportsTabPage.TabIndex = 2;
-            this.generateReportsTabPage.Text = "Generate reports";
-            this.generateReportsTabPage.UseVisualStyleBackColor = true;
-            // 
-            // backupRestoreTabPage
-            // 
-            this.backupRestoreTabPage.Controls.Add(this.groupBox2);
-            this.backupRestoreTabPage.Controls.Add(this.groupBox1);
-            this.backupRestoreTabPage.Location = new System.Drawing.Point(4, 22);
-            this.backupRestoreTabPage.Name = "backupRestoreTabPage";
-            this.backupRestoreTabPage.Size = new System.Drawing.Size(577, 385);
-            this.backupRestoreTabPage.TabIndex = 3;
-            this.backupRestoreTabPage.Text = "Backup/Restore";
-            this.backupRestoreTabPage.UseVisualStyleBackColor = true;
-            // 
-            // listView1
-            // 
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(17, 55);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(454, 311);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(487, 90);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "View";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(487, 119);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Edit";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(487, 54);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "Create";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(487, 148);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 4;
-            this.button4.Text = "Remove";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(285, 20);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(110, 21);
-            this.comboBox1.TabIndex = 5;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(64, 20);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(147, 20);
-            this.textBox1.TabIndex = 6;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(14, 23);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(44, 13);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Search:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(226, 23);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(52, 13);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "Category:";
             // 
             // label3
             // 
@@ -340,9 +300,84 @@
             this.listView2.TabIndex = 8;
             this.listView2.UseCompatibleStateImageBehavior = false;
             // 
-            // openFileDialog1
+            // generateReportsTabPage
             // 
-            this.openFileDialog1.FileName = "openFileDialog1";
+            this.generateReportsTabPage.Location = new System.Drawing.Point(4, 22);
+            this.generateReportsTabPage.Name = "generateReportsTabPage";
+            this.generateReportsTabPage.Size = new System.Drawing.Size(577, 385);
+            this.generateReportsTabPage.TabIndex = 2;
+            this.generateReportsTabPage.Text = "Generate reports";
+            this.generateReportsTabPage.UseVisualStyleBackColor = true;
+            // 
+            // backupRestoreTabPage
+            // 
+            this.backupRestoreTabPage.Controls.Add(this.groupBox2);
+            this.backupRestoreTabPage.Controls.Add(this.groupBox1);
+            this.backupRestoreTabPage.Location = new System.Drawing.Point(4, 22);
+            this.backupRestoreTabPage.Name = "backupRestoreTabPage";
+            this.backupRestoreTabPage.Size = new System.Drawing.Size(577, 385);
+            this.backupRestoreTabPage.TabIndex = 3;
+            this.backupRestoreTabPage.Text = "Backup/Restore";
+            this.backupRestoreTabPage.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.restoreButton);
+            this.groupBox2.Controls.Add(this.checkBox1);
+            this.groupBox2.Controls.Add(this.button9);
+            this.groupBox2.Controls.Add(this.restoreFilePath);
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Location = new System.Drawing.Point(292, 12);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(273, 359);
+            this.groupBox2.TabIndex = 3;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Restore";
+            // 
+            // restoreButton
+            // 
+            this.restoreButton.Location = new System.Drawing.Point(6, 177);
+            this.restoreButton.Name = "restoreButton";
+            this.restoreButton.Size = new System.Drawing.Size(257, 23);
+            this.restoreButton.TabIndex = 4;
+            this.restoreButton.Text = "Restore";
+            this.restoreButton.UseVisualStyleBackColor = true;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(10, 62);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(116, 17);
+            this.checkBox1.TabIndex = 3;
+            this.checkBox1.Text = "Purge existing data";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(217, 35);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(50, 22);
+            this.button9.TabIndex = 0;
+            this.button9.Text = "Pick";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
+            // restoreFilePath
+            // 
+            this.restoreFilePath.Location = new System.Drawing.Point(10, 36);
+            this.restoreFilePath.Name = "restoreFilePath";
+            this.restoreFilePath.Size = new System.Drawing.Size(206, 20);
+            this.restoreFilePath.TabIndex = 2;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(7, 20);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(50, 13);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "File path:";
             // 
             // groupBox1
             // 
@@ -359,100 +394,6 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Backup";
-            // 
-            // checkedListBox1
-            // 
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Items.AddRange(new object[] {
-            "Articles",
-            "Categories",
-            "Users"});
-            this.checkedListBox1.Location = new System.Drawing.Point(6, 19);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(98, 94);
-            this.checkedListBox1.TabIndex = 1;
-            // 
-            // backupButton
-            // 
-            this.backupButton.Location = new System.Drawing.Point(6, 177);
-            this.backupButton.Name = "backupButton";
-            this.backupButton.Size = new System.Drawing.Size(261, 23);
-            this.backupButton.TabIndex = 2;
-            this.backupButton.Text = "Backup";
-            this.backupButton.UseVisualStyleBackColor = true;
-            this.backupButton.Click += new System.EventHandler(this.backupButton_Click);
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.restoreButton);
-            this.groupBox2.Controls.Add(this.checkBox1);
-            this.groupBox2.Controls.Add(this.button9);
-            this.groupBox2.Controls.Add(this.restoreFilePath);
-            this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Location = new System.Drawing.Point(292, 12);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(273, 359);
-            this.groupBox2.TabIndex = 3;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Restore";
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "SQL",
-            "JSON",
-            "XML",
-            "CSV"});
-            this.comboBox2.Location = new System.Drawing.Point(113, 37);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(153, 21);
-            this.comboBox2.TabIndex = 3;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(110, 19);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(54, 13);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "Export as:";
-            // 
-            // button9
-            // 
-            this.button9.Location = new System.Drawing.Point(217, 35);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(50, 22);
-            this.button9.TabIndex = 0;
-            this.button9.Text = "Pick";
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(7, 20);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(50, 13);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "File path:";
-            // 
-            // restoreFilePath
-            // 
-            this.restoreFilePath.Location = new System.Drawing.Point(10, 36);
-            this.restoreFilePath.Name = "restoreFilePath";
-            this.restoreFilePath.Size = new System.Drawing.Size(206, 20);
-            this.restoreFilePath.TabIndex = 2;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(10, 62);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(116, 17);
-            this.checkBox1.TabIndex = 3;
-            this.checkBox1.Text = "Purge existing data";
-            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // pickBackupPath
             // 
@@ -480,31 +421,115 @@
             this.label6.TabIndex = 6;
             this.label6.Text = "File path:";
             // 
-            // restoreButton
+            // label4
             // 
-            this.restoreButton.Location = new System.Drawing.Point(6, 177);
-            this.restoreButton.Name = "restoreButton";
-            this.restoreButton.Size = new System.Drawing.Size(257, 23);
-            this.restoreButton.TabIndex = 4;
-            this.restoreButton.Text = "Restore";
-            this.restoreButton.UseVisualStyleBackColor = true;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(110, 19);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(54, 13);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "Export as:";
             // 
-            // label7
+            // comboBox2
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(401, 23);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(41, 13);
-            this.label7.TabIndex = 10;
-            this.label7.Text = "Author:";
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "SQL",
+            "JSON",
+            "XML",
+            "CSV"});
+            this.comboBox2.Location = new System.Drawing.Point(113, 37);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(153, 21);
+            this.comboBox2.TabIndex = 3;
             // 
-            // comboBox3
+            // backupButton
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(448, 20);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(114, 21);
-            this.comboBox3.TabIndex = 9;
+            this.backupButton.Location = new System.Drawing.Point(6, 177);
+            this.backupButton.Name = "backupButton";
+            this.backupButton.Size = new System.Drawing.Size(261, 23);
+            this.backupButton.TabIndex = 2;
+            this.backupButton.Text = "Backup";
+            this.backupButton.UseVisualStyleBackColor = true;
+            this.backupButton.Click += new System.EventHandler(this.backupButton_Click);
+            // 
+            // checkedListBox1
+            // 
+            this.checkedListBox1.FormattingEnabled = true;
+            this.checkedListBox1.Items.AddRange(new object[] {
+            "Articles",
+            "Categories",
+            "Users"});
+            this.checkedListBox1.Location = new System.Drawing.Point(6, 19);
+            this.checkedListBox1.Name = "checkedListBox1";
+            this.checkedListBox1.Size = new System.Drawing.Size(98, 94);
+            this.checkedListBox1.TabIndex = 1;
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.backToolStripMenuItem,
+            this.nametypeToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(604, 24);
+            this.menuStrip1.TabIndex = 1;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // backToolStripMenuItem
+            // 
+            this.backToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.logoutToolStripMenuItem1,
+            this.toolStripMenuItem1,
+            this.backToolStripMenuItem1});
+            this.backToolStripMenuItem.Name = "backToolStripMenuItem";
+            this.backToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
+            this.backToolStripMenuItem.Text = "Portal";
+            // 
+            // logoutToolStripMenuItem1
+            // 
+            this.logoutToolStripMenuItem1.Name = "logoutToolStripMenuItem1";
+            this.logoutToolStripMenuItem1.Size = new System.Drawing.Size(112, 22);
+            this.logoutToolStripMenuItem1.Text = "Logout";
+            this.logoutToolStripMenuItem1.Click += new System.EventHandler(this.logoutToolStripMenuItem1_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(109, 6);
+            // 
+            // backToolStripMenuItem1
+            // 
+            this.backToolStripMenuItem1.Name = "backToolStripMenuItem1";
+            this.backToolStripMenuItem1.Size = new System.Drawing.Size(112, 22);
+            this.backToolStripMenuItem1.Text = "Leave";
+            this.backToolStripMenuItem1.Click += new System.EventHandler(this.backToolStripMenuItem1_Click);
+            // 
+            // nametypeToolStripMenuItem
+            // 
+            this.nametypeToolStripMenuItem.Name = "nametypeToolStripMenuItem";
+            this.nametypeToolStripMenuItem.Size = new System.Drawing.Size(95, 20);
+            this.nametypeToolStripMenuItem.Text = "$name ($type)";
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // titleColumnHeader
+            // 
+            this.titleColumnHeader.Width = 160;
+            // 
+            // authorColumnHeader
+            // 
+            this.authorColumnHeader.Width = 100;
+            // 
+            // categoryColumnHeader
+            // 
+            this.categoryColumnHeader.Width = 120;
+            // 
+            // dateColumnHeader
+            // 
+            this.dateColumnHeader.Width = 140;
             // 
             // AdminForm
             // 
@@ -523,13 +548,13 @@
             this.manageArticlesTabPage.PerformLayout();
             this.manageCategoriesTabPage.ResumeLayout(false);
             this.manageCategoriesTabPage.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.backupRestoreTabPage.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -546,7 +571,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem backToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem nametypeToolStripMenuItem;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView articlesListView;
         private System.Windows.Forms.TabPage generateReportsTabPage;
         private System.Windows.Forms.TabPage backupRestoreTabPage;
         private System.Windows.Forms.Button button4;
@@ -556,7 +581,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox categoriesComboBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button button5;
@@ -582,5 +607,9 @@
         private System.Windows.Forms.Button restoreButton;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ColumnHeader titleColumnHeader;
+        private System.Windows.Forms.ColumnHeader authorColumnHeader;
+        private System.Windows.Forms.ColumnHeader categoryColumnHeader;
+        private System.Windows.Forms.ColumnHeader dateColumnHeader;
     }
 }
