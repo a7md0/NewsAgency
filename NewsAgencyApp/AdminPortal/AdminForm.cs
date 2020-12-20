@@ -235,5 +235,20 @@ namespace NewsAgencyApp.AdminPortal
         {
 
         }
+
+        private void viewArticleButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void editArticleButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void removeArticleButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

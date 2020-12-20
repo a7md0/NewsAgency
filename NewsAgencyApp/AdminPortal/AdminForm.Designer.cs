@@ -36,10 +36,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.articleSearchTextBox = new System.Windows.Forms.TextBox();
             this.categoriesComboBox = new System.Windows.Forms.ComboBox();
-            this.button4 = new System.Windows.Forms.Button();
+            this.removeArticleButton = new System.Windows.Forms.Button();
             this.createArticleButton = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.editArticleButton = new System.Windows.Forms.Button();
+            this.viewArticleButton = new System.Windows.Forms.Button();
             this.articlesListView = new System.Windows.Forms.ListView();
             this.titleColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.authorColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -106,10 +106,10 @@
             this.manageArticlesTabPage.Controls.Add(this.label1);
             this.manageArticlesTabPage.Controls.Add(this.articleSearchTextBox);
             this.manageArticlesTabPage.Controls.Add(this.categoriesComboBox);
-            this.manageArticlesTabPage.Controls.Add(this.button4);
+            this.manageArticlesTabPage.Controls.Add(this.removeArticleButton);
             this.manageArticlesTabPage.Controls.Add(this.createArticleButton);
-            this.manageArticlesTabPage.Controls.Add(this.button2);
-            this.manageArticlesTabPage.Controls.Add(this.button1);
+            this.manageArticlesTabPage.Controls.Add(this.editArticleButton);
+            this.manageArticlesTabPage.Controls.Add(this.viewArticleButton);
             this.manageArticlesTabPage.Controls.Add(this.articlesListView);
             this.manageArticlesTabPage.Location = new System.Drawing.Point(4, 22);
             this.manageArticlesTabPage.Name = "manageArticlesTabPage";
@@ -176,15 +176,15 @@
             this.categoriesComboBox.TabIndex = 5;
             this.categoriesComboBox.SelectedIndexChanged += new System.EventHandler(this.categoriesComboBox_SelectedIndexChanged);
             // 
-            // button4
+            // removeArticleButton
             // 
-            this.button4.Location = new System.Drawing.Point(487, 148);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 4;
-            this.button4.Text = "Remove";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.removeArticleButton.Location = new System.Drawing.Point(487, 148);
+            this.removeArticleButton.Name = "removeArticleButton";
+            this.removeArticleButton.Size = new System.Drawing.Size(75, 23);
+            this.removeArticleButton.TabIndex = 4;
+            this.removeArticleButton.Text = "Remove";
+            this.removeArticleButton.UseVisualStyleBackColor = true;
+            this.removeArticleButton.Click += new System.EventHandler(this.removeArticleButton_Click);
             // 
             // createArticleButton
             // 
@@ -196,25 +196,25 @@
             this.createArticleButton.UseVisualStyleBackColor = true;
             this.createArticleButton.Click += new System.EventHandler(this.createArticleButton_Click);
             // 
-            // button2
+            // editArticleButton
             // 
-            this.button2.Location = new System.Drawing.Point(487, 119);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Edit";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.editArticleButton.Location = new System.Drawing.Point(487, 119);
+            this.editArticleButton.Name = "editArticleButton";
+            this.editArticleButton.Size = new System.Drawing.Size(75, 23);
+            this.editArticleButton.TabIndex = 2;
+            this.editArticleButton.Text = "Edit";
+            this.editArticleButton.UseVisualStyleBackColor = true;
+            this.editArticleButton.Click += new System.EventHandler(this.editArticleButton_Click);
             // 
-            // button1
+            // viewArticleButton
             // 
-            this.button1.Location = new System.Drawing.Point(487, 90);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "View";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.viewArticleButton.Location = new System.Drawing.Point(487, 90);
+            this.viewArticleButton.Name = "viewArticleButton";
+            this.viewArticleButton.Size = new System.Drawing.Size(75, 23);
+            this.viewArticleButton.TabIndex = 1;
+            this.viewArticleButton.Text = "View";
+            this.viewArticleButton.UseVisualStyleBackColor = true;
+            this.viewArticleButton.Click += new System.EventHandler(this.viewArticleButton_Click);
             // 
             // articlesListView
             // 
@@ -586,10 +586,10 @@
         private System.Windows.Forms.ListView articlesListView;
         private System.Windows.Forms.TabPage generateReportsTabPage;
         private System.Windows.Forms.TabPage backupRestoreTabPage;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button removeArticleButton;
         private System.Windows.Forms.Button createArticleButton;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button editArticleButton;
+        private System.Windows.Forms.Button viewArticleButton;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox articleSearchTextBox;
