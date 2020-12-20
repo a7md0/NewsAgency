@@ -18,6 +18,8 @@ namespace NewsAgencyApp.AdminPortal
         List<Models.Category> categories = new List<Models.Category>();
         List<Models.User> users = new List<Models.User>();
 
+        IDictionary<string, string> filters = new Dictionary<string, string>();
+
         public AdminForm(Form parent)
         {
             InitializeComponent();
@@ -39,6 +41,7 @@ namespace NewsAgencyApp.AdminPortal
 
             loadArticlesList();
             loadCategoriesList();
+            loadUsersList();
         }
 
         private void authStateChanged(AuthenticationState state)
@@ -95,8 +98,26 @@ namespace NewsAgencyApp.AdminPortal
 
                 categoriesComboBox.Items.Add(new { Text = category.Name, Value = category.Id });
             }
+
+            categoriesComboBox.SelectedItem = null;
+            categoriesComboBox.SelectedText = "--Select--";
         }
 
+        private void loadUsersList()
+        {
+            users = Models.User.FindAll();
+
+            foreach (var user in users)
+            {
+                authorsComboBox.DisplayMember = "Text";
+                authorsComboBox.ValueMember = "Value";
+
+                authorsComboBox.Items.Add(new { Text = user.FullName, Value = user.Id });
+            }
+
+            authorsComboBox.SelectedItem = null;
+            authorsComboBox.SelectedText = "--Select--";
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -138,6 +159,81 @@ namespace NewsAgencyApp.AdminPortal
 
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                 backupFilePath.Text = saveFileDialog1.FileName;
+        }
+
+        private void categoriesComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            object selectedItem = ((ComboBox)sender).SelectedItem;
+            var propertyInfo = selectedItem.GetType().GetProperty("Value");
+
+            if (selectedItem != null && propertyInfo != null)
+            {
+                int id = (int)propertyInfo.GetValue(selectedItem);
+                filters["categoryId"] = string.Format("CategoryId = {0}", id);
+            }
+            else
+            {
+                filters.Remove("categoryId");
+            }
+
+            triggerFindArticles();
+        }
+
+        private void authorsComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            object selectedItem = ((ComboBox)sender).SelectedItem;
+            var propertyInfo = selectedItem.GetType().GetProperty("Value");
+
+            if (selectedItem != null && propertyInfo != null)
+            {
+                int id = (int)propertyInfo.GetValue(selectedItem);
+                filters["userId"] = string.Format("UserId = {0}", id);
+            }
+            else
+            {
+                filters.Remove("userId");
+            }
+
+            triggerFindArticles();
+        }
+
+        private void articleSearchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            TextBox search = articleSearchTextBox;
+
+            if (search.Text.Length > 0)
+            {
+                filters["Search"] = string.Format("Title LIKE '%{0}%'", search.Text);
+            }
+            else
+            {
+                filters.Remove("search");
+            }
+
+            triggerFindArticles();
+        }
+
+        private void triggerFindArticles()
+        {
+            articlesListView.Items.Clear();
+            articles = Models.Article.FindAll(filters);
+
+            foreach (var article in articles)
+            {
+                ListViewItem item = new ListViewItem(article.Title);
+                item.SubItems.Add(article.User.FullName);
+                item.SubItems.Add(article.Category.Name);
+                item.SubItems.Add(article.CreatedAt);
+
+                articlesListView.Items.Add(item);
+
+                articlesListView.View = View.Details;
+            }
+        }
+
+        private void createArticleButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

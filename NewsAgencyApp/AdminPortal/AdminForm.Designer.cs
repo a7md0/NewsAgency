@@ -31,16 +31,20 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.manageArticlesTabPage = new System.Windows.Forms.TabPage();
             this.label7 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.authorsComboBox = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.articleSearchTextBox = new System.Windows.Forms.TextBox();
             this.categoriesComboBox = new System.Windows.Forms.ComboBox();
             this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.createArticleButton = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.articlesListView = new System.Windows.Forms.ListView();
+            this.titleColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.authorColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.categoryColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.dateColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.manageCategoriesTabPage = new System.Windows.Forms.TabPage();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -73,10 +77,6 @@
             this.nametypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.titleColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.authorColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.categoryColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.dateColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl1.SuspendLayout();
             this.manageArticlesTabPage.SuspendLayout();
             this.manageCategoriesTabPage.SuspendLayout();
@@ -101,13 +101,13 @@
             // manageArticlesTabPage
             // 
             this.manageArticlesTabPage.Controls.Add(this.label7);
-            this.manageArticlesTabPage.Controls.Add(this.comboBox3);
+            this.manageArticlesTabPage.Controls.Add(this.authorsComboBox);
             this.manageArticlesTabPage.Controls.Add(this.label2);
             this.manageArticlesTabPage.Controls.Add(this.label1);
-            this.manageArticlesTabPage.Controls.Add(this.textBox1);
+            this.manageArticlesTabPage.Controls.Add(this.articleSearchTextBox);
             this.manageArticlesTabPage.Controls.Add(this.categoriesComboBox);
             this.manageArticlesTabPage.Controls.Add(this.button4);
-            this.manageArticlesTabPage.Controls.Add(this.button3);
+            this.manageArticlesTabPage.Controls.Add(this.createArticleButton);
             this.manageArticlesTabPage.Controls.Add(this.button2);
             this.manageArticlesTabPage.Controls.Add(this.button1);
             this.manageArticlesTabPage.Controls.Add(this.articlesListView);
@@ -128,13 +128,16 @@
             this.label7.TabIndex = 10;
             this.label7.Text = "Author:";
             // 
-            // comboBox3
+            // authorsComboBox
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(448, 20);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(114, 21);
-            this.comboBox3.TabIndex = 9;
+            this.authorsComboBox.FormattingEnabled = true;
+            this.authorsComboBox.Items.AddRange(new object[] {
+            "--Select--"});
+            this.authorsComboBox.Location = new System.Drawing.Point(448, 20);
+            this.authorsComboBox.Name = "authorsComboBox";
+            this.authorsComboBox.Size = new System.Drawing.Size(114, 21);
+            this.authorsComboBox.TabIndex = 9;
+            this.authorsComboBox.SelectedIndexChanged += new System.EventHandler(this.authorsComboBox_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -154,20 +157,24 @@
             this.label1.TabIndex = 7;
             this.label1.Text = "Search:";
             // 
-            // textBox1
+            // articleSearchTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(64, 20);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(147, 20);
-            this.textBox1.TabIndex = 6;
+            this.articleSearchTextBox.Location = new System.Drawing.Point(64, 20);
+            this.articleSearchTextBox.Name = "articleSearchTextBox";
+            this.articleSearchTextBox.Size = new System.Drawing.Size(147, 20);
+            this.articleSearchTextBox.TabIndex = 6;
+            this.articleSearchTextBox.TextChanged += new System.EventHandler(this.articleSearchTextBox_TextChanged);
             // 
             // categoriesComboBox
             // 
             this.categoriesComboBox.FormattingEnabled = true;
+            this.categoriesComboBox.Items.AddRange(new object[] {
+            "--Select--"});
             this.categoriesComboBox.Location = new System.Drawing.Point(285, 20);
             this.categoriesComboBox.Name = "categoriesComboBox";
             this.categoriesComboBox.Size = new System.Drawing.Size(110, 21);
             this.categoriesComboBox.TabIndex = 5;
+            this.categoriesComboBox.SelectedIndexChanged += new System.EventHandler(this.categoriesComboBox_SelectedIndexChanged);
             // 
             // button4
             // 
@@ -179,14 +186,15 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
-            // button3
+            // createArticleButton
             // 
-            this.button3.Location = new System.Drawing.Point(487, 54);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "Create";
-            this.button3.UseVisualStyleBackColor = true;
+            this.createArticleButton.Location = new System.Drawing.Point(487, 54);
+            this.createArticleButton.Name = "createArticleButton";
+            this.createArticleButton.Size = new System.Drawing.Size(75, 23);
+            this.createArticleButton.TabIndex = 3;
+            this.createArticleButton.Text = "Create";
+            this.createArticleButton.UseVisualStyleBackColor = true;
+            this.createArticleButton.Click += new System.EventHandler(this.createArticleButton_Click);
             // 
             // button2
             // 
@@ -221,6 +229,26 @@
             this.articlesListView.Size = new System.Drawing.Size(454, 311);
             this.articlesListView.TabIndex = 0;
             this.articlesListView.UseCompatibleStateImageBehavior = false;
+            // 
+            // titleColumnHeader
+            // 
+            this.titleColumnHeader.Text = "Title";
+            this.titleColumnHeader.Width = 160;
+            // 
+            // authorColumnHeader
+            // 
+            this.authorColumnHeader.Text = "Author";
+            this.authorColumnHeader.Width = 100;
+            // 
+            // categoryColumnHeader
+            // 
+            this.categoryColumnHeader.Text = "Category";
+            this.categoryColumnHeader.Width = 120;
+            // 
+            // dateColumnHeader
+            // 
+            this.dateColumnHeader.Text = "Date";
+            this.dateColumnHeader.Width = 140;
             // 
             // manageCategoriesTabPage
             // 
@@ -515,22 +543,6 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // titleColumnHeader
-            // 
-            this.titleColumnHeader.Width = 160;
-            // 
-            // authorColumnHeader
-            // 
-            this.authorColumnHeader.Width = 100;
-            // 
-            // categoryColumnHeader
-            // 
-            this.categoryColumnHeader.Width = 120;
-            // 
-            // dateColumnHeader
-            // 
-            this.dateColumnHeader.Width = 140;
-            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -575,12 +587,12 @@
         private System.Windows.Forms.TabPage generateReportsTabPage;
         private System.Windows.Forms.TabPage backupRestoreTabPage;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button createArticleButton;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox articleSearchTextBox;
         private System.Windows.Forms.ComboBox categoriesComboBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox2;
@@ -606,7 +618,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button restoreButton;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox authorsComboBox;
         private System.Windows.Forms.ColumnHeader titleColumnHeader;
         private System.Windows.Forms.ColumnHeader authorColumnHeader;
         private System.Windows.Forms.ColumnHeader categoryColumnHeader;
