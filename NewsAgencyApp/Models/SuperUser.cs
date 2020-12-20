@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NewsAgencyApp
+namespace NewsAgencyApp.Models
 {
     class SuperUser : User
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NewsAgencyApp
+namespace NewsAgencyApp.Models
 {
     class User
     {
