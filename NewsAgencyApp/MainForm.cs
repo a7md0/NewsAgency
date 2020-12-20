@@ -7,13 +7,20 @@ namespace NewsAgencyApp
 {
     public partial class MainForm : Form
     {
-        private List<Models.Article> articles;
-
         public MainForm()
         {
             InitializeComponent();
         }
 
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            var observer = AuthenticationContext.Instance().AuthenticationObserverInstance();
+            observer.nextDelegate = authStateChanged;
+
+            loadArticles();
+        }
+
+        #region Menu
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -21,21 +28,7 @@ namespace NewsAgencyApp
 
         private void aboutToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("(c) 2020, Ahmed Naser");
-        }
-
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            /*User user = AuthenticationContext.Instance().Login("admin", "admin");
-            Console.WriteLine(user.Id);
-            Console.WriteLine(user.FullName);
-            Console.WriteLine(user.Email);*/
-
-            var observer = AuthenticationContext.Instance().AuthenticationObserverInstance();
-            observer.nextDelegate = authStateChanged;
-
-            //Models.Article article = new Models.Article("", "", null, null, "");
-            loadArticles();
+            MessageBox.Show("(c) 2020, Ahmed Naser", "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void authStateChanged(AuthenticationState state)
@@ -75,6 +68,19 @@ namespace NewsAgencyApp
             AdminPortal.AdminForm adminForm = new AdminPortal.AdminForm(this);
             adminForm.ShowDialog();
         }
+        #endregion
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            var connection = DBMgr.DatabaseFactory().Connection();
+            if (connection != null && connection.State != System.Data.ConnectionState.Closed)
+            {
+                connection.Close();
+            }
+        }
+
+        #region Articles
+        private List<Models.Article> articles;
 
         private void loadArticles()
         {
@@ -93,13 +99,26 @@ namespace NewsAgencyApp
             }
         }
 
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        private void viewArticleButton_Click(object sender, EventArgs e)
         {
-            var connection = DBMgr.DatabaseFactory().Connection();
-            if (connection != null && connection.State != System.Data.ConnectionState.Closed)
+            if (articlesListView.SelectedItems.Count == 0)
             {
-                connection.Close();
+                MessageBox.Show("Select article first", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
+            var selectedItem = articlesListView.SelectedItems[0];
+            Models.Article article = articles[selectedItem.Index];
+
+            this.showArticle(article);
         }
+
+        private void showArticle(Models.Article article)
+        {
+            ViewArticle viewArticleForm = new ViewArticle();
+            viewArticleForm.Article = article;
+
+            viewArticleForm.ShowDialog();
+        }
+        #endregion
     }
 }
