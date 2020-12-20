@@ -20,9 +20,18 @@ namespace NewsAgencyApp
             Models.User user = AuthenticationContext.Instance().Login(username, password);
 
             if (user != null)
+            {
+                MessageBox.Show(string.Format("Welcome {0}!", user.FullName), "Welcome", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
+            }
             else
-                MessageBox.Show("Invalid username or password, try again.");
+            {
+                var response = MessageBox.Show("Invalid username or password", "Invalid credentials", MessageBoxButtons.RetryCancel, MessageBoxIcon.Warning);
+                if (response == DialogResult.Cancel)
+                {
+                    this.Close();
+                }
+            }
         }
     }
 }
