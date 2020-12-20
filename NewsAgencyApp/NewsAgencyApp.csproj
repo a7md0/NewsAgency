@@ -85,6 +85,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DatabaseDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Helper\ComboboxItem.cs" />
     <Compile Include="Helper\Observer.cs" />
     <Compile Include="Authentication\AuthenticationState.cs" />
     <Compile Include="Authentication\AuthenticationContext.cs" />
@@ -120,6 +121,9 @@
     </Compile>
     <EmbeddedResource Include="AdminPortal\AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminPortal\CreateArticleForm.resx">
+      <DependentUpon>CreateArticleForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
