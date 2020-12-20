@@ -76,8 +76,7 @@ namespace NewsAgencyApp.AdminPortal
             articlesListView.View = View.Details; // Important to make the list view show details ( columns )
             articlesListView.FullRowSelect = true; // Select the whole row
 
-            articlesList = Models.Article.FindAll();
-            this.renderArticlesListView();
+            triggerFindArticles();
         }
 
         private void renderArticlesListView()
@@ -205,7 +204,10 @@ namespace NewsAgencyApp.AdminPortal
 
         private void createArticleButton_Click(object sender, EventArgs e)
         {
+            CreateArticleForm createArticleForm = new CreateArticleForm();
+            createArticleForm.ShowDialog();
 
+            triggerFindArticles();
         }
 
         private void viewArticleButton_Click(object sender, EventArgs e)
@@ -223,7 +225,10 @@ namespace NewsAgencyApp.AdminPortal
             if (article == null)
                 return;
 
-            // TODO: Show edit article form
+            EditArticleForm editArticleForm = new EditArticleForm();
+            editArticleForm.ShowDialog();
+
+            renderArticlesListView();
         }
 
         private void removeArticleButton_Click(object sender, EventArgs e)
