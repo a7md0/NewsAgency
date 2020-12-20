@@ -178,19 +178,15 @@ namespace NewsAgencyApp.Models
             return articles;
         }
 
-        public static List<Article> FindAll(IDictionary<string, string> filters)
+        public static List<Article> FindAll(IDictionary<string, string> filters = null)
         {
             string whereCluase = "";
 
             if (filters.Count > 0)
             {
-                whereCluase += "WHERE ";
-
                 foreach (var filter in filters)
                 {
-                    if (whereCluase.Length > 6)
-                        whereCluase += " AND ";
-
+                    whereCluase += (whereCluase.Length == 0) ? "WHERE " : " AND ";
                     whereCluase += filter.Value;
                 }
                     
@@ -221,7 +217,7 @@ namespace NewsAgencyApp.Models
 
             SqlDataReader sdr = query.ExecuteReader();
 
-            List<Article> articles = Article.parseArticles(sdr);
+            List<Article> articles = parseArticles(sdr);
 
             sdr.Close(); // Close SqlDataReader
 
