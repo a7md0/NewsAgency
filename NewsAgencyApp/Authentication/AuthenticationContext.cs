@@ -48,7 +48,7 @@ namespace NewsAgencyApp
             return observer;
         }
 
-        public User Login(string username, string password)
+        public Models.User Login(string username, string password)
         {
             if (!(state is UnauthenticatedState))
                 return null;
@@ -62,13 +62,13 @@ namespace NewsAgencyApp
             query.Parameters.Add("@password", SqlDbType.NVarChar, 100).Value = password;
 
             SqlDataReader sdr = query.ExecuteReader();
-            User user = null;
+            Models.User user = null;
 
             if (sdr.HasRows == true && sdr.Read())
             {
                 int roleId = Int32.Parse(sdr["RoleId"].ToString());
 
-                user = User.UserFactory(Int32.Parse(sdr["RoleId"].ToString()));
+                user = Models.User.UserFactory(Int32.Parse(sdr["RoleId"].ToString()));
 
                 user.Id = Int32.Parse(sdr["Id"].ToString());
                 user.FullName = sdr["FullName"].ToString();

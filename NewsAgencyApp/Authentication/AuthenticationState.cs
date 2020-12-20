@@ -2,9 +2,9 @@ namespace NewsAgencyApp
 {
     abstract class AuthenticationState
     {
-        protected User currentUser;
+        protected Models.User currentUser;
 
-        protected AuthenticationState(User user)
+        protected AuthenticationState(Models.User user)
         {
             currentUser = user;
         }
@@ -17,7 +17,7 @@ namespace NewsAgencyApp
 
         public abstract bool CanManageDatabase();
 
-        public User CurrentUser
+        public Models.User CurrentUser
         {
             get
             {

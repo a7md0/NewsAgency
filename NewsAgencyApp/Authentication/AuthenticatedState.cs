@@ -3,7 +3,7 @@ namespace NewsAgencyApp
     class AuthenticatedState : AuthenticationState
     {
 
-        public AuthenticatedState(User user) : base(user)
+        public AuthenticatedState(Models.User user) : base(user)
         {
 
         }

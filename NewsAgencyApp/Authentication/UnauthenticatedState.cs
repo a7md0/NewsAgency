@@ -8,7 +8,7 @@ namespace NewsAgencyApp
 
         }
 
-        public void Authenticated(User user)
+        public void Authenticated(Models.User user)
         {
             AuthenticationContext.Instance().State = new AuthenticatedState(user);
         }

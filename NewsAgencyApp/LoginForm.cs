@@ -17,7 +17,7 @@ namespace NewsAgencyApp
             string username = this.usernameTextBox.Text;
             string password = this.passwordTextBox.Text;
 
-            User user = AuthenticationContext.Instance().Login(username, password);
+            Models.User user = AuthenticationContext.Instance().Login(username, password);
 
             if (user != null)
                 this.Close();

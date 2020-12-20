@@ -44,7 +44,7 @@ namespace NewsAgencyApp
             {
                 loginLogoutToolStripMenuItem.Text = "Logout";
 
-                if (state.CurrentUser is SuperUser)
+                if (state.CurrentUser is Models.SuperUser)
                 {
                     adminPortalToolStripMenuItem.Visible = true;
                 }
