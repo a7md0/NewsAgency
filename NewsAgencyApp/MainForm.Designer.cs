@@ -40,9 +40,7 @@
             this.authorColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.categoryColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.dateColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.viewArticleButton = new System.Windows.Forms.Button();
             titleColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -60,7 +58,7 @@
             this.aboutToolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(602, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(567, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -119,7 +117,7 @@
             this.articlesListView.HideSelection = false;
             this.articlesListView.Location = new System.Drawing.Point(12, 36);
             this.articlesListView.Name = "articlesListView";
-            this.articlesListView.Size = new System.Drawing.Size(560, 206);
+            this.articlesListView.Size = new System.Drawing.Size(540, 206);
             this.articlesListView.TabIndex = 1;
             this.articlesListView.UseCompatibleStateImageBehavior = false;
             // 
@@ -138,41 +136,22 @@
             this.dateColumnHeader.Text = "Date";
             this.dateColumnHeader.Width = 140;
             // 
-            // button1
+            // viewArticleButton
             // 
-            this.button1.Location = new System.Drawing.Point(576, 90);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(20, 27);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "⇈";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(576, 143);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(20, 23);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "⇊";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(138, 257);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(317, 23);
-            this.button3.TabIndex = 4;
-            this.button3.Text = "View Article";
-            this.button3.UseVisualStyleBackColor = true;
+            this.viewArticleButton.Location = new System.Drawing.Point(205, 257);
+            this.viewArticleButton.Name = "viewArticleButton";
+            this.viewArticleButton.Size = new System.Drawing.Size(161, 23);
+            this.viewArticleButton.TabIndex = 4;
+            this.viewArticleButton.Text = "View Article";
+            this.viewArticleButton.UseVisualStyleBackColor = true;
+            this.viewArticleButton.Click += new System.EventHandler(this.viewArticleButton_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(602, 292);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(567, 292);
+            this.Controls.Add(this.viewArticleButton);
             this.Controls.Add(this.articlesListView);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -196,9 +175,7 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem1;
         private System.Windows.Forms.ListView articlesListView;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button viewArticleButton;
         private System.Windows.Forms.ToolStripMenuItem adminPortalToolStripMenuItem;
         private System.Windows.Forms.ColumnHeader authorColumnHeader;
         private System.Windows.Forms.ColumnHeader categoryColumnHeader;
