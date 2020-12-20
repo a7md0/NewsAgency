@@ -153,7 +153,7 @@ namespace NewsAgencyApp.Models
             SqlCommand query = new SqlCommand
             {
                 CommandText = @"SELECT a.Id, a.Title, a.Content, a.NumberOfViews, a.CreatedAt, a.UpdatedAt, a.Keywords,
-                                    c.Id as CategoryId, c.Name as CategoryName, c.NumberOfArticle as CategoryNumberOfArticle,
+                                    c.Id as CategoryId, c.Name as CategoryName,
                                     u.Id as UserId, u.FullName as UserFullName, u.Username as UserUserName
 
                                     FROM [Article] AS a
@@ -197,7 +197,7 @@ namespace NewsAgencyApp.Models
             SqlCommand query = new SqlCommand
             {
                 CommandText = string.Format(@"SELECT a.Id, a.Title, a.Content, a.NumberOfViews, a.CreatedAt, a.UpdatedAt, a.Keywords,
-                                    c.Id as CategoryId, c.Name as CategoryName, c.NumberOfArticle as CategoryNumberOfArticle,
+                                    c.Id as CategoryId, c.Name as CategoryName,
                                     u.Id as UserId, u.FullName as UserFullName, u.Username as UserUserName
 
                                     FROM [Article] AS a
@@ -329,7 +329,6 @@ namespace NewsAgencyApp.Models
                 {
                     Id = Int32.Parse(sdr["CategoryId"].ToString()),
                     Name = sdr["CategoryName"].ToString(),
-                    NumberOfArticles = Int32.Parse(sdr["CategoryNumberOfArticle"].ToString()),
                 };
                 Article article = new Article
                 {

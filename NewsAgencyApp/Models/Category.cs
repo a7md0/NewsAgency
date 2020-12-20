@@ -13,7 +13,6 @@ namespace NewsAgencyApp.Models
     {
         private int id;
         private string name;
-        private int numberOfArticles;
 
         public int Id
         {
@@ -41,34 +40,19 @@ namespace NewsAgencyApp.Models
             }
         }
 
-        public int NumberOfArticles
-        {
-            get
-            {
-                return numberOfArticles;
-            }
-
-            set
-            {
-                numberOfArticles = value;
-            }
-        }
-
         public Category()
         {
         }
 
-        public Category(int id, string name, int numberOfArticles)
+        public Category(int id, string name)
         {
             this.id = id;
             this.name = name;
-            this.numberOfArticles = numberOfArticles;
         }
 
         public Category(string name)
         {
             this.name = name;
-            this.numberOfArticles = 0;
         }
 
         public static List<Category> FindAll()
@@ -77,7 +61,7 @@ namespace NewsAgencyApp.Models
 
             SqlCommand query = new SqlCommand
             {
-                CommandText = "SELECT Id, Name, NumberOfArticle FROM [Category];",
+                CommandText = "SELECT Id, Name FROM [Category];",
                 Connection = DBMgr.DatabaseFactory().Connection(),
                 CommandType = CommandType.Text,
             };
@@ -90,7 +74,6 @@ namespace NewsAgencyApp.Models
                 {
                     Id = Int32.Parse(sdr["Id"].ToString()),
                     Name = sdr["Name"].ToString(),
-                    NumberOfArticles = Int32.Parse(sdr["NumberOfArticle"].ToString()),
                 };
 
                 categories.Add(category);
