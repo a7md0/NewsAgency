@@ -201,9 +201,9 @@ namespace NewsAgencyApp.AdminPortal
         {
             TextBox search = articleSearchTextBox;
 
-            if (search.Text.Length > 0)
+            if (search.TextLength > 0)
             {
-                filters["Search"] = string.Format("Title LIKE '%{0}%'", search.Text);
+                filters["search"] = string.Format("Title LIKE '%{0}%'", search.Text);
             }
             else
             {
