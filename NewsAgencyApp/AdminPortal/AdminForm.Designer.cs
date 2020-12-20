@@ -28,18 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabControl = new System.Windows.Forms.TabControl();
             this.manageArticlesTabPage = new System.Windows.Forms.TabPage();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.viewArticleButton = new System.Windows.Forms.Button();
+            this.editArticleButton = new System.Windows.Forms.Button();
+            this.removeArticleButton = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.authorsComboBox = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.articleSearchTextBox = new System.Windows.Forms.TextBox();
             this.categoriesComboBox = new System.Windows.Forms.ComboBox();
-            this.removeArticleButton = new System.Windows.Forms.Button();
             this.createArticleButton = new System.Windows.Forms.Button();
-            this.editArticleButton = new System.Windows.Forms.Button();
-            this.viewArticleButton = new System.Windows.Forms.Button();
             this.articlesListView = new System.Windows.Forms.ListView();
             this.titleColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.authorColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -77,8 +78,9 @@
             this.nametypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.tabControl1.SuspendLayout();
+            this.tabControl.SuspendLayout();
             this.manageArticlesTabPage.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.manageCategoriesTabPage.SuspendLayout();
             this.backupRestoreTabPage.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -86,38 +88,78 @@
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tabControl1
+            // tabControl
             // 
-            this.tabControl1.Controls.Add(this.manageArticlesTabPage);
-            this.tabControl1.Controls.Add(this.manageCategoriesTabPage);
-            this.tabControl1.Controls.Add(this.generateReportsTabPage);
-            this.tabControl1.Controls.Add(this.backupRestoreTabPage);
-            this.tabControl1.Location = new System.Drawing.Point(12, 27);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(585, 411);
-            this.tabControl1.TabIndex = 0;
+            this.tabControl.Controls.Add(this.manageArticlesTabPage);
+            this.tabControl.Controls.Add(this.manageCategoriesTabPage);
+            this.tabControl.Controls.Add(this.generateReportsTabPage);
+            this.tabControl.Controls.Add(this.backupRestoreTabPage);
+            this.tabControl.Location = new System.Drawing.Point(0, 27);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(611, 424);
+            this.tabControl.TabIndex = 0;
             // 
             // manageArticlesTabPage
             // 
+            this.manageArticlesTabPage.Controls.Add(this.groupBox3);
             this.manageArticlesTabPage.Controls.Add(this.label7);
             this.manageArticlesTabPage.Controls.Add(this.authorsComboBox);
             this.manageArticlesTabPage.Controls.Add(this.label2);
             this.manageArticlesTabPage.Controls.Add(this.label1);
             this.manageArticlesTabPage.Controls.Add(this.articleSearchTextBox);
             this.manageArticlesTabPage.Controls.Add(this.categoriesComboBox);
-            this.manageArticlesTabPage.Controls.Add(this.removeArticleButton);
             this.manageArticlesTabPage.Controls.Add(this.createArticleButton);
-            this.manageArticlesTabPage.Controls.Add(this.editArticleButton);
-            this.manageArticlesTabPage.Controls.Add(this.viewArticleButton);
             this.manageArticlesTabPage.Controls.Add(this.articlesListView);
             this.manageArticlesTabPage.Location = new System.Drawing.Point(4, 22);
             this.manageArticlesTabPage.Name = "manageArticlesTabPage";
             this.manageArticlesTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.manageArticlesTabPage.Size = new System.Drawing.Size(577, 385);
+            this.manageArticlesTabPage.Size = new System.Drawing.Size(603, 398);
             this.manageArticlesTabPage.TabIndex = 0;
             this.manageArticlesTabPage.Text = "Manage articles";
             this.manageArticlesTabPage.UseVisualStyleBackColor = true;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.viewArticleButton);
+            this.groupBox3.Controls.Add(this.editArticleButton);
+            this.groupBox3.Controls.Add(this.removeArticleButton);
+            this.groupBox3.Location = new System.Drawing.Point(487, 83);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(101, 107);
+            this.groupBox3.TabIndex = 11;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Selected";
+            // 
+            // viewArticleButton
+            // 
+            this.viewArticleButton.Location = new System.Drawing.Point(6, 19);
+            this.viewArticleButton.Name = "viewArticleButton";
+            this.viewArticleButton.Size = new System.Drawing.Size(89, 23);
+            this.viewArticleButton.TabIndex = 1;
+            this.viewArticleButton.Text = "View";
+            this.viewArticleButton.UseVisualStyleBackColor = true;
+            this.viewArticleButton.Click += new System.EventHandler(this.viewArticleButton_Click);
+            // 
+            // editArticleButton
+            // 
+            this.editArticleButton.Location = new System.Drawing.Point(6, 48);
+            this.editArticleButton.Name = "editArticleButton";
+            this.editArticleButton.Size = new System.Drawing.Size(89, 23);
+            this.editArticleButton.TabIndex = 2;
+            this.editArticleButton.Text = "Edit";
+            this.editArticleButton.UseVisualStyleBackColor = true;
+            this.editArticleButton.Click += new System.EventHandler(this.editArticleButton_Click);
+            // 
+            // removeArticleButton
+            // 
+            this.removeArticleButton.Location = new System.Drawing.Point(6, 77);
+            this.removeArticleButton.Name = "removeArticleButton";
+            this.removeArticleButton.Size = new System.Drawing.Size(89, 23);
+            this.removeArticleButton.TabIndex = 4;
+            this.removeArticleButton.Text = "Remove";
+            this.removeArticleButton.UseVisualStyleBackColor = true;
+            this.removeArticleButton.Click += new System.EventHandler(this.removeArticleButton_Click);
             // 
             // label7
             // 
@@ -135,7 +177,7 @@
             "--Select--"});
             this.authorsComboBox.Location = new System.Drawing.Point(448, 20);
             this.authorsComboBox.Name = "authorsComboBox";
-            this.authorsComboBox.Size = new System.Drawing.Size(114, 21);
+            this.authorsComboBox.Size = new System.Drawing.Size(134, 21);
             this.authorsComboBox.TabIndex = 9;
             this.authorsComboBox.SelectedIndexChanged += new System.EventHandler(this.authorsComboBox_SelectedIndexChanged);
             // 
@@ -176,45 +218,15 @@
             this.categoriesComboBox.TabIndex = 5;
             this.categoriesComboBox.SelectedIndexChanged += new System.EventHandler(this.categoriesComboBox_SelectedIndexChanged);
             // 
-            // removeArticleButton
-            // 
-            this.removeArticleButton.Location = new System.Drawing.Point(487, 148);
-            this.removeArticleButton.Name = "removeArticleButton";
-            this.removeArticleButton.Size = new System.Drawing.Size(75, 23);
-            this.removeArticleButton.TabIndex = 4;
-            this.removeArticleButton.Text = "Remove";
-            this.removeArticleButton.UseVisualStyleBackColor = true;
-            this.removeArticleButton.Click += new System.EventHandler(this.removeArticleButton_Click);
-            // 
             // createArticleButton
             // 
             this.createArticleButton.Location = new System.Drawing.Point(487, 54);
             this.createArticleButton.Name = "createArticleButton";
-            this.createArticleButton.Size = new System.Drawing.Size(75, 23);
+            this.createArticleButton.Size = new System.Drawing.Size(101, 23);
             this.createArticleButton.TabIndex = 3;
             this.createArticleButton.Text = "Create";
             this.createArticleButton.UseVisualStyleBackColor = true;
             this.createArticleButton.Click += new System.EventHandler(this.createArticleButton_Click);
-            // 
-            // editArticleButton
-            // 
-            this.editArticleButton.Location = new System.Drawing.Point(487, 119);
-            this.editArticleButton.Name = "editArticleButton";
-            this.editArticleButton.Size = new System.Drawing.Size(75, 23);
-            this.editArticleButton.TabIndex = 2;
-            this.editArticleButton.Text = "Edit";
-            this.editArticleButton.UseVisualStyleBackColor = true;
-            this.editArticleButton.Click += new System.EventHandler(this.editArticleButton_Click);
-            // 
-            // viewArticleButton
-            // 
-            this.viewArticleButton.Location = new System.Drawing.Point(487, 90);
-            this.viewArticleButton.Name = "viewArticleButton";
-            this.viewArticleButton.Size = new System.Drawing.Size(75, 23);
-            this.viewArticleButton.TabIndex = 1;
-            this.viewArticleButton.Text = "View";
-            this.viewArticleButton.UseVisualStyleBackColor = true;
-            this.viewArticleButton.Click += new System.EventHandler(this.viewArticleButton_Click);
             // 
             // articlesListView
             // 
@@ -262,7 +274,7 @@
             this.manageCategoriesTabPage.Location = new System.Drawing.Point(4, 22);
             this.manageCategoriesTabPage.Name = "manageCategoriesTabPage";
             this.manageCategoriesTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.manageCategoriesTabPage.Size = new System.Drawing.Size(577, 385);
+            this.manageCategoriesTabPage.Size = new System.Drawing.Size(603, 398);
             this.manageCategoriesTabPage.TabIndex = 1;
             this.manageCategoriesTabPage.Text = "Manage categories";
             this.manageCategoriesTabPage.UseVisualStyleBackColor = true;
@@ -332,7 +344,7 @@
             // 
             this.generateReportsTabPage.Location = new System.Drawing.Point(4, 22);
             this.generateReportsTabPage.Name = "generateReportsTabPage";
-            this.generateReportsTabPage.Size = new System.Drawing.Size(577, 385);
+            this.generateReportsTabPage.Size = new System.Drawing.Size(603, 398);
             this.generateReportsTabPage.TabIndex = 2;
             this.generateReportsTabPage.Text = "Generate reports";
             this.generateReportsTabPage.UseVisualStyleBackColor = true;
@@ -343,7 +355,7 @@
             this.backupRestoreTabPage.Controls.Add(this.groupBox1);
             this.backupRestoreTabPage.Location = new System.Drawing.Point(4, 22);
             this.backupRestoreTabPage.Name = "backupRestoreTabPage";
-            this.backupRestoreTabPage.Size = new System.Drawing.Size(577, 385);
+            this.backupRestoreTabPage.Size = new System.Drawing.Size(603, 398);
             this.backupRestoreTabPage.TabIndex = 3;
             this.backupRestoreTabPage.Text = "Backup/Restore";
             this.backupRestoreTabPage.UseVisualStyleBackColor = true;
@@ -548,16 +560,17 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(604, 450);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.tabControl);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "AdminForm";
             this.Text = "Administrator Portal";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AdminForm_FormClosing);
             this.Load += new System.EventHandler(this.AdminForm_Load);
-            this.tabControl1.ResumeLayout(false);
+            this.tabControl.ResumeLayout(false);
             this.manageArticlesTabPage.ResumeLayout(false);
             this.manageArticlesTabPage.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
             this.manageCategoriesTabPage.ResumeLayout(false);
             this.manageCategoriesTabPage.PerformLayout();
             this.backupRestoreTabPage.ResumeLayout(false);
@@ -574,7 +587,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage manageArticlesTabPage;
         private System.Windows.Forms.TabPage manageCategoriesTabPage;
         private System.Windows.Forms.MenuStrip menuStrip1;
@@ -623,5 +636,6 @@
         private System.Windows.Forms.ColumnHeader authorColumnHeader;
         private System.Windows.Forms.ColumnHeader categoryColumnHeader;
         private System.Windows.Forms.ColumnHeader dateColumnHeader;
+        private System.Windows.Forms.GroupBox groupBox3;
     }
 }

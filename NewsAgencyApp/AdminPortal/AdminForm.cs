@@ -13,12 +13,7 @@ namespace NewsAgencyApp.AdminPortal
     public partial class AdminForm : Form
     {
         Form parent;
-
-        List<Models.Article> articles = new List<Models.Article>();
-        List<Models.Category> categories = new List<Models.Category>();
-        List<Models.User> users = new List<Models.User>();
-
-        IDictionary<string, string> filters = new Dictionary<string, string>();
+        List<Models.Category> categoriesList = new List<Models.Category>();
 
         public AdminForm(Form parent)
         {
@@ -71,60 +66,72 @@ namespace NewsAgencyApp.AdminPortal
         }
 
         #region ManageArticlesTab
+        List<Models.Article> articlesList = new List<Models.Article>();
+        List<Models.User> usersList = new List<Models.User>();
+
+        IDictionary<string, string> articlesFilters = new Dictionary<string, string>();
+
         private void setupArticlesListView()
         {
             articlesListView.View = View.Details; // Important to make the list view show details ( columns )
 
-            articles = Models.Article.FindAll();
+            articlesList = Models.Article.FindAll();
             this.renderArticlesListView();
         }
 
         private void renderArticlesListView()
         {
-            foreach (var article in articles)
+            foreach (var article in articlesList)
             {
-                ListViewItem item = new ListViewItem(article.Title);
-                item.SubItems.Add(article.User.FullName);
-                item.SubItems.Add(article.Category.Name);
-                item.SubItems.Add(article.CreatedAt);
+                ListViewItem item = new ListViewItem(article.Title); // Make title the 1st col
+                item.SubItems.Add(article.User.FullName); // Add full name to 2nd col
+                item.SubItems.Add(article.Category.Name); // Add category name to 3rd col
+                item.SubItems.Add(article.CreatedAt); // Add date to 4th col
 
-                articlesListView.Items.Add(item);
+                articlesListView.Items.Add(item); // Add the constructed item to the list
             }
         }
 
         private void setupCategoriesComboBox()
         {
-            categoriesComboBox.SelectedItem = null;
-            categoriesComboBox.SelectedText = "--Select--";
+            categoriesComboBox.SelectedItem = null; // Default to selected null
+            categoriesComboBox.SelectedText = "--Select--";  // Default to select text
 
-            categoriesComboBox.DisplayMember = "Text";
-            categoriesComboBox.ValueMember = "Value";
+            categoriesComboBox.DisplayMember = "Text"; // Update the combobox to display the Text value
+            categoriesComboBox.ValueMember = "Value"; // Update the combobox to make the Value to be considred value
 
-            categories = Models.Category.FindAll();
-            this.renderCategoriesComboBox();
+            categoriesList = Models.Category.FindAll(); // Find all categories
+            this.renderCategoriesComboBox(); // Render the categories combobox method
         }
 
+        /**
+         * Render the categories combobox items 
+        */
         private void renderCategoriesComboBox()
         {
-            foreach (var category in categories)
+            foreach (var category in categoriesList)
                 categoriesComboBox.Items.Add(new { Text = category.Name, Value = category.Id });
         }
 
+        
         private void setupAuthorsComboBox()
         {
-            authorsComboBox.SelectedItem = null;
-            authorsComboBox.SelectedText = "--Select--";
+            authorsComboBox.SelectedItem = null; // Default to selected null
+            authorsComboBox.SelectedText = "--Select--";  // Default to select text
 
-            authorsComboBox.DisplayMember = "Text";
-            authorsComboBox.ValueMember = "Value";
+            authorsComboBox.DisplayMember = "Text"; // Update the combobox to display the Text value
+            authorsComboBox.ValueMember = "Value"; // Update the combobox to make the Value to be considred value
 
-            users = Models.User.FindAll();
-            this.renderAuthorsComboBox();
+            usersList = Models.User.FindAll(); // Find all users
+            this.renderAuthorsComboBox(); // Render the categories combobox method
         }
 
+        /**
+         * Render the auhtors combobox items 
+        */
         private void renderAuthorsComboBox()
         {
-            foreach (var user in users)
+            foreach (var user in usersList)
                 authorsComboBox.Items.Add(new { Text = user.FullName, Value = user.Id });
         }
 
@@ -136,10 +143,10 @@ namespace NewsAgencyApp.AdminPortal
             if (selectedItem != null && propertyInfo != null)
             {
                 int id = (int)propertyInfo.GetValue(selectedItem);
-                filters["categoryId"] = string.Format("CategoryId = {0}", id);
+                articlesFilters["categoryId"] = string.Format("CategoryId = {0}", id);
             }
             else
-                filters.Remove("categoryId");
+                articlesFilters.Remove("categoryId");
 
             triggerFindArticles();
         }
@@ -152,10 +159,10 @@ namespace NewsAgencyApp.AdminPortal
             if (selectedItem != null && propertyInfo != null)
             {
                 int id = (int)propertyInfo.GetValue(selectedItem);
-                filters["userId"] = string.Format("UserId = {0}", id);
+                articlesFilters["userId"] = string.Format("UserId = {0}", id);
             }
             else
-                filters.Remove("userId");
+                articlesFilters.Remove("userId");
 
             triggerFindArticles();
         }
@@ -165,9 +172,9 @@ namespace NewsAgencyApp.AdminPortal
             TextBox search = (TextBox)sender;
 
             if (search.TextLength > 0)
-                filters["search"] = string.Format("Title LIKE '%{0}%'", search.Text.Trim().Replace(" ", "%"));
+                articlesFilters["search"] = string.Format("Title LIKE '%{0}%'", search.Text.Trim().Replace(" ", "%"));
             else
-                filters.Remove("search");
+                articlesFilters.Remove("search");
 
             triggerFindArticles();
         }
@@ -175,7 +182,7 @@ namespace NewsAgencyApp.AdminPortal
         private void triggerFindArticles()
         {
             articlesListView.Items.Clear(); // Clear articles list view items
-            articles = Models.Article.FindAll(filters); // Use built filters and pass them to the findAll method and assign to the current 
+            articlesList = Models.Article.FindAll(articlesFilters); // Use built filters and pass them to the findAll method and assign to the current 
 
             this.renderArticlesListView(); // Re-render articles list view
         }
@@ -199,6 +206,12 @@ namespace NewsAgencyApp.AdminPortal
         {
 
         }
+        #endregion
+
+        #region ManageCateogiresTab
+        #endregion
+
+        #region ReportsTab
         #endregion
 
         #region BackupRestoreTab
@@ -229,5 +242,12 @@ namespace NewsAgencyApp.AdminPortal
                 backupFilePath.Text = saveFileDialog1.FileName;
         }
         #endregion
+
+        private void tabControl_Selecting(object sender, TabControlCancelEventArgs e)
+        {
+            TabControl tabControl = (TabControl)sender;
+
+            Console.WriteLine(tabControl.SelectedTab.Text);
+        }
     }
 }
