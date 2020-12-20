@@ -299,6 +299,8 @@ namespace NewsAgencyApp.Models
 
             query.ExecuteNonQuery();
 
+            this.numberOfViews++;
+
             return;
         }
 
