@@ -1,20 +1,53 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using NewsAgencyApp.Models;
 
 namespace NewsAgencyApp
 {
-    public partial class ViewArticle : Form
+    partial class ViewArticle : Form
     {
+        private Article article;
+
         public ViewArticle()
         {
             InitializeComponent();
+        }
+
+        private void ViewArticle_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        public Article Article
+        {
+            get
+            {
+                return article;
+            }
+
+            set
+            {
+                article = value;
+                this.renderArticle();
+                this.updateViewCount();
+            }
+        }
+
+        private void renderArticle()
+        {
+            titleLabel.Text = article.Title;
+            contentLabel.Text = article.Content;
+            detailsLabel.Text = string.Format("Posted by: {0} On {1} | Viewed {2} times", article.User.FullName, article.CreatedAt, article.NumberOfViews + 1);
+        }
+
+        private void updateViewCount()
+        {
+            this.article.Viewed();
+        }
+
+        private void backButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
