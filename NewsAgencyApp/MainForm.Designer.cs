@@ -120,6 +120,7 @@
             this.articlesListView.Size = new System.Drawing.Size(540, 206);
             this.articlesListView.TabIndex = 1;
             this.articlesListView.UseCompatibleStateImageBehavior = false;
+            this.articlesListView.DoubleClick += new System.EventHandler(this.articlesListView_DoubleClick);
             // 
             // authorColumnHeader
             // 

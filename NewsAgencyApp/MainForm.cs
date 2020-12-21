@@ -95,19 +95,41 @@ namespace NewsAgencyApp
 
                 articlesListView.Items.Add(item);
 
-                articlesListView.View = View.Details;
+                articlesListView.View = View.Details; // Important to make the list view show details ( columns )
+                articlesListView.FullRowSelect = true; // Select the whole row
+                articlesListView.GridLines = true;
             }
         }
 
-        private void viewArticleButton_Click(object sender, EventArgs e)
+        private Models.Article selectedArticle()
         {
             if (articlesListView.SelectedItems.Count == 0)
             {
                 MessageBox.Show("Select article first", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                return null;
             }
             var selectedItem = articlesListView.SelectedItems[0];
             Models.Article article = articles[selectedItem.Index];
+
+            return article;
+        }
+
+        private void viewArticleButton_Click(object sender, EventArgs e)
+        {
+            Models.Article article = selectedArticle();
+
+            if (article == null)
+                return;
+
+            this.showArticle(article);
+        }
+
+        private void articlesListView_DoubleClick(object sender, EventArgs e)
+        {
+            Models.Article article = selectedArticle();
+
+            if (article == null)
+                return;
 
             this.showArticle(article);
         }
