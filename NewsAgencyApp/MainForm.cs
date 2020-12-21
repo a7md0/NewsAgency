@@ -142,7 +142,6 @@ namespace NewsAgencyApp
                 return;
 
             this.showArticle(article);
-            renderArticlesListView();
         }
 
         private void articlesListView_DoubleClick(object sender, EventArgs e)
@@ -161,6 +160,7 @@ namespace NewsAgencyApp
             viewArticleForm.Article = article;
 
             viewArticleForm.ShowDialog();
+            renderArticlesListView();
         }
         #endregion
     }
