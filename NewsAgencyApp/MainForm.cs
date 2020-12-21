@@ -26,7 +26,7 @@ namespace NewsAgencyApp
             Application.Exit();
         }
 
-        private void aboutToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("(c) 2020, Ahmed Naser", "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -39,12 +39,12 @@ namespace NewsAgencyApp
 
                 if (state.CurrentUser is Models.SuperUser)
                 {
-                    adminPortalToolStripMenuItem.Visible = true;
+                    adminPortalToolStripMenuItem.Enabled = true;
                 }
             } else
             {
                 loginLogoutToolStripMenuItem.Text = "Login";
-                adminPortalToolStripMenuItem.Visible = false;
+                adminPortalToolStripMenuItem.Enabled = false;
             }
         }
 

@@ -31,11 +31,12 @@
             System.Windows.Forms.ColumnHeader titleColumnHeader;
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.portalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.loginLogoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.adminPortalToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.loginLogoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.adminPortalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.articlesListView = new System.Windows.Forms.ListView();
             this.authorColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.categoryColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -54,8 +55,7 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.portalToolStripMenuItem,
-            this.adminPortalToolStripMenuItem,
-            this.aboutToolStripMenuItem1});
+            this.adminPortalToolStripMenuItem2});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(567, 24);
@@ -65,47 +65,56 @@
             // portalToolStripMenuItem
             // 
             this.portalToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.loginLogoutToolStripMenuItem,
+            this.aboutToolStripMenuItem,
             this.toolStripMenuItem1,
             this.exitToolStripMenuItem});
             this.portalToolStripMenuItem.Name = "portalToolStripMenuItem";
-            this.portalToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
-            this.portalToolStripMenuItem.Text = "App";
+            this.portalToolStripMenuItem.Size = new System.Drawing.Size(89, 20);
+            this.portalToolStripMenuItem.Text = "News agency";
             // 
-            // loginLogoutToolStripMenuItem
+            // aboutToolStripMenuItem
             // 
-            this.loginLogoutToolStripMenuItem.DoubleClickEnabled = true;
-            this.loginLogoutToolStripMenuItem.Name = "loginLogoutToolStripMenuItem";
-            this.loginLogoutToolStripMenuItem.Size = new System.Drawing.Size(104, 22);
-            this.loginLogoutToolStripMenuItem.Text = "Login";
-            this.loginLogoutToolStripMenuItem.Click += new System.EventHandler(this.loginLogoutToolStripMenuItem_Click);
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(101, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(104, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(104, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
+            // adminPortalToolStripMenuItem2
+            // 
+            this.adminPortalToolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.loginLogoutToolStripMenuItem,
+            this.adminPortalToolStripMenuItem});
+            this.adminPortalToolStripMenuItem2.Name = "adminPortalToolStripMenuItem2";
+            this.adminPortalToolStripMenuItem2.Size = new System.Drawing.Size(92, 20);
+            this.adminPortalToolStripMenuItem2.Text = "Admin access";
+            this.adminPortalToolStripMenuItem2.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            // 
+            // loginLogoutToolStripMenuItem
+            // 
+            this.loginLogoutToolStripMenuItem.Name = "loginLogoutToolStripMenuItem";
+            this.loginLogoutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.loginLogoutToolStripMenuItem.Text = "Login";
+            this.loginLogoutToolStripMenuItem.Click += new System.EventHandler(this.loginLogoutToolStripMenuItem_Click);
+            // 
             // adminPortalToolStripMenuItem
             // 
+            this.adminPortalToolStripMenuItem.Enabled = false;
             this.adminPortalToolStripMenuItem.Name = "adminPortalToolStripMenuItem";
-            this.adminPortalToolStripMenuItem.Size = new System.Drawing.Size(89, 20);
-            this.adminPortalToolStripMenuItem.Text = "Admin Portal";
-            this.adminPortalToolStripMenuItem.Visible = false;
+            this.adminPortalToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.adminPortalToolStripMenuItem.Text = "Administrator portal";
             this.adminPortalToolStripMenuItem.Click += new System.EventHandler(this.adminPortalToolStripMenuItem_Click);
-            // 
-            // aboutToolStripMenuItem1
-            // 
-            this.aboutToolStripMenuItem1.Name = "aboutToolStripMenuItem1";
-            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(52, 20);
-            this.aboutToolStripMenuItem1.Text = "About";
-            this.aboutToolStripMenuItem1.Click += new System.EventHandler(this.aboutToolStripMenuItem1_Click);
             // 
             // articlesListView
             // 
@@ -140,9 +149,9 @@
             // 
             // viewArticleButton
             // 
-            this.viewArticleButton.Location = new System.Drawing.Point(205, 257);
+            this.viewArticleButton.Location = new System.Drawing.Point(12, 257);
             this.viewArticleButton.Name = "viewArticleButton";
-            this.viewArticleButton.Size = new System.Drawing.Size(161, 23);
+            this.viewArticleButton.Size = new System.Drawing.Size(540, 23);
             this.viewArticleButton.TabIndex = 4;
             this.viewArticleButton.Text = "View Article";
             this.viewArticleButton.UseVisualStyleBackColor = true;
@@ -172,16 +181,17 @@
 
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem portalToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem loginLogoutToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem1;
         private System.Windows.Forms.ListView articlesListView;
         private System.Windows.Forms.Button viewArticleButton;
-        private System.Windows.Forms.ToolStripMenuItem adminPortalToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem adminPortalToolStripMenuItem2;
         private System.Windows.Forms.ColumnHeader authorColumnHeader;
         private System.Windows.Forms.ColumnHeader categoryColumnHeader;
         private System.Windows.Forms.ColumnHeader dateColumnHeader;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem loginLogoutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem adminPortalToolStripMenuItem;
     }
 }
 
