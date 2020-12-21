@@ -40,6 +40,7 @@ namespace NewsAgencyApp.AdminPortal
             setupCategoriesComboBox();
             setupAuthorsComboBox();
             this.reportViewer1.RefreshReport();
+            this.reportViewer2.RefreshReport();
         }
 
         private void authStateChanged(AuthenticationState state)
@@ -78,6 +79,7 @@ namespace NewsAgencyApp.AdminPortal
         {
             articlesListView.View = View.Details; // Important to make the list view show details ( columns )
             articlesListView.FullRowSelect = true; // Select the whole row
+            articlesListView.GridLines = true;
 
             triggerFindArticles();
         }

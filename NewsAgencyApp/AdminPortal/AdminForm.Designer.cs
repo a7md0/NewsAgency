@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource4 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.manageArticlesTabPage = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -88,6 +88,7 @@
             this.articleBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.articleTableAdapter = new NewsAgencyApp.DatabaseDataSetTableAdapters.ArticleTableAdapter();
             this.tableAdapterManager = new NewsAgencyApp.DatabaseDataSetTableAdapters.TableAdapterManager();
+            this.reportViewer2 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.tabControl.SuspendLayout();
             this.manageArticlesTabPage.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -99,6 +100,7 @@
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.databaseDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.articleBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -594,6 +596,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.reportViewer2);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -605,9 +608,9 @@
             // reportViewer1
             // 
             this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            reportDataSource2.Name = "DataSet1";
-            reportDataSource2.Value = this.articleBindingSource;
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource2);
+            reportDataSource4.Name = "DataSet1";
+            reportDataSource4.Value = this.articleBindingSource;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource4);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "NewsAgencyApp.AdminPortal.MostReadNewsArticleReport.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(3, 3);
             this.reportViewer1.Name = "reportViewer1";
@@ -637,6 +640,15 @@
             this.tableAdapterManager.UpdateOrder = NewsAgencyApp.DatabaseDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             this.tableAdapterManager.UserTableAdapter = null;
             // 
+            // reportViewer2
+            // 
+            this.reportViewer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.reportViewer2.Location = new System.Drawing.Point(3, 3);
+            this.reportViewer2.Name = "reportViewer2";
+            this.reportViewer2.ServerReport.BearerToken = null;
+            this.reportViewer2.Size = new System.Drawing.Size(583, 360);
+            this.reportViewer2.TabIndex = 0;
+            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -665,6 +677,7 @@
             this.menuStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.databaseDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.articleBindingSource)).EndInit();
             this.ResumeLayout(false);
@@ -732,5 +745,6 @@
         private System.Windows.Forms.BindingSource articleBindingSource;
         private DatabaseDataSetTableAdapters.ArticleTableAdapter articleTableAdapter;
         private DatabaseDataSetTableAdapters.TableAdapterManager tableAdapterManager;
+        private Microsoft.Reporting.WinForms.ReportViewer reportViewer2;
     }
 }
