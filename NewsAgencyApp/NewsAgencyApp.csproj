@@ -98,6 +98,9 @@
       <DependentUpon>EditArticleForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Authentication\AuthenticatedState.cs" />
+    <Compile Include="DatabaseDataSet.cs">
+      <DependentUpon>DatabaseDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DatabaseDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -147,6 +150,7 @@
     <EmbeddedResource Include="AdminPortal\EditArticleForm.resx">
       <DependentUpon>EditArticleForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AdminPortal\LargestCategoryReport.rdlc" />
     <EmbeddedResource Include="AdminPortal\MostReadNewsArticleReport.rdlc" />
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>

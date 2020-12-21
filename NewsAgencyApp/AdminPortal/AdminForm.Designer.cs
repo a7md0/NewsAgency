@@ -29,7 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource7 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource8 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            this.articleBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.databaseDataSet = new NewsAgencyApp.DatabaseDataSet();
+            this.LargestCategoryViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabControl = new System.Windows.Forms.TabControl();
             this.manageArticlesTabPage = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -44,10 +48,13 @@
             this.categoriesComboBox = new System.Windows.Forms.ComboBox();
             this.createArticleButton = new System.Windows.Forms.Button();
             this.articlesListView = new System.Windows.Forms.ListView();
+            this.idColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.titleColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.viewsColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.authorColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.categoryColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.createdColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.updatedColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.manageCategoriesTabPage = new System.Windows.Forms.TabPage();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -57,6 +64,10 @@
             this.button8 = new System.Windows.Forms.Button();
             this.listView2 = new System.Windows.Forms.ListView();
             this.reportsTabPage = new System.Windows.Forms.TabPage();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.backupRestoreTabPage = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.restoreButton = new System.Windows.Forms.Button();
@@ -80,33 +91,41 @@
             this.nametypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.databaseDataSet = new NewsAgencyApp.DatabaseDataSet();
-            this.articleBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.reportViewer2 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.articleTableAdapter = new NewsAgencyApp.DatabaseDataSetTableAdapters.ArticleTableAdapter();
             this.tableAdapterManager = new NewsAgencyApp.DatabaseDataSetTableAdapters.TableAdapterManager();
-            this.reportViewer2 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.idColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.updatedColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.viewsColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.largestCategoryViewTableAdapter = new NewsAgencyApp.DatabaseDataSetTableAdapters.LargestCategoryViewTableAdapter();
+            ((System.ComponentModel.ISupportInitialize)(this.articleBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.databaseDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LargestCategoryViewBindingSource)).BeginInit();
             this.tabControl.SuspendLayout();
             this.manageArticlesTabPage.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.manageCategoriesTabPage.SuspendLayout();
             this.reportsTabPage.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.backupRestoreTabPage.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.databaseDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.articleBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // articleBindingSource
+            // 
+            this.articleBindingSource.DataMember = "Article";
+            this.articleBindingSource.DataSource = this.databaseDataSet;
+            // 
+            // databaseDataSet
+            // 
+            this.databaseDataSet.DataSetName = "DatabaseDataSet";
+            this.databaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // LargestCategoryViewBindingSource
+            // 
+            this.LargestCategoryViewBindingSource.DataMember = "LargestCategoryView";
+            this.LargestCategoryViewBindingSource.DataSource = this.databaseDataSet;
             // 
             // tabControl
             // 
@@ -267,10 +286,19 @@
             this.articlesListView.TabIndex = 0;
             this.articlesListView.UseCompatibleStateImageBehavior = false;
             // 
+            // idColumnHeader
+            // 
+            this.idColumnHeader.Text = "ID";
+            // 
             // titleColumnHeader
             // 
             this.titleColumnHeader.Text = "Title";
             this.titleColumnHeader.Width = 160;
+            // 
+            // viewsColumnHeader
+            // 
+            this.viewsColumnHeader.DisplayIndex = 6;
+            this.viewsColumnHeader.Text = "Views";
             // 
             // authorColumnHeader
             // 
@@ -289,6 +317,11 @@
             this.createdColumnHeader.DisplayIndex = 4;
             this.createdColumnHeader.Text = "Created";
             this.createdColumnHeader.Width = 140;
+            // 
+            // updatedColumnHeader
+            // 
+            this.updatedColumnHeader.DisplayIndex = 5;
+            this.updatedColumnHeader.Text = "Updated";
             // 
             // manageCategoriesTabPage
             // 
@@ -377,6 +410,51 @@
             this.reportsTabPage.TabIndex = 2;
             this.reportsTabPage.Text = "Reports";
             this.reportsTabPage.UseVisualStyleBackColor = true;
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Location = new System.Drawing.Point(3, 3);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(597, 392);
+            this.tabControl1.TabIndex = 0;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.reportViewer1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(589, 366);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Most read news articles";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // reportViewer1
+            // 
+            this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            reportDataSource7.Name = "DataSet1";
+            reportDataSource7.Value = this.articleBindingSource;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource7);
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "NewsAgencyApp.AdminPortal.MostReadNewsArticleReport.rdlc";
+            this.reportViewer1.Location = new System.Drawing.Point(3, 3);
+            this.reportViewer1.Name = "reportViewer1";
+            this.reportViewer1.ServerReport.BearerToken = null;
+            this.reportViewer1.Size = new System.Drawing.Size(583, 360);
+            this.reportViewer1.TabIndex = 0;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.reportViewer2);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(589, 366);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Largest categories";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // backupRestoreTabPage
             // 
@@ -584,60 +662,18 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // tabControl1
+            // reportViewer2
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(3, 3);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(597, 392);
-            this.tabControl1.TabIndex = 0;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.reportViewer1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(589, 366);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.reportViewer2);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(589, 366);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // reportViewer1
-            // 
-            this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            reportDataSource1.Name = "DataSet1";
-            reportDataSource1.Value = this.articleBindingSource;
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "NewsAgencyApp.AdminPortal.MostReadNewsArticleReport.rdlc";
-            this.reportViewer1.Location = new System.Drawing.Point(3, 3);
-            this.reportViewer1.Name = "reportViewer1";
-            this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(583, 360);
-            this.reportViewer1.TabIndex = 0;
-            // 
-            // databaseDataSet
-            // 
-            this.databaseDataSet.DataSetName = "DatabaseDataSet";
-            this.databaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // articleBindingSource
-            // 
-            this.articleBindingSource.DataMember = "Article";
-            this.articleBindingSource.DataSource = this.databaseDataSet;
+            this.reportViewer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            reportDataSource8.Name = "DataSet2";
+            reportDataSource8.Value = this.LargestCategoryViewBindingSource;
+            this.reportViewer2.LocalReport.DataSources.Add(reportDataSource8);
+            this.reportViewer2.LocalReport.ReportEmbeddedResource = "NewsAgencyApp.AdminPortal.LargestCategoryReport.rdlc";
+            this.reportViewer2.Location = new System.Drawing.Point(3, 3);
+            this.reportViewer2.Name = "reportViewer2";
+            this.reportViewer2.ServerReport.BearerToken = null;
+            this.reportViewer2.Size = new System.Drawing.Size(583, 360);
+            this.reportViewer2.TabIndex = 0;
             // 
             // articleTableAdapter
             // 
@@ -651,28 +687,9 @@
             this.tableAdapterManager.UpdateOrder = NewsAgencyApp.DatabaseDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             this.tableAdapterManager.UserTableAdapter = null;
             // 
-            // reportViewer2
+            // largestCategoryViewTableAdapter
             // 
-            this.reportViewer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.reportViewer2.Location = new System.Drawing.Point(3, 3);
-            this.reportViewer2.Name = "reportViewer2";
-            this.reportViewer2.ServerReport.BearerToken = null;
-            this.reportViewer2.Size = new System.Drawing.Size(583, 360);
-            this.reportViewer2.TabIndex = 0;
-            // 
-            // idColumnHeader
-            // 
-            this.idColumnHeader.Text = "ID";
-            // 
-            // updatedColumnHeader
-            // 
-            this.updatedColumnHeader.DisplayIndex = 5;
-            this.updatedColumnHeader.Text = "Updated";
-            // 
-            // viewsColumnHeader
-            // 
-            this.viewsColumnHeader.DisplayIndex = 6;
-            this.viewsColumnHeader.Text = "Views";
+            this.largestCategoryViewTableAdapter.ClearBeforeFill = true;
             // 
             // AdminForm
             // 
@@ -686,6 +703,9 @@
             this.Text = "Administrator Portal";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AdminForm_FormClosing);
             this.Load += new System.EventHandler(this.AdminForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.articleBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.databaseDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LargestCategoryViewBindingSource)).EndInit();
             this.tabControl.ResumeLayout(false);
             this.manageArticlesTabPage.ResumeLayout(false);
             this.manageArticlesTabPage.PerformLayout();
@@ -693,6 +713,9 @@
             this.manageCategoriesTabPage.ResumeLayout(false);
             this.manageCategoriesTabPage.PerformLayout();
             this.reportsTabPage.ResumeLayout(false);
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
             this.backupRestoreTabPage.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -700,11 +723,6 @@
             this.groupBox1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.databaseDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.articleBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -768,11 +786,13 @@
         private System.Windows.Forms.TabPage tabPage2;
         private DatabaseDataSet databaseDataSet;
         private System.Windows.Forms.BindingSource articleBindingSource;
-        private DatabaseDataSetTableAdapters.ArticleTableAdapter articleTableAdapter;
-        private DatabaseDataSetTableAdapters.TableAdapterManager tableAdapterManager;
-        private Microsoft.Reporting.WinForms.ReportViewer reportViewer2;
         private System.Windows.Forms.ColumnHeader idColumnHeader;
         private System.Windows.Forms.ColumnHeader updatedColumnHeader;
         private System.Windows.Forms.ColumnHeader viewsColumnHeader;
+        private System.Windows.Forms.BindingSource LargestCategoryViewBindingSource;
+        private Microsoft.Reporting.WinForms.ReportViewer reportViewer2;
+        private DatabaseDataSetTableAdapters.ArticleTableAdapter articleTableAdapter;
+        private DatabaseDataSetTableAdapters.TableAdapterManager tableAdapterManager;
+        private DatabaseDataSetTableAdapters.LargestCategoryViewTableAdapter largestCategoryViewTableAdapter;
     }
 }

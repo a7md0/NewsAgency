@@ -24,8 +24,6 @@ namespace NewsAgencyApp.AdminPortal
 
         private void AdminForm_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'databaseDataSet.Article' table. You can move, or remove it, as needed.
-            this.articleTableAdapter.Fill(this.databaseDataSet.Article);
             var observer = AuthenticationContext.Instance().AuthenticationObserverInstance();
             observer.nextDelegate = authStateChanged;
 
@@ -302,6 +300,11 @@ namespace NewsAgencyApp.AdminPortal
 
             if (tabControl.SelectedTab.Name == "reportsTabPage")
             {
+                // TODO: This line of code loads data into the 'databaseDataSet.LargestCategoryView' table. You can move, or remove it, as needed.
+                this.largestCategoryViewTableAdapter.Fill(this.databaseDataSet.LargestCategoryView);
+                // TODO: This line of code loads data into the 'databaseDataSet.Article' table. You can move, or remove it, as needed.
+                this.articleTableAdapter.Fill(this.databaseDataSet.Article);
+
                 this.reportViewer1.RefreshReport();
                 this.reportViewer2.RefreshReport();
             }
