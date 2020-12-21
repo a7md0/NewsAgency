@@ -265,8 +265,6 @@ namespace NewsAgencyApp.Models
 
             int affectedRows = query.ExecuteNonQuery();
 
-            Console.WriteLine(affectedRows);
-
             return affectedRows > 0;
         }
 
