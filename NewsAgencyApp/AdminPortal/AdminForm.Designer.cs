@@ -29,8 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource7 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource8 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource11 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource12 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            System.Windows.Forms.ColumnHeader columnHeader1;
             this.articleBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.databaseDataSet = new NewsAgencyApp.DatabaseDataSet();
             this.LargestCategoryViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -56,18 +57,15 @@
             this.createdColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.updatedColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.manageCategoriesTabPage = new System.Windows.Forms.TabPage();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.listView2 = new System.Windows.Forms.ListView();
+            this.removeCategoryButton = new System.Windows.Forms.Button();
+            this.createCategoryButton = new System.Windows.Forms.Button();
+            this.categoriesListView = new System.Windows.Forms.ListView();
             this.reportsTabPage = new System.Windows.Forms.TabPage();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.reportViewer2 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.backupRestoreTabPage = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.restoreButton = new System.Windows.Forms.Button();
@@ -91,10 +89,11 @@
             this.nametypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.reportViewer2 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.articleTableAdapter = new NewsAgencyApp.DatabaseDataSetTableAdapters.ArticleTableAdapter();
             this.tableAdapterManager = new NewsAgencyApp.DatabaseDataSetTableAdapters.TableAdapterManager();
             this.largestCategoryViewTableAdapter = new NewsAgencyApp.DatabaseDataSetTableAdapters.LargestCategoryViewTableAdapter();
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.articleBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.databaseDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LargestCategoryViewBindingSource)).BeginInit();
@@ -289,6 +288,7 @@
             // idColumnHeader
             // 
             this.idColumnHeader.Text = "ID";
+            this.idColumnHeader.Width = 30;
             // 
             // titleColumnHeader
             // 
@@ -297,7 +297,6 @@
             // 
             // viewsColumnHeader
             // 
-            this.viewsColumnHeader.DisplayIndex = 6;
             this.viewsColumnHeader.Text = "Views";
             // 
             // authorColumnHeader
@@ -322,16 +321,13 @@
             // 
             this.updatedColumnHeader.DisplayIndex = 5;
             this.updatedColumnHeader.Text = "Updated";
+            this.updatedColumnHeader.Width = 140;
             // 
             // manageCategoriesTabPage
             // 
-            this.manageCategoriesTabPage.Controls.Add(this.label3);
-            this.manageCategoriesTabPage.Controls.Add(this.textBox2);
-            this.manageCategoriesTabPage.Controls.Add(this.button5);
-            this.manageCategoriesTabPage.Controls.Add(this.button6);
-            this.manageCategoriesTabPage.Controls.Add(this.button7);
-            this.manageCategoriesTabPage.Controls.Add(this.button8);
-            this.manageCategoriesTabPage.Controls.Add(this.listView2);
+            this.manageCategoriesTabPage.Controls.Add(this.removeCategoryButton);
+            this.manageCategoriesTabPage.Controls.Add(this.createCategoryButton);
+            this.manageCategoriesTabPage.Controls.Add(this.categoriesListView);
             this.manageCategoriesTabPage.Location = new System.Drawing.Point(4, 22);
             this.manageCategoriesTabPage.Name = "manageCategoriesTabPage";
             this.manageCategoriesTabPage.Padding = new System.Windows.Forms.Padding(3);
@@ -340,66 +336,37 @@
             this.manageCategoriesTabPage.Text = "Manage categories";
             this.manageCategoriesTabPage.UseVisualStyleBackColor = true;
             // 
-            // label3
+            // removeCategoryButton
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 23);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(44, 13);
-            this.label3.TabIndex = 14;
-            this.label3.Text = "Search:";
+            this.removeCategoryButton.Location = new System.Drawing.Point(480, 48);
+            this.removeCategoryButton.Name = "removeCategoryButton";
+            this.removeCategoryButton.Size = new System.Drawing.Size(106, 23);
+            this.removeCategoryButton.TabIndex = 12;
+            this.removeCategoryButton.Text = "Remove";
+            this.removeCategoryButton.UseVisualStyleBackColor = true;
+            this.removeCategoryButton.Click += new System.EventHandler(this.removeCategoryButton_Click);
             // 
-            // textBox2
+            // createCategoryButton
             // 
-            this.textBox2.Location = new System.Drawing.Point(63, 20);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(213, 20);
-            this.textBox2.TabIndex = 13;
+            this.createCategoryButton.Location = new System.Drawing.Point(480, 19);
+            this.createCategoryButton.Name = "createCategoryButton";
+            this.createCategoryButton.Size = new System.Drawing.Size(106, 23);
+            this.createCategoryButton.TabIndex = 11;
+            this.createCategoryButton.Text = "Create";
+            this.createCategoryButton.UseVisualStyleBackColor = true;
+            this.createCategoryButton.Click += new System.EventHandler(this.createCategoryButton_Click);
             // 
-            // button5
+            // categoriesListView
             // 
-            this.button5.Location = new System.Drawing.Point(489, 113);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 12;
-            this.button5.Text = "Remove";
-            this.button5.UseVisualStyleBackColor = true;
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(489, 19);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 11;
-            this.button6.Text = "Create";
-            this.button6.UseVisualStyleBackColor = true;
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(489, 84);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 23);
-            this.button7.TabIndex = 10;
-            this.button7.Text = "Edit";
-            this.button7.UseVisualStyleBackColor = true;
-            // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(489, 55);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(75, 23);
-            this.button8.TabIndex = 9;
-            this.button8.Text = "View";
-            this.button8.UseVisualStyleBackColor = true;
-            // 
-            // listView2
-            // 
-            this.listView2.HideSelection = false;
-            this.listView2.Location = new System.Drawing.Point(16, 55);
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(454, 311);
-            this.listView2.TabIndex = 8;
-            this.listView2.UseCompatibleStateImageBehavior = false;
+            this.categoriesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            columnHeader1,
+            this.columnHeader2});
+            this.categoriesListView.HideSelection = false;
+            this.categoriesListView.Location = new System.Drawing.Point(8, 19);
+            this.categoriesListView.Name = "categoriesListView";
+            this.categoriesListView.Size = new System.Drawing.Size(466, 371);
+            this.categoriesListView.TabIndex = 8;
+            this.categoriesListView.UseCompatibleStateImageBehavior = false;
             // 
             // reportsTabPage
             // 
@@ -435,9 +402,9 @@
             // reportViewer1
             // 
             this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            reportDataSource7.Name = "DataSet1";
-            reportDataSource7.Value = this.articleBindingSource;
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource7);
+            reportDataSource11.Name = "DataSet1";
+            reportDataSource11.Value = this.articleBindingSource;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource11);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "NewsAgencyApp.AdminPortal.MostReadNewsArticleReport.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(3, 3);
             this.reportViewer1.Name = "reportViewer1";
@@ -455,6 +422,19 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Largest categories";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // reportViewer2
+            // 
+            this.reportViewer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            reportDataSource12.Name = "DataSet2";
+            reportDataSource12.Value = this.LargestCategoryViewBindingSource;
+            this.reportViewer2.LocalReport.DataSources.Add(reportDataSource12);
+            this.reportViewer2.LocalReport.ReportEmbeddedResource = "NewsAgencyApp.AdminPortal.LargestCategoryReport.rdlc";
+            this.reportViewer2.Location = new System.Drawing.Point(3, 3);
+            this.reportViewer2.Name = "reportViewer2";
+            this.reportViewer2.ServerReport.BearerToken = null;
+            this.reportViewer2.Size = new System.Drawing.Size(583, 360);
+            this.reportViewer2.TabIndex = 0;
             // 
             // backupRestoreTabPage
             // 
@@ -662,19 +642,6 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // reportViewer2
-            // 
-            this.reportViewer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            reportDataSource8.Name = "DataSet2";
-            reportDataSource8.Value = this.LargestCategoryViewBindingSource;
-            this.reportViewer2.LocalReport.DataSources.Add(reportDataSource8);
-            this.reportViewer2.LocalReport.ReportEmbeddedResource = "NewsAgencyApp.AdminPortal.LargestCategoryReport.rdlc";
-            this.reportViewer2.Location = new System.Drawing.Point(3, 3);
-            this.reportViewer2.Name = "reportViewer2";
-            this.reportViewer2.ServerReport.BearerToken = null;
-            this.reportViewer2.Size = new System.Drawing.Size(583, 360);
-            this.reportViewer2.TabIndex = 0;
-            // 
             // articleTableAdapter
             // 
             this.articleTableAdapter.ClearBeforeFill = true;
@@ -690,6 +657,15 @@
             // largestCategoryViewTableAdapter
             // 
             this.largestCategoryViewTableAdapter.ClearBeforeFill = true;
+            // 
+            // columnHeader1
+            // 
+            columnHeader1.Text = "ID";
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Name";
+            this.columnHeader2.Width = 240;
             // 
             // AdminForm
             // 
@@ -711,7 +687,6 @@
             this.manageArticlesTabPage.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.manageCategoriesTabPage.ResumeLayout(false);
-            this.manageCategoriesTabPage.PerformLayout();
             this.reportsTabPage.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -750,13 +725,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox articleSearchTextBox;
         private System.Windows.Forms.ComboBox categoriesComboBox;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.ListView listView2;
+        private System.Windows.Forms.Button removeCategoryButton;
+        private System.Windows.Forms.Button createCategoryButton;
+        private System.Windows.Forms.ListView categoriesListView;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label4;
@@ -794,5 +765,6 @@
         private DatabaseDataSetTableAdapters.ArticleTableAdapter articleTableAdapter;
         private DatabaseDataSetTableAdapters.TableAdapterManager tableAdapterManager;
         private DatabaseDataSetTableAdapters.LargestCategoryViewTableAdapter largestCategoryViewTableAdapter;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
     }
 }

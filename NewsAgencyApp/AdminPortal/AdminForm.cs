@@ -30,9 +30,8 @@ namespace NewsAgencyApp.AdminPortal
             Models.User user = AuthenticationContext.Instance().State.CurrentUser;
             nametypeToolStripMenuItem.Text = String.Format("{0} ({1})", user.FullName, user.Username);
 
-            setupArticlesListView();
-            setupCategoriesComboBox();
-            setupAuthorsComboBox();
+            tabControl.SelectedIndex = tabControl.TabPages.Count - 1;
+            tabControl.SelectedIndex = 0;
         }
 
         private void authStateChanged(AuthenticationState state)
@@ -96,6 +95,8 @@ namespace NewsAgencyApp.AdminPortal
 
         private void setupCategoriesComboBox()
         {
+            categoriesComboBox.ResetText();
+
             categoriesComboBox.SelectedItem = null; // Default to selected null
             categoriesComboBox.SelectedText = "--Select--";  // Default to select text
 
@@ -111,6 +112,9 @@ namespace NewsAgencyApp.AdminPortal
         */
         private void renderCategoriesComboBox()
         {
+            categoriesComboBox.Items.Clear();
+            categoriesComboBox.Items.Add(new ComboboxItem { Text = "--Select--", Value = null });
+
             foreach (var category in categoriesList)
                 categoriesComboBox.Items.Add(new ComboboxItem { Text = category.Name, Value = category });
         }
@@ -118,6 +122,8 @@ namespace NewsAgencyApp.AdminPortal
 
         private void setupAuthorsComboBox()
         {
+            authorsComboBox.ResetText();
+
             authorsComboBox.SelectedItem = null; // Default to selected null
             authorsComboBox.SelectedText = "--Select--";  // Default to select text
 
@@ -133,6 +139,9 @@ namespace NewsAgencyApp.AdminPortal
         */
         private void renderAuthorsComboBox()
         {
+            authorsComboBox.Items.Clear();
+            authorsComboBox.Items.Add(new ComboboxItem { Text = "--Select--", Value = null });
+
             foreach (var user in usersList)
                 authorsComboBox.Items.Add(new ComboboxItem { Text = user.FullName, Value = user });
         }
@@ -141,7 +150,7 @@ namespace NewsAgencyApp.AdminPortal
         {
             ComboboxItem selectedItem = ((ComboBox)sender).SelectedItem as ComboboxItem; // selected categoriy item
 
-            if (selectedItem == null)
+            if (selectedItem == null || selectedItem.Value == null)
                 articlesFilters.Remove("categoryId");
             else
             {
@@ -156,7 +165,7 @@ namespace NewsAgencyApp.AdminPortal
         {
             ComboboxItem selectedItem = ((ComboBox)sender).SelectedItem as ComboboxItem; // selected user item
 
-            if (selectedItem == null)
+            if (selectedItem == null || selectedItem.Value == null)
                 articlesFilters.Remove("userId");
             else
             {
@@ -260,6 +269,79 @@ namespace NewsAgencyApp.AdminPortal
         #endregion
 
         #region ManageCateogiresTab
+        private void setupCategoriesListView()
+        {
+            categoriesListView.View = View.Details; // Important to make the list view show details ( columns )
+            categoriesListView.FullRowSelect = true; // Select the whole row
+            categoriesListView.GridLines = true;
+
+            renderCategoriesListView();
+        }
+
+        private void renderCategoriesListView()
+        {
+            categoriesListView.Items.Clear();
+
+            foreach (var category in categoriesList)
+            {
+                ListViewItem item = new ListViewItem(category.Id.ToString()); // Make title the 1st col
+                item.SubItems.Add(category.Name);
+
+                categoriesListView.Items.Add(item); // Add the constructed item to the list
+            }
+        }
+
+        private void triggerFindCategories()
+        {
+            categoriesList = Models.Category.FindAll();
+
+            this.renderCategoriesListView(); // Re-render
+        }
+
+        private void createCategoryButton_Click(object sender, EventArgs e)
+        {
+            string name = Microsoft.VisualBasic.Interaction.InputBox("Enter new category name", "New category", null, 0, 0);
+
+            if (name.Length > 0)
+            {
+                Models.Category category = new Models.Category(name);
+                category.Create();
+
+                triggerFindCategories();
+            }
+        }
+
+        private void removeCategoryButton_Click(object sender, EventArgs e)
+        {
+            Models.Category category = this.SelectedCategory();
+            if (category == null)
+                return;
+
+            var response = MessageBox.Show("Are you sure that you want to delete this category?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (response == DialogResult.Yes)
+            {
+                bool removeResult = category.Remove();
+                if (removeResult)
+                {
+                    categoriesList.Remove(category);
+                    renderCategoriesListView();
+                }
+            }
+        }
+
+        private Models.Category SelectedCategory()
+        {
+            if (categoriesListView.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Select category first", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+
+            var selectedItem = categoriesListView.SelectedItems[0];
+            Models.Category category = categoriesList[selectedItem.Index];
+
+            return category;
+        }
         #endregion
 
         #region ReportsTab
@@ -298,15 +380,26 @@ namespace NewsAgencyApp.AdminPortal
         {
             TabControl tabControl = (TabControl)sender;
 
-            if (tabControl.SelectedTab.Name == "reportsTabPage")
+            Console.WriteLine(tabControl.SelectedTab.Name);
+            switch (tabControl.SelectedTab.Name)
             {
-                // TODO: This line of code loads data into the 'databaseDataSet.LargestCategoryView' table. You can move, or remove it, as needed.
-                this.largestCategoryViewTableAdapter.Fill(this.databaseDataSet.LargestCategoryView);
-                // TODO: This line of code loads data into the 'databaseDataSet.Article' table. You can move, or remove it, as needed.
-                this.articleTableAdapter.Fill(this.databaseDataSet.Article);
+                case "manageArticlesTabPage":
+                    setupArticlesListView();
+                    setupCategoriesComboBox();
+                    setupAuthorsComboBox();
+                    break;
+                case "manageCategoriesTabPage":
+                    setupCategoriesListView();
+                    break;
+                case "reportsTabPage":
+                    // TODO: This line of code loads data into the 'databaseDataSet.LargestCategoryView' table. You can move, or remove it, as needed.
+                    this.largestCategoryViewTableAdapter.Fill(this.databaseDataSet.LargestCategoryView);
+                    // TODO: This line of code loads data into the 'databaseDataSet.Article' table. You can move, or remove it, as needed.
+                    this.articleTableAdapter.Fill(this.databaseDataSet.Article);
 
-                this.reportViewer1.RefreshReport();
-                this.reportViewer2.RefreshReport();
+                    this.reportViewer1.RefreshReport();
+                    this.reportViewer2.RefreshReport();
+                    break;
             }
         }
     }
