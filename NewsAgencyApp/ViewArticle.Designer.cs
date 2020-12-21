@@ -30,8 +30,8 @@
         {
             this.backButton = new System.Windows.Forms.Button();
             this.titleLabel = new System.Windows.Forms.Label();
-            this.contentLabel = new System.Windows.Forms.Label();
             this.detailsLabel = new System.Windows.Forms.Label();
+            this.contentRichTextBox = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // backButton
@@ -46,21 +46,13 @@
             // 
             // titleLabel
             // 
-            this.titleLabel.AutoSize = true;
             this.titleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titleLabel.Location = new System.Drawing.Point(12, 9);
+            this.titleLabel.Location = new System.Drawing.Point(15, 9);
+            this.titleLabel.MaximumSize = new System.Drawing.Size(773, 37);
             this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(106, 37);
+            this.titleLabel.Size = new System.Drawing.Size(773, 37);
             this.titleLabel.TabIndex = 1;
             this.titleLabel.Text = "label1";
-            // 
-            // contentLabel
-            // 
-            this.contentLabel.Location = new System.Drawing.Point(16, 61);
-            this.contentLabel.Name = "contentLabel";
-            this.contentLabel.Size = new System.Drawing.Size(772, 335);
-            this.contentLabel.TabIndex = 2;
-            this.contentLabel.Text = "label2";
             // 
             // detailsLabel
             // 
@@ -72,13 +64,22 @@
             this.detailsLabel.TabIndex = 3;
             this.detailsLabel.Text = "label3";
             // 
+            // contentRichTextBox
+            // 
+            this.contentRichTextBox.Location = new System.Drawing.Point(18, 61);
+            this.contentRichTextBox.Name = "contentRichTextBox";
+            this.contentRichTextBox.ReadOnly = true;
+            this.contentRichTextBox.Size = new System.Drawing.Size(770, 335);
+            this.contentRichTextBox.TabIndex = 4;
+            this.contentRichTextBox.Text = "";
+            // 
             // ViewArticle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.contentRichTextBox);
             this.Controls.Add(this.detailsLabel);
-            this.Controls.Add(this.contentLabel);
             this.Controls.Add(this.titleLabel);
             this.Controls.Add(this.backButton);
             this.Name = "ViewArticle";
@@ -93,7 +94,7 @@
 
         private System.Windows.Forms.Button backButton;
         private System.Windows.Forms.Label titleLabel;
-        private System.Windows.Forms.Label contentLabel;
         private System.Windows.Forms.Label detailsLabel;
+        private System.Windows.Forms.RichTextBox contentRichTextBox;
     }
 }

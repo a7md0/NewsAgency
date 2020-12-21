@@ -36,7 +36,7 @@ namespace NewsAgencyApp
         private void renderArticle()
         {
             titleLabel.Text = article.Title;
-            contentLabel.Text = article.Content;
+            contentRichTextBox.Text = article.Content;
             detailsLabel.Text = string.Format("Posted by: {0} On {1} | Viewed {2} times", article.User.FullName, article.CreatedAt, article.NumberOfViews + 1);
         }
 
