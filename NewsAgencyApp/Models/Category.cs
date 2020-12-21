@@ -86,20 +86,51 @@ namespace NewsAgencyApp.Models
 
         public override bool Create()
         {
+            SqlCommand query = new SqlCommand
+            {
+                CommandText = "INSERT INTO [Category] (Name) VALUES (@name);",
+                Connection = DBMgr.DatabaseFactory().Connection(),
+                CommandType = CommandType.Text,
+            };
 
-            return false;
+            query.Parameters.AddWithValue("@name", name);
+
+            int affectedRows = query.ExecuteNonQuery();
+
+            return affectedRows > 0;
         }
 
         public override bool Update()
         {
+            SqlCommand query = new SqlCommand
+            {
+                CommandText = "UPDATE [Category] SET Name = @name WHERE Id = @id;",
+                Connection = DBMgr.DatabaseFactory().Connection(),
+                CommandType = CommandType.Text,
+            };
 
-            return false;
+            query.Parameters.AddWithValue("@id", id);
+            query.Parameters.AddWithValue("@name", name);
+
+            int affectedRows = query.ExecuteNonQuery();
+
+            return affectedRows > 0;
         }
 
         public override bool Remove()
         {
+            SqlCommand query = new SqlCommand
+            {
+                CommandText = @"DELETE FROM [Category] WHERE Id = @id;",
+                Connection = DBMgr.DatabaseFactory().Connection(),
+                CommandType = CommandType.Text,
+            };
 
-            return false;
+            query.Parameters.AddWithValue("@id", id);
+
+            int affectedRows = query.ExecuteNonQuery();
+
+            return affectedRows > 0;
         }
     }
 }
