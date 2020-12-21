@@ -102,6 +102,7 @@ namespace NewsAgencyApp.AdminPortal
 
             article.Update();
 
+            MessageBox.Show("Article was updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Close();
         }
 

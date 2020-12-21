@@ -78,6 +78,7 @@ namespace NewsAgencyApp.AdminPortal
             article.GenerateKeywords();
             article.Create();
 
+            MessageBox.Show("Article was created successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Close();
         }
     }
