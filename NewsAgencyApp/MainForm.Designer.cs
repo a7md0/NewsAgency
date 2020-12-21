@@ -87,7 +87,8 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -104,7 +105,8 @@
             // loginLogoutToolStripMenuItem
             // 
             this.loginLogoutToolStripMenuItem.Name = "loginLogoutToolStripMenuItem";
-            this.loginLogoutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.loginLogoutToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.L)));
+            this.loginLogoutToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.loginLogoutToolStripMenuItem.Text = "Login";
             this.loginLogoutToolStripMenuItem.Click += new System.EventHandler(this.loginLogoutToolStripMenuItem_Click);
             // 
