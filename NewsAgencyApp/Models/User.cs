@@ -9,7 +9,7 @@ namespace NewsAgencyApp.Models
     /**
      * Class model for user
     */ 
-    class User
+    class User : Model
     {
 
         private int id;
@@ -75,14 +75,14 @@ namespace NewsAgencyApp.Models
         }
         #endregion
 
-        public static User UserFactory(int roleId)
+        public static User UserFactory(string roleName)
         {
-            switch (roleId)
+            switch (roleName)
             {
-                case 1:
+                case "Administrator":
                     return new SuperUser();
                 default:
-                    throw new Exception("Unhandled user type");
+                    throw new NotImplementedException("Unhandled user type");
             }
         }
 
@@ -92,7 +92,11 @@ namespace NewsAgencyApp.Models
 
             SqlCommand query = new SqlCommand
             {
-                CommandText = "SELECT Id, FullName, Username, Email, RoleId FROM [User];",
+                CommandText = @"SELECT u.Id, u.FullName, u.Username, u.Email, r.Name AS RoleName
+                                FROM [User] AS u
+
+                                INNER JOIN [Role] AS r
+                                    ON u.RoleId = r.Id;",
                 Connection = DBMgr.DatabaseFactory().Connection(),
                 CommandType = CommandType.Text,
             };
@@ -101,9 +105,7 @@ namespace NewsAgencyApp.Models
 
             while (sdr.Read())
             {
-                int roleId = Int32.Parse(sdr["RoleId"].ToString());
-
-                User user = Models.User.UserFactory(Int32.Parse(sdr["RoleId"].ToString()));
+                User user = Models.User.UserFactory(sdr["RoleName"].ToString());
 
                 user.Id = Int32.Parse(sdr["Id"].ToString());
                 user.FullName = sdr["FullName"].ToString();
@@ -116,6 +118,21 @@ namespace NewsAgencyApp.Models
             sdr.Close(); // Close SqlDataReader
 
             return users;
+        }
+
+        public override bool Create()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool Update()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool Remove()
+        {
+            throw new NotImplementedException();
         }
     }
 }

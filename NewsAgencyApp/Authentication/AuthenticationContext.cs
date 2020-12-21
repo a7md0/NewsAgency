@@ -55,7 +55,13 @@ namespace NewsAgencyApp
 
             var connection = DBMgr.DatabaseFactory().Connection();
 
-            SqlCommand query = new SqlCommand("SELECT RoleId, Id, FullName, Username, Email FROM [User] WHERE Username = @username AND Password = HashBytes('MD5', @password);", connection); // 
+            SqlCommand query = new SqlCommand(@"SELECT r.Name as RoleName, u.Id, u.FullName, u.Username, u.Email
+                                                FROM [User] AS u
+
+                                                INNER JOIN [Role] as r
+                                                    ON u.RoleId = r.Id
+
+                                                WHERE Username = @username AND Password = HashBytes('MD5', @password);", connection); // 
             query.CommandType = CommandType.Text;
 
             query.Parameters.AddWithValue("@username", username);
@@ -66,9 +72,7 @@ namespace NewsAgencyApp
 
             if (sdr.HasRows == true && sdr.Read())
             {
-                int roleId = Int32.Parse(sdr["RoleId"].ToString());
-
-                user = Models.User.UserFactory(Int32.Parse(sdr["RoleId"].ToString()));
+                user = Models.User.UserFactory(sdr["RoleName"].ToString());
 
                 user.Id = Int32.Parse(sdr["Id"].ToString());
                 user.FullName = sdr["FullName"].ToString();
