@@ -144,6 +144,7 @@
     <EmbeddedResource Include="AdminPortal\CreateArticleForm.resx">
       <DependentUpon>CreateArticleForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AdminPortal\MostReadNewsArticleReport.rdlc" />
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>

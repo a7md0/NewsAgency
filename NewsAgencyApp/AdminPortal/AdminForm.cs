@@ -28,6 +28,8 @@ namespace NewsAgencyApp.AdminPortal
 
         private void AdminForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'databaseDataSet.Article' table. You can move, or remove it, as needed.
+            this.articleTableAdapter.Fill(this.databaseDataSet.Article);
             var observer = AuthenticationContext.Instance().AuthenticationObserverInstance();
             observer.nextDelegate = authStateChanged;
 
@@ -37,6 +39,7 @@ namespace NewsAgencyApp.AdminPortal
             setupArticlesListView();
             setupCategoriesComboBox();
             setupAuthorsComboBox();
+            this.reportViewer1.RefreshReport();
         }
 
         private void authStateChanged(AuthenticationState state)
@@ -298,6 +301,14 @@ namespace NewsAgencyApp.AdminPortal
             TabControl tabControl = (TabControl)sender;
 
             Console.WriteLine(tabControl.SelectedTab.Text);
+        }
+
+        private void articleBindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        {
+            this.Validate();
+            this.articleBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.databaseDataSet);
+
         }
     }
 }
