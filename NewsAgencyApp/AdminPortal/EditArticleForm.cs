@@ -15,6 +15,11 @@ namespace NewsAgencyApp.AdminPortal
         public EditArticleForm()
         {
             InitializeComponent();
+
+            this.CenterToParent();
+
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
         }
 
         private void label11_Click(object sender, EventArgs e)

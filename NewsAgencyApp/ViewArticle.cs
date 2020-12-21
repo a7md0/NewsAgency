@@ -12,6 +12,11 @@ namespace NewsAgencyApp
         public ViewArticle()
         {
             InitializeComponent();
+
+            this.CenterToParent();
+
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
         }
 
         private void ViewArticle_Load(object sender, EventArgs e)

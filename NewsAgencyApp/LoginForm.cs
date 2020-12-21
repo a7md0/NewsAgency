@@ -10,6 +10,11 @@ namespace NewsAgencyApp
         public LoginForm()
         {
             InitializeComponent();
+
+            this.CenterToParent();
+
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
         }
 
         private void loginButton_Click(object sender, EventArgs e)

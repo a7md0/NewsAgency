@@ -14,6 +14,11 @@ namespace NewsAgencyApp.AdminPortal
         public CreateArticleForm()
         {
             InitializeComponent();
+
+            this.CenterToParent();
+
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
         }
 
         private void CreateArticleForm_Load(object sender, EventArgs e)

@@ -17,6 +17,11 @@ namespace NewsAgencyApp.AdminPortal
             InitializeComponent();
 
             this.parent = parent;
+
+            this.CenterToScreen();
+
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
         }
 
         private void AdminForm_Load(object sender, EventArgs e)

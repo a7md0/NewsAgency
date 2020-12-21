@@ -12,6 +12,10 @@ namespace NewsAgencyApp
         public MainForm()
         {
             InitializeComponent();
+            this.CenterToScreen();
+
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
