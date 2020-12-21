@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource5 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.manageArticlesTabPage = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -47,7 +47,7 @@
             this.titleColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.authorColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.categoryColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.dateColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.createdColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.manageCategoriesTabPage = new System.Windows.Forms.TabPage();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -56,7 +56,7 @@
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.listView2 = new System.Windows.Forms.ListView();
-            this.generateReportsTabPage = new System.Windows.Forms.TabPage();
+            this.reportsTabPage = new System.Windows.Forms.TabPage();
             this.backupRestoreTabPage = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.restoreButton = new System.Windows.Forms.Button();
@@ -89,11 +89,14 @@
             this.articleTableAdapter = new NewsAgencyApp.DatabaseDataSetTableAdapters.ArticleTableAdapter();
             this.tableAdapterManager = new NewsAgencyApp.DatabaseDataSetTableAdapters.TableAdapterManager();
             this.reportViewer2 = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.idColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.updatedColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.viewsColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl.SuspendLayout();
             this.manageArticlesTabPage.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.manageCategoriesTabPage.SuspendLayout();
-            this.generateReportsTabPage.SuspendLayout();
+            this.reportsTabPage.SuspendLayout();
             this.backupRestoreTabPage.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -109,13 +112,14 @@
             // 
             this.tabControl.Controls.Add(this.manageArticlesTabPage);
             this.tabControl.Controls.Add(this.manageCategoriesTabPage);
-            this.tabControl.Controls.Add(this.generateReportsTabPage);
+            this.tabControl.Controls.Add(this.reportsTabPage);
             this.tabControl.Controls.Add(this.backupRestoreTabPage);
             this.tabControl.Location = new System.Drawing.Point(0, 27);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(611, 424);
             this.tabControl.TabIndex = 0;
+            this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl_Selecting);
             // 
             // manageArticlesTabPage
             // 
@@ -248,10 +252,13 @@
             // articlesListView
             // 
             this.articlesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.idColumnHeader,
             this.titleColumnHeader,
+            this.viewsColumnHeader,
             this.authorColumnHeader,
             this.categoryColumnHeader,
-            this.dateColumnHeader});
+            this.createdColumnHeader,
+            this.updatedColumnHeader});
             this.articlesListView.HideSelection = false;
             this.articlesListView.Location = new System.Drawing.Point(17, 55);
             this.articlesListView.MultiSelect = false;
@@ -267,18 +274,21 @@
             // 
             // authorColumnHeader
             // 
+            this.authorColumnHeader.DisplayIndex = 2;
             this.authorColumnHeader.Text = "Author";
             this.authorColumnHeader.Width = 100;
             // 
             // categoryColumnHeader
             // 
+            this.categoryColumnHeader.DisplayIndex = 3;
             this.categoryColumnHeader.Text = "Category";
             this.categoryColumnHeader.Width = 120;
             // 
-            // dateColumnHeader
+            // createdColumnHeader
             // 
-            this.dateColumnHeader.Text = "Date";
-            this.dateColumnHeader.Width = 140;
+            this.createdColumnHeader.DisplayIndex = 4;
+            this.createdColumnHeader.Text = "Created";
+            this.createdColumnHeader.Width = 140;
             // 
             // manageCategoriesTabPage
             // 
@@ -358,15 +368,15 @@
             this.listView2.TabIndex = 8;
             this.listView2.UseCompatibleStateImageBehavior = false;
             // 
-            // generateReportsTabPage
+            // reportsTabPage
             // 
-            this.generateReportsTabPage.Controls.Add(this.tabControl1);
-            this.generateReportsTabPage.Location = new System.Drawing.Point(4, 22);
-            this.generateReportsTabPage.Name = "generateReportsTabPage";
-            this.generateReportsTabPage.Size = new System.Drawing.Size(603, 398);
-            this.generateReportsTabPage.TabIndex = 2;
-            this.generateReportsTabPage.Text = "Generate reports";
-            this.generateReportsTabPage.UseVisualStyleBackColor = true;
+            this.reportsTabPage.Controls.Add(this.tabControl1);
+            this.reportsTabPage.Location = new System.Drawing.Point(4, 22);
+            this.reportsTabPage.Name = "reportsTabPage";
+            this.reportsTabPage.Size = new System.Drawing.Size(603, 398);
+            this.reportsTabPage.TabIndex = 2;
+            this.reportsTabPage.Text = "Reports";
+            this.reportsTabPage.UseVisualStyleBackColor = true;
             // 
             // backupRestoreTabPage
             // 
@@ -386,7 +396,7 @@
             this.groupBox2.Controls.Add(this.button9);
             this.groupBox2.Controls.Add(this.restoreFilePath);
             this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Location = new System.Drawing.Point(292, 12);
+            this.groupBox2.Location = new System.Drawing.Point(304, 20);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(273, 359);
             this.groupBox2.TabIndex = 3;
@@ -447,7 +457,7 @@
             this.groupBox1.Controls.Add(this.comboBox2);
             this.groupBox1.Controls.Add(this.backupButton);
             this.groupBox1.Controls.Add(this.checkedListBox1);
-            this.groupBox1.Location = new System.Drawing.Point(13, 12);
+            this.groupBox1.Location = new System.Drawing.Point(25, 20);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(273, 359);
             this.groupBox1.TabIndex = 2;
@@ -609,9 +619,9 @@
             // reportViewer1
             // 
             this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            reportDataSource5.Name = "DataSet1";
-            reportDataSource5.Value = this.articleBindingSource;
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource5);
+            reportDataSource1.Name = "DataSet1";
+            reportDataSource1.Value = this.articleBindingSource;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "NewsAgencyApp.AdminPortal.MostReadNewsArticleReport.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(3, 3);
             this.reportViewer1.Name = "reportViewer1";
@@ -650,6 +660,20 @@
             this.reportViewer2.Size = new System.Drawing.Size(583, 360);
             this.reportViewer2.TabIndex = 0;
             // 
+            // idColumnHeader
+            // 
+            this.idColumnHeader.Text = "ID";
+            // 
+            // updatedColumnHeader
+            // 
+            this.updatedColumnHeader.DisplayIndex = 5;
+            this.updatedColumnHeader.Text = "Updated";
+            // 
+            // viewsColumnHeader
+            // 
+            this.viewsColumnHeader.DisplayIndex = 6;
+            this.viewsColumnHeader.Text = "Views";
+            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -668,7 +692,7 @@
             this.groupBox3.ResumeLayout(false);
             this.manageCategoriesTabPage.ResumeLayout(false);
             this.manageCategoriesTabPage.PerformLayout();
-            this.generateReportsTabPage.ResumeLayout(false);
+            this.reportsTabPage.ResumeLayout(false);
             this.backupRestoreTabPage.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -698,7 +722,7 @@
         private System.Windows.Forms.ToolStripMenuItem backToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem nametypeToolStripMenuItem;
         private System.Windows.Forms.ListView articlesListView;
-        private System.Windows.Forms.TabPage generateReportsTabPage;
+        private System.Windows.Forms.TabPage reportsTabPage;
         private System.Windows.Forms.TabPage backupRestoreTabPage;
         private System.Windows.Forms.Button removeArticleButton;
         private System.Windows.Forms.Button createArticleButton;
@@ -736,7 +760,7 @@
         private System.Windows.Forms.ColumnHeader titleColumnHeader;
         private System.Windows.Forms.ColumnHeader authorColumnHeader;
         private System.Windows.Forms.ColumnHeader categoryColumnHeader;
-        private System.Windows.Forms.ColumnHeader dateColumnHeader;
+        private System.Windows.Forms.ColumnHeader createdColumnHeader;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
@@ -747,5 +771,8 @@
         private DatabaseDataSetTableAdapters.ArticleTableAdapter articleTableAdapter;
         private DatabaseDataSetTableAdapters.TableAdapterManager tableAdapterManager;
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer2;
+        private System.Windows.Forms.ColumnHeader idColumnHeader;
+        private System.Windows.Forms.ColumnHeader updatedColumnHeader;
+        private System.Windows.Forms.ColumnHeader viewsColumnHeader;
     }
 }

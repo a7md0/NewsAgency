@@ -35,8 +35,6 @@ namespace NewsAgencyApp.AdminPortal
             setupArticlesListView();
             setupCategoriesComboBox();
             setupAuthorsComboBox();
-            this.reportViewer1.RefreshReport();
-            this.reportViewer2.RefreshReport();
         }
 
         private void authStateChanged(AuthenticationState state)
@@ -86,10 +84,13 @@ namespace NewsAgencyApp.AdminPortal
 
             foreach (var article in articlesList)
             {
-                ListViewItem item = new ListViewItem(article.Title); // Make title the 1st col
+                ListViewItem item = new ListViewItem(article.Id.ToString()); // Make title the 1st col
+                item.SubItems.Add(article.Title);
+                item.SubItems.Add(article.NumberOfViews.ToString());
                 item.SubItems.Add(article.User.FullName); // Add full name to 2nd col
                 item.SubItems.Add(article.Category.Name); // Add category name to 3rd col
                 item.SubItems.Add(article.CreatedAt); // Add date to 4th col
+                item.SubItems.Add(article.UpdatedAt);
 
                 articlesListView.Items.Add(item); // Add the constructed item to the list
             }
@@ -116,7 +117,7 @@ namespace NewsAgencyApp.AdminPortal
                 categoriesComboBox.Items.Add(new ComboboxItem { Text = category.Name, Value = category });
         }
 
-        
+
         private void setupAuthorsComboBox()
         {
             authorsComboBox.SelectedItem = null; // Default to selected null
@@ -216,6 +217,8 @@ namespace NewsAgencyApp.AdminPortal
                 return;
 
             this.showArticle(article);
+
+            triggerFindArticles();
         }
 
         private void editArticleButton_Click(object sender, EventArgs e)
@@ -228,7 +231,7 @@ namespace NewsAgencyApp.AdminPortal
             editArticleForm.Article = article;
             editArticleForm.ShowDialog();
 
-            renderArticlesListView();
+            triggerFindArticles();
         }
 
         private void removeArticleButton_Click(object sender, EventArgs e)
@@ -293,19 +296,15 @@ namespace NewsAgencyApp.AdminPortal
         }
         #endregion
 
-        private void tabControl_Selecting(object sender, TabControlCancelEventArgs e)
+        private void tabControl_Selecting(object sender, EventArgs e)
         {
             TabControl tabControl = (TabControl)sender;
 
-            Console.WriteLine(tabControl.SelectedTab.Text);
-        }
-
-        private void articleBindingNavigatorSaveItem_Click(object sender, EventArgs e)
-        {
-            this.Validate();
-            this.articleBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.databaseDataSet);
-
+            if (tabControl.SelectedTab.Name == "reportsTabPage")
+            {
+                this.reportViewer1.RefreshReport();
+                this.reportViewer2.RefreshReport();
+            }
         }
     }
 }
