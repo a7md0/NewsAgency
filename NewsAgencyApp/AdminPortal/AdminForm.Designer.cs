@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource4 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource5 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.manageArticlesTabPage = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -254,6 +254,7 @@
             this.dateColumnHeader});
             this.articlesListView.HideSelection = false;
             this.articlesListView.Location = new System.Drawing.Point(17, 55);
+            this.articlesListView.MultiSelect = false;
             this.articlesListView.Name = "articlesListView";
             this.articlesListView.Size = new System.Drawing.Size(454, 311);
             this.articlesListView.TabIndex = 0;
@@ -608,9 +609,9 @@
             // reportViewer1
             // 
             this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            reportDataSource4.Name = "DataSet1";
-            reportDataSource4.Value = this.articleBindingSource;
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource4);
+            reportDataSource5.Name = "DataSet1";
+            reportDataSource5.Value = this.articleBindingSource;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource5);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "NewsAgencyApp.AdminPortal.MostReadNewsArticleReport.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(3, 3);
             this.reportViewer1.Name = "reportViewer1";

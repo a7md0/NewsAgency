@@ -116,6 +116,7 @@
             this.dateColumnHeader});
             this.articlesListView.HideSelection = false;
             this.articlesListView.Location = new System.Drawing.Point(12, 36);
+            this.articlesListView.MultiSelect = false;
             this.articlesListView.Name = "articlesListView";
             this.articlesListView.Size = new System.Drawing.Size(540, 206);
             this.articlesListView.TabIndex = 1;
