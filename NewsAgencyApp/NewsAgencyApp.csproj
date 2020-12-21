@@ -107,6 +107,7 @@
       <DependentUpon>DatabaseDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Helper\ComboboxItem.cs" />
+    <Compile Include="Helper\FilterItem.cs" />
     <Compile Include="Helper\Observer.cs" />
     <Compile Include="Authentication\AuthenticationState.cs" />
     <Compile Include="Authentication\AuthenticationContext.cs" />

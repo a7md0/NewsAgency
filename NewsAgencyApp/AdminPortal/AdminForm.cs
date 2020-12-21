@@ -65,7 +65,7 @@ namespace NewsAgencyApp.AdminPortal
         List<Models.Article> articlesList = new List<Models.Article>();
         List<Models.User> usersList = new List<Models.User>();
 
-        IDictionary<string, string> articlesFilters = new Dictionary<string, string>();
+        IDictionary<string, FilterItem> articlesFilters = new Dictionary<string, FilterItem>();
 
         private void setupArticlesListView()
         {
@@ -146,7 +146,7 @@ namespace NewsAgencyApp.AdminPortal
             else
             {
                 int id = (selectedItem.Value as Models.Category).Id;
-                articlesFilters["categoryId"] = string.Format("CategoryId = {0}", id);
+                articlesFilters["categoryId"] = new FilterItem("CategoryId", "=", id.ToString());
             }
 
             triggerFindArticles();
@@ -161,7 +161,7 @@ namespace NewsAgencyApp.AdminPortal
             else
             {
                 int id = (selectedItem.Value as Models.User).Id;
-                articlesFilters["userId"] = string.Format("UserId = {0}", id);
+                articlesFilters["userId"] = new FilterItem("UserId", "=", id.ToString());
             }
 
             triggerFindArticles();
@@ -172,7 +172,7 @@ namespace NewsAgencyApp.AdminPortal
             TextBox search = (TextBox)sender;
 
             if (search.TextLength > 0)
-                articlesFilters["search"] = string.Format("Title LIKE '%{0}%'", search.Text.Trim().Replace(" ", "%"));
+                articlesFilters["search"] = new FilterItem("Keywords", "LIKE", search.Text.Trim().Replace(" ", "%"));
             else
                 articlesFilters.Remove("search");
 

@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 
+using NewsAgencyApp.Helper;
+
 namespace NewsAgencyApp.Models
 {
     class Article : Model
@@ -148,49 +150,35 @@ namespace NewsAgencyApp.Models
             this.keywords = keywords;
         }
 
-        public static List<Article> FindAll()
-        {
-            SqlCommand query = new SqlCommand
-            {
-                CommandText = @"SELECT a.Id, a.Title, a.Content, a.NumberOfViews, a.CreatedAt, a.UpdatedAt, a.Keywords,
-                                    c.Id as CategoryId, c.Name as CategoryName,
-                                    u.Id as UserId, u.FullName as UserFullName, u.Username as UserUserName
-
-                                    FROM [Article] AS a
-
-                                    INNER JOIN [Category] as c
-	                                    ON a.CategoryId = c.Id
-
-                                    INNER JOIN [User] as u
-	                                    ON a.UserId = u.Id
-
-                                    ORDER BY createdAt DESC;",
-                Connection = DBMgr.DatabaseFactory().Connection(),
-                CommandType = CommandType.Text,
-            };
-
-            SqlDataReader sdr = query.ExecuteReader();
-
-            List<Article> articles = Article.parseArticles(sdr);
-
-            sdr.Close(); // Close SqlDataReader
-
-            return articles;
-        }
-
-        public static List<Article> FindAll(IDictionary<string, string> filters = null)
+        private static string buildWhereCluase(IDictionary<string, FilterItem> filters)
         {
             string whereCluase = "";
 
-            if (filters.Count > 0)
+            if (filters != null && filters.Count > 0)
             {
                 foreach (var filter in filters)
                 {
                     whereCluase += (whereCluase.Length == 0) ? "WHERE " : " AND ";
-                    whereCluase += filter.Value;
+                    whereCluase += filter.Value.Cluase(filter.Key);
                 }
-                    
+
             }
+
+            return whereCluase;
+        }
+
+        private static void addCommandParameters(IDictionary<string, FilterItem> filters, SqlCommand query)
+        {
+            if (filters != null && filters.Count > 0)
+            {
+                foreach (var filter in filters)
+                    query.Parameters.AddWithValue(string.Format("@{0}", filter.Key), filter.Value.Value);
+            }
+        }
+
+        public static List<Article> FindAll(IDictionary<string, FilterItem> filters = null)
+        {
+            string whereCluase = buildWhereCluase(filters);
 
             Console.WriteLine(whereCluase);
 
@@ -214,6 +202,8 @@ namespace NewsAgencyApp.Models
                 Connection = DBMgr.DatabaseFactory().Connection(),
                 CommandType = CommandType.Text,
             };
+
+            addCommandParameters(filters, query);
 
             SqlDataReader sdr = query.ExecuteReader();
 

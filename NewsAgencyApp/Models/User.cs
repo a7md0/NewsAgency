@@ -6,6 +6,9 @@ using System.Collections.Generic;
 
 namespace NewsAgencyApp.Models
 {
+    /**
+     * Class model for user
+    */ 
     class User
     {
 
@@ -18,6 +21,7 @@ namespace NewsAgencyApp.Models
         {
         }
 
+        #region Getter/Setter
         public int Id
         {
             get
@@ -69,6 +73,7 @@ namespace NewsAgencyApp.Models
                 email = value;
             }
         }
+        #endregion
 
         public static User UserFactory(int roleId)
         {
