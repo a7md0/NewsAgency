@@ -250,7 +250,7 @@ namespace NewsAgencyApp.Models
             SqlCommand query = new SqlCommand
             {
                 CommandText = @"UPDATE [Article] SET
-                                Title = @title, Content = @content, UserId = @userId, CategoryId = @categoryId, Keywords = @keywords
+                                Title = @title, Content = @content, CategoryId = @categoryId, Keywords = @keywords, UpdatedAt = CURRENT_TIMESTAMP
                                 WHERE Id = @id;",
                 Connection = DBMgr.DatabaseFactory().Connection(),
                 CommandType = CommandType.Text,
@@ -259,12 +259,13 @@ namespace NewsAgencyApp.Models
             query.Parameters.AddWithValue("@id", id);
             query.Parameters.AddWithValue("@title", title);
             query.Parameters.AddWithValue("@content", content);
-            query.Parameters.AddWithValue("@userId", user.Id);
             query.Parameters.AddWithValue("@categoryId", category.Id);
             query.Parameters.AddWithValue("@keywords", keywords);
 
 
             int affectedRows = query.ExecuteNonQuery();
+
+            Console.WriteLine(affectedRows);
 
             return affectedRows > 0;
         }
