@@ -144,6 +144,9 @@
     <EmbeddedResource Include="AdminPortal\CreateArticleForm.resx">
       <DependentUpon>CreateArticleForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AdminPortal\EditArticleForm.resx">
+      <DependentUpon>EditArticleForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AdminPortal\MostReadNewsArticleReport.rdlc" />
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
@@ -202,10 +205,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Database.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Database_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>Database.mdf</DependentUpon>
     </Content>
     <Content Include="SqlServerTypes\readme.htm" />
