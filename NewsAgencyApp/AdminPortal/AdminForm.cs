@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 
 using NewsAgencyApp.Helper;
+using NewsAgencyApp.Models;
 
 namespace NewsAgencyApp.AdminPortal
 {
     public partial class AdminForm : Form
     {
         Form parent;
-        List<Models.Category> categoriesList = new List<Models.Category>();
+        List<Category> categoriesList = new List<Category>();
 
         public AdminForm(Form parent)
         {
@@ -27,7 +28,7 @@ namespace NewsAgencyApp.AdminPortal
             var observer = AuthenticationContext.Instance().AuthenticationObserverInstance();
             observer.nextDelegate = authStateChanged;
 
-            Models.User user = AuthenticationContext.Instance().State.CurrentUser;
+            User user = AuthenticationContext.Instance().State.CurrentUser;
             nametypeToolStripMenuItem.Text = String.Format("{0} ({1})", user.FullName, user.Username);
 
             tabControl.SelectedIndex = tabControl.TabPages.Count - 1;
@@ -61,8 +62,8 @@ namespace NewsAgencyApp.AdminPortal
         }
 
         #region ManageArticlesTab
-        List<Models.Article> articlesList = new List<Models.Article>();
-        List<Models.User> usersList = new List<Models.User>();
+        List<Article> articlesList = new List<Article>();
+        List<User> usersList = new List<User>();
 
         IDictionary<string, FilterItem> articlesFilters = new Dictionary<string, FilterItem>();
 
@@ -103,7 +104,7 @@ namespace NewsAgencyApp.AdminPortal
             categoriesComboBox.DisplayMember = "Text"; // Update the combobox to display the Text value
             categoriesComboBox.ValueMember = "Value"; // Update the combobox to make the Value to be considred value
 
-            categoriesList = Models.Category.FindAll(); // Find all categories
+            categoriesList = Category.FindAll(); // Find all categories
             this.renderCategoriesComboBox(); // Render the categories combobox method
         }
 
@@ -130,7 +131,7 @@ namespace NewsAgencyApp.AdminPortal
             authorsComboBox.DisplayMember = "Text"; // Update the combobox to display the Text value
             authorsComboBox.ValueMember = "Value"; // Update the combobox to make the Value to be considred value
 
-            usersList = Models.User.FindAll(); // Find all users
+            usersList = User.FindAll(); // Find all users
             this.renderAuthorsComboBox(); // Render the categories combobox method
         }
 
@@ -154,7 +155,7 @@ namespace NewsAgencyApp.AdminPortal
                 articlesFilters.Remove("categoryId");
             else
             {
-                int id = (selectedItem.Value as Models.Category).Id;
+                int id = (selectedItem.Value as Category).Id;
                 articlesFilters["categoryId"] = new FilterItem("CategoryId", "=", id.ToString());
             }
 
@@ -169,7 +170,7 @@ namespace NewsAgencyApp.AdminPortal
                 articlesFilters.Remove("userId");
             else
             {
-                int id = (selectedItem.Value as Models.User).Id;
+                int id = (selectedItem.Value as User).Id;
                 articlesFilters["userId"] = new FilterItem("UserId", "=", id.ToString());
             }
 
@@ -190,12 +191,12 @@ namespace NewsAgencyApp.AdminPortal
 
         private void triggerFindArticles()
         {
-            articlesList = Models.Article.FindAll(articlesFilters); // Use built filters and pass them to the findAll method and assign to the current 
+            articlesList = Article.FindAll(articlesFilters); // Use built filters and pass them to the findAll method and assign to the current 
 
             this.renderArticlesListView(); // Re-render articles list view
         }
 
-        private Models.Article SelectedArticle()
+        private Article SelectedArticle()
         {
             if (articlesListView.SelectedItems.Count == 0)
             {
@@ -204,7 +205,7 @@ namespace NewsAgencyApp.AdminPortal
             }
 
             var selectedItem = articlesListView.SelectedItems[0];
-            Models.Article article = articlesList[selectedItem.Index];
+            Article article = articlesList[selectedItem.Index];
 
             return article;
         }
@@ -219,7 +220,7 @@ namespace NewsAgencyApp.AdminPortal
 
         private void viewArticleButton_Click(object sender, EventArgs e)
         {
-            Models.Article article = this.SelectedArticle();
+            Article article = this.SelectedArticle();
             if (article == null)
                 return;
 
@@ -230,7 +231,7 @@ namespace NewsAgencyApp.AdminPortal
 
         private void editArticleButton_Click(object sender, EventArgs e)
         {
-            Models.Article article = this.SelectedArticle();
+            Article article = this.SelectedArticle();
             if (article == null)
                 return;
 
@@ -243,7 +244,7 @@ namespace NewsAgencyApp.AdminPortal
 
         private void removeArticleButton_Click(object sender, EventArgs e)
         {
-            Models.Article article = this.SelectedArticle();
+            Article article = this.SelectedArticle();
             if (article == null)
                 return;
 
@@ -259,7 +260,7 @@ namespace NewsAgencyApp.AdminPortal
             }
         }
 
-        private void showArticle(Models.Article article)
+        private void showArticle(Article article)
         {
             ViewArticle viewArticleForm = new ViewArticle();
             viewArticleForm.Article = article;
@@ -293,7 +294,7 @@ namespace NewsAgencyApp.AdminPortal
 
         private void triggerFindCategories()
         {
-            categoriesList = Models.Category.FindAll();
+            categoriesList = Category.FindAll();
 
             this.renderCategoriesListView(); // Re-render
         }
@@ -304,7 +305,7 @@ namespace NewsAgencyApp.AdminPortal
 
             if (name.Length > 0)
             {
-                Models.Category category = new Models.Category(name);
+                Category category = new Category(name);
                 category.Create();
 
                 triggerFindCategories();
@@ -313,7 +314,7 @@ namespace NewsAgencyApp.AdminPortal
 
         private void removeCategoryButton_Click(object sender, EventArgs e)
         {
-            Models.Category category = this.SelectedCategory();
+            Category category = this.SelectedCategory();
             if (category == null)
                 return;
 
@@ -329,7 +330,7 @@ namespace NewsAgencyApp.AdminPortal
             }
         }
 
-        private Models.Category SelectedCategory()
+        private Category SelectedCategory()
         {
             if (categoriesListView.SelectedItems.Count == 0)
             {
@@ -338,7 +339,7 @@ namespace NewsAgencyApp.AdminPortal
             }
 
             var selectedItem = categoriesListView.SelectedItems[0];
-            Models.Category category = categoriesList[selectedItem.Index];
+            Category category = categoriesList[selectedItem.Index];
 
             return category;
         }

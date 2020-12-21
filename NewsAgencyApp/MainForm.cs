@@ -3,6 +3,8 @@ using System.Windows.Forms;
 
 using System.Collections.Generic;
 
+using NewsAgencyApp.Models;
+
 namespace NewsAgencyApp
 {
     public partial class MainForm : Form
@@ -37,7 +39,7 @@ namespace NewsAgencyApp
             {
                 loginLogoutToolStripMenuItem.Text = "Logout";
 
-                if (state.CurrentUser is Models.SuperUser)
+                if (state.CurrentUser is SuperUser)
                 {
                     adminPortalToolStripMenuItem.Enabled = true;
                 }
@@ -80,11 +82,11 @@ namespace NewsAgencyApp
         }
 
         #region Articles
-        private List<Models.Article> articles;
+        private List<Article> articles;
 
         private void loadArticles()
         {
-            articles = Models.Article.FindAll();
+            articles = Article.FindAll();
             foreach (var article in articles)
             {
                 Console.WriteLine(article.Id);
@@ -101,7 +103,7 @@ namespace NewsAgencyApp
             }
         }
 
-        private Models.Article selectedArticle()
+        private Article selectedArticle()
         {
             if (articlesListView.SelectedItems.Count == 0)
             {
@@ -109,14 +111,14 @@ namespace NewsAgencyApp
                 return null;
             }
             var selectedItem = articlesListView.SelectedItems[0];
-            Models.Article article = articles[selectedItem.Index];
+            Article article = articles[selectedItem.Index];
 
             return article;
         }
 
         private void viewArticleButton_Click(object sender, EventArgs e)
         {
-            Models.Article article = selectedArticle();
+            Article article = selectedArticle();
 
             if (article == null)
                 return;
@@ -126,7 +128,7 @@ namespace NewsAgencyApp
 
         private void articlesListView_DoubleClick(object sender, EventArgs e)
         {
-            Models.Article article = selectedArticle();
+            Article article = selectedArticle();
 
             if (article == null)
                 return;
@@ -134,7 +136,7 @@ namespace NewsAgencyApp
             this.showArticle(article);
         }
 
-        private void showArticle(Models.Article article)
+        private void showArticle(Article article)
         {
             ViewArticle viewArticleForm = new ViewArticle();
             viewArticleForm.Article = article;

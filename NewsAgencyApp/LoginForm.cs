@@ -2,6 +2,7 @@
 using System.Data;
 using System.Windows.Forms;
 
+using NewsAgencyApp.Models;
 
 namespace NewsAgencyApp
 {
@@ -17,7 +18,7 @@ namespace NewsAgencyApp
             string username = this.usernameTextBox.Text;
             string password = this.passwordTextBox.Text;
 
-            Models.User user = AuthenticationContext.Instance().Login(username, password);
+            User user = AuthenticationContext.Instance().Login(username, password);
 
             if (user != null)
             {

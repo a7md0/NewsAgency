@@ -105,7 +105,7 @@ namespace NewsAgencyApp.Models
 
             while (sdr.Read())
             {
-                User user = Models.User.UserFactory(sdr["RoleName"].ToString());
+                User user = User.UserFactory(sdr["RoleName"].ToString());
 
                 user.Id = Int32.Parse(sdr["Id"].ToString());
                 user.FullName = sdr["FullName"].ToString();

@@ -9,7 +9,7 @@ namespace NewsAgencyApp.AdminPortal
 {
     public partial class CreateArticleForm : Form
     {
-        List<Models.Category> categoriesList = new List<Models.Category>();
+        List<Category> categoriesList = new List<Category>();
 
         public CreateArticleForm()
         {
@@ -29,7 +29,7 @@ namespace NewsAgencyApp.AdminPortal
             categoryComboBox.DisplayMember = "Text"; // Update the combobox to display the Text value
             categoryComboBox.ValueMember = "Value"; // Update the combobox to make the Value to be considred value
 
-            categoriesList = Models.Category.FindAll(); // Find all categories
+            categoriesList = Category.FindAll(); // Find all categories
             this.renderCategoriesComboBox(); // Render the categories combobox method
         }
 
