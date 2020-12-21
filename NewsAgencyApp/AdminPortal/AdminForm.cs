@@ -17,10 +17,6 @@ namespace NewsAgencyApp.AdminPortal
             InitializeComponent();
 
             this.parent = parent;
-            if (this.parent != null)
-            {
-                this.parent.Hide();
-            }
         }
 
         private void AdminForm_Load(object sender, EventArgs e)
@@ -33,6 +29,11 @@ namespace NewsAgencyApp.AdminPortal
 
             tabControl.SelectedIndex = tabControl.TabPages.Count - 1;
             tabControl.SelectedIndex = 0;
+
+            if (this.parent != null)
+            {
+                this.parent.Hide();
+            }
         }
 
         private void authStateChanged(AuthenticationState state)
