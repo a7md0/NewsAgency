@@ -172,7 +172,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
@@ -202,8 +201,7 @@
                       <Paragraph>
                         <TextRuns>
                           <TextRun>
-                            <Label>Number of articles</Label>
-                            <Value />
+                            <Value>=Fields!N_OF_ARTICLES.Value</Value>
                             <Style>
                               <FontWeight>Normal</FontWeight>
                               <Color>#333333</Color>

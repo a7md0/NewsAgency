@@ -68,7 +68,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Max(Fields!NumberOfViews.Value)</Value>
+                              <Value>=Fields!NumberOfViews.Value</Value>
                               <Style>
                                 <FontWeight>Normal</FontWeight>
                                 <Color>#333333</Color>
@@ -108,7 +108,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Max(Fields!NumberOfViews.Value)</Value>
+                              <Value>=Sum(Fields!NumberOfViews.Value)</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                                 <Color>#333333</Color>
@@ -288,7 +288,7 @@
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
         <Height>0.75in</Height>
-        <Width>5.67708in</Width>
+        <Width>5.67709in</Width>
         <Style>
           <Border>
             <Style>None</Style>
