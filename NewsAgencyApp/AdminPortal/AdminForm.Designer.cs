@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource11 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource12 = new Microsoft.Reporting.WinForms.ReportDataSource();
             System.Windows.Forms.ColumnHeader columnHeader1;
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource5 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource6 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.articleBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.databaseDataSet = new NewsAgencyApp.DatabaseDataSet();
             this.LargestCategoryViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -60,6 +60,7 @@
             this.removeCategoryButton = new System.Windows.Forms.Button();
             this.createCategoryButton = new System.Windows.Forms.Button();
             this.categoriesListView = new System.Windows.Forms.ListView();
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.reportsTabPage = new System.Windows.Forms.TabPage();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -83,16 +84,13 @@
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.backToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.logoutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this.backToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.nametypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.articleTableAdapter = new NewsAgencyApp.DatabaseDataSetTableAdapters.ArticleTableAdapter();
             this.tableAdapterManager = new NewsAgencyApp.DatabaseDataSetTableAdapters.TableAdapterManager();
             this.largestCategoryViewTableAdapter = new NewsAgencyApp.DatabaseDataSetTableAdapters.LargestCategoryViewTableAdapter();
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.articleBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.databaseDataSet)).BeginInit();
@@ -125,6 +123,10 @@
             // 
             this.LargestCategoryViewBindingSource.DataMember = "LargestCategoryView";
             this.LargestCategoryViewBindingSource.DataSource = this.databaseDataSet;
+            // 
+            // columnHeader1
+            // 
+            columnHeader1.Text = "ID";
             // 
             // tabControl
             // 
@@ -301,25 +303,21 @@
             // 
             // authorColumnHeader
             // 
-            this.authorColumnHeader.DisplayIndex = 2;
             this.authorColumnHeader.Text = "Author";
             this.authorColumnHeader.Width = 100;
             // 
             // categoryColumnHeader
             // 
-            this.categoryColumnHeader.DisplayIndex = 3;
             this.categoryColumnHeader.Text = "Category";
             this.categoryColumnHeader.Width = 120;
             // 
             // createdColumnHeader
             // 
-            this.createdColumnHeader.DisplayIndex = 4;
             this.createdColumnHeader.Text = "Created";
             this.createdColumnHeader.Width = 140;
             // 
             // updatedColumnHeader
             // 
-            this.updatedColumnHeader.DisplayIndex = 5;
             this.updatedColumnHeader.Text = "Updated";
             this.updatedColumnHeader.Width = 140;
             // 
@@ -368,6 +366,11 @@
             this.categoriesListView.TabIndex = 8;
             this.categoriesListView.UseCompatibleStateImageBehavior = false;
             // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Name";
+            this.columnHeader2.Width = 240;
+            // 
             // reportsTabPage
             // 
             this.reportsTabPage.Controls.Add(this.tabControl1);
@@ -402,9 +405,9 @@
             // reportViewer1
             // 
             this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            reportDataSource11.Name = "DataSet1";
-            reportDataSource11.Value = this.articleBindingSource;
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource11);
+            reportDataSource5.Name = "DataSet1";
+            reportDataSource5.Value = this.articleBindingSource;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource5);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "NewsAgencyApp.AdminPortal.MostReadNewsArticleReport.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(3, 3);
             this.reportViewer1.Name = "reportViewer1";
@@ -426,9 +429,9 @@
             // reportViewer2
             // 
             this.reportViewer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            reportDataSource12.Name = "DataSet2";
-            reportDataSource12.Value = this.LargestCategoryViewBindingSource;
-            this.reportViewer2.LocalReport.DataSources.Add(reportDataSource12);
+            reportDataSource6.Name = "DataSet2";
+            reportDataSource6.Value = this.LargestCategoryViewBindingSource;
+            this.reportViewer2.LocalReport.DataSources.Add(reportDataSource6);
             this.reportViewer2.LocalReport.ReportEmbeddedResource = "NewsAgencyApp.AdminPortal.LargestCategoryReport.rdlc";
             this.reportViewer2.Location = new System.Drawing.Point(3, 3);
             this.reportViewer2.Name = "reportViewer2";
@@ -605,38 +608,25 @@
             // 
             // backToolStripMenuItem
             // 
-            this.backToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.logoutToolStripMenuItem1,
-            this.toolStripMenuItem1,
-            this.backToolStripMenuItem1});
             this.backToolStripMenuItem.Name = "backToolStripMenuItem";
-            this.backToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
-            this.backToolStripMenuItem.Text = "Portal";
-            // 
-            // logoutToolStripMenuItem1
-            // 
-            this.logoutToolStripMenuItem1.Name = "logoutToolStripMenuItem1";
-            this.logoutToolStripMenuItem1.Size = new System.Drawing.Size(112, 22);
-            this.logoutToolStripMenuItem1.Text = "Logout";
-            this.logoutToolStripMenuItem1.Click += new System.EventHandler(this.logoutToolStripMenuItem1_Click);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(109, 6);
-            // 
-            // backToolStripMenuItem1
-            // 
-            this.backToolStripMenuItem1.Name = "backToolStripMenuItem1";
-            this.backToolStripMenuItem1.Size = new System.Drawing.Size(112, 22);
-            this.backToolStripMenuItem1.Text = "Leave";
-            this.backToolStripMenuItem1.Click += new System.EventHandler(this.backToolStripMenuItem1_Click);
+            this.backToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
+            this.backToolStripMenuItem.Text = "< Back";
+            this.backToolStripMenuItem.Click += new System.EventHandler(this.backToolStripMenuItem_Click);
             // 
             // nametypeToolStripMenuItem
             // 
+            this.nametypeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.logoutToolStripMenuItem});
             this.nametypeToolStripMenuItem.Name = "nametypeToolStripMenuItem";
             this.nametypeToolStripMenuItem.Size = new System.Drawing.Size(95, 20);
             this.nametypeToolStripMenuItem.Text = "$name ($type)";
+            // 
+            // logoutToolStripMenuItem
+            // 
+            this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
+            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.logoutToolStripMenuItem.Text = "Logout";
+            this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
             // 
             // openFileDialog1
             // 
@@ -657,15 +647,6 @@
             // largestCategoryViewTableAdapter
             // 
             this.largestCategoryViewTableAdapter.ClearBeforeFill = true;
-            // 
-            // columnHeader1
-            // 
-            columnHeader1.Text = "ID";
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "Name";
-            this.columnHeader2.Width = 240;
             // 
             // AdminForm
             // 
@@ -710,9 +691,6 @@
         private System.Windows.Forms.TabPage manageCategoriesTabPage;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem backToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem logoutToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem backToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem nametypeToolStripMenuItem;
         private System.Windows.Forms.ListView articlesListView;
         private System.Windows.Forms.TabPage reportsTabPage;
@@ -766,5 +744,6 @@
         private DatabaseDataSetTableAdapters.TableAdapterManager tableAdapterManager;
         private DatabaseDataSetTableAdapters.LargestCategoryViewTableAdapter largestCategoryViewTableAdapter;
         private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ToolStripMenuItem logoutToolStripMenuItem;
     }
 }

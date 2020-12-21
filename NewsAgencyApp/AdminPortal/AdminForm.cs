@@ -47,7 +47,7 @@ namespace NewsAgencyApp.AdminPortal
             this.parent.Show();
         }
 
-        private void logoutToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Are you sure you want to logout?", "Logout", MessageBoxButtons.YesNo);
 
@@ -55,7 +55,7 @@ namespace NewsAgencyApp.AdminPortal
                 AuthenticationContext.Instance().Logout();
         }
 
-        private void backToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void backToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
         }
