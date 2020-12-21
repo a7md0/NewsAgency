@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+
+using NewsAgencyApp.Helper;
 
 namespace NewsAgencyApp.AdminPortal
 {
@@ -117,7 +113,7 @@ namespace NewsAgencyApp.AdminPortal
         private void renderCategoriesComboBox()
         {
             foreach (var category in categoriesList)
-                categoriesComboBox.Items.Add(new { Text = category.Name, Value = category.Id });
+                categoriesComboBox.Items.Add(new ComboboxItem { Text = category.Name, Value = category });
         }
 
         
@@ -139,37 +135,35 @@ namespace NewsAgencyApp.AdminPortal
         private void renderAuthorsComboBox()
         {
             foreach (var user in usersList)
-                authorsComboBox.Items.Add(new { Text = user.FullName, Value = user.Id });
+                authorsComboBox.Items.Add(new ComboboxItem { Text = user.FullName, Value = user });
         }
 
         private void categoriesComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            object selectedItem = ((ComboBox)sender).SelectedItem;
-            var propertyInfo = selectedItem.GetType().GetProperty("Value");
+            ComboboxItem selectedItem = ((ComboBox)sender).SelectedItem as ComboboxItem; // selected categoriy item
 
-            if (selectedItem != null && propertyInfo != null)
+            if (selectedItem == null)
+                articlesFilters.Remove("categoryId");
+            else
             {
-                int id = (int)propertyInfo.GetValue(selectedItem);
+                int id = (selectedItem.Value as Models.Category).Id;
                 articlesFilters["categoryId"] = string.Format("CategoryId = {0}", id);
             }
-            else
-                articlesFilters.Remove("categoryId");
 
             triggerFindArticles();
         }
 
         private void authorsComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            object selectedItem = ((ComboBox)sender).SelectedItem;
-            var propertyInfo = selectedItem.GetType().GetProperty("Value");
+            ComboboxItem selectedItem = ((ComboBox)sender).SelectedItem as ComboboxItem; // selected user item
 
-            if (selectedItem != null && propertyInfo != null)
+            if (selectedItem == null)
+                articlesFilters.Remove("userId");
+            else
             {
-                int id = (int)propertyInfo.GetValue(selectedItem);
+                int id = (selectedItem.Value as Models.User).Id;
                 articlesFilters["userId"] = string.Format("UserId = {0}", id);
             }
-            else
-                articlesFilters.Remove("userId");
 
             triggerFindArticles();
         }
@@ -231,6 +225,7 @@ namespace NewsAgencyApp.AdminPortal
                 return;
 
             EditArticleForm editArticleForm = new EditArticleForm();
+            editArticleForm.Article = article;
             editArticleForm.ShowDialog();
 
             renderArticlesListView();
