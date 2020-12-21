@@ -23,7 +23,7 @@ namespace NewsAgencyApp
             var observer = AuthenticationContext.Instance().AuthenticationObserverInstance();
             observer.nextDelegate = authStateChanged;
 
-            loadArticles();
+            setupArticlesListView();
         }
 
         #region Menu
@@ -73,6 +73,7 @@ namespace NewsAgencyApp
         {
             AdminPortal.AdminForm adminForm = new AdminPortal.AdminForm(this);
             adminForm.ShowDialog();
+            triggerFindArticles();
         }
         #endregion
 
@@ -86,25 +87,38 @@ namespace NewsAgencyApp
         }
 
         #region Articles
-        private List<Article> articles;
+        private List<Article> articlesList;
 
-        private void loadArticles()
+        private void setupArticlesListView()
         {
-            articles = Article.FindAll();
-            foreach (var article in articles)
+            articlesListView.View = View.Details; // Important to make the list view show details ( columns )
+            articlesListView.FullRowSelect = true; // Select the whole row
+            articlesListView.GridLines = true;
+
+            triggerFindArticles();
+        }
+
+        private void renderArticlesListView()
+        {
+            articlesListView.Items.Clear(); // Clear articles list view items
+
+            foreach (var article in articlesList)
             {
-                Console.WriteLine(article.Id);
-                ListViewItem item = new ListViewItem(article.Title);
-                item.SubItems.Add(article.User.FullName);
-                item.SubItems.Add(article.Category.Name);
-                item.SubItems.Add(article.CreatedAt);
+                ListViewItem item = new ListViewItem(article.Title); // Make title the 1st col
+                item.SubItems.Add(article.NumberOfViews.ToString());
+                item.SubItems.Add(article.User.FullName); // Add full name to 2nd col
+                item.SubItems.Add(article.Category.Name); // Add category name to 3rd col
+                item.SubItems.Add(article.CreatedAt); // Add date to 4th col
 
-                articlesListView.Items.Add(item);
-
-                articlesListView.View = View.Details; // Important to make the list view show details ( columns )
-                articlesListView.FullRowSelect = true; // Select the whole row
-                articlesListView.GridLines = true;
+                articlesListView.Items.Add(item); // Add the constructed item to the list
             }
+        }
+
+        private void triggerFindArticles()
+        {
+            articlesList = Article.FindAll(null);
+
+            this.renderArticlesListView(); // Re-render articles list view
         }
 
         private Article selectedArticle()
@@ -115,7 +129,7 @@ namespace NewsAgencyApp
                 return null;
             }
             var selectedItem = articlesListView.SelectedItems[0];
-            Article article = articles[selectedItem.Index];
+            Article article = articlesList[selectedItem.Index];
 
             return article;
         }
@@ -128,6 +142,7 @@ namespace NewsAgencyApp
                 return;
 
             this.showArticle(article);
+            renderArticlesListView();
         }
 
         private void articlesListView_DoubleClick(object sender, EventArgs e)

@@ -42,6 +42,7 @@
             this.categoryColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.dateColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.viewArticleButton = new System.Windows.Forms.Button();
+            this.viewsColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             titleColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -82,7 +83,7 @@
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(104, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
             // 
             // exitToolStripMenuItem
             // 
@@ -122,6 +123,7 @@
             // 
             this.articlesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             titleColumnHeader,
+            this.viewsColumnHeader,
             this.authorColumnHeader,
             this.categoryColumnHeader,
             this.dateColumnHeader});
@@ -159,6 +161,10 @@
             this.viewArticleButton.UseVisualStyleBackColor = true;
             this.viewArticleButton.Click += new System.EventHandler(this.viewArticleButton_Click);
             // 
+            // viewsColumnHeader
+            // 
+            this.viewsColumnHeader.Text = "Views";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -194,6 +200,7 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loginLogoutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem adminPortalToolStripMenuItem;
+        private System.Windows.Forms.ColumnHeader viewsColumnHeader;
     }
 }
 
