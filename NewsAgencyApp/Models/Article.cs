@@ -308,7 +308,7 @@ namespace NewsAgencyApp.Models
         */
         public void GenerateKeywords()
         {
-            this.keywords = string.Format("{0} {1} {2} {3}", title.ToLower(), content.ToLower(), category.Name.ToLower(), user.FullName.ToLower());
+            this.keywords = string.Format("{0} {1} {2} {3}", title.ToLower(), category.Name.ToLower(), user.FullName.ToLower(), content.ToLower());
         }
 
         private static List<Article> parseArticles(SqlDataReader sdr)
