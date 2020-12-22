@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.ColumnHeader columnHeader1;
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource5 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource6 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.articleBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.databaseDataSet = new NewsAgencyApp.DatabaseDataSet();
             this.LargestCategoryViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -109,6 +109,10 @@
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
+            // columnHeader1
+            // 
+            columnHeader1.Text = "ID";
+            // 
             // articleBindingSource
             // 
             this.articleBindingSource.DataMember = "Article";
@@ -123,10 +127,6 @@
             // 
             this.LargestCategoryViewBindingSource.DataMember = "LargestCategoryView";
             this.LargestCategoryViewBindingSource.DataSource = this.databaseDataSet;
-            // 
-            // columnHeader1
-            // 
-            columnHeader1.Text = "ID";
             // 
             // tabControl
             // 
@@ -405,9 +405,9 @@
             // reportViewer1
             // 
             this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            reportDataSource5.Name = "DataSet1";
-            reportDataSource5.Value = this.articleBindingSource;
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource5);
+            reportDataSource1.Name = "DataSet1";
+            reportDataSource1.Value = this.articleBindingSource;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "NewsAgencyApp.AdminPortal.MostReadNewsArticleReport.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(3, 3);
             this.reportViewer1.Name = "reportViewer1";
@@ -429,9 +429,9 @@
             // reportViewer2
             // 
             this.reportViewer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            reportDataSource6.Name = "DataSet2";
-            reportDataSource6.Value = this.LargestCategoryViewBindingSource;
-            this.reportViewer2.LocalReport.DataSources.Add(reportDataSource6);
+            reportDataSource2.Name = "DataSet2";
+            reportDataSource2.Value = this.LargestCategoryViewBindingSource;
+            this.reportViewer2.LocalReport.DataSources.Add(reportDataSource2);
             this.reportViewer2.LocalReport.ReportEmbeddedResource = "NewsAgencyApp.AdminPortal.LargestCategoryReport.rdlc";
             this.reportViewer2.Location = new System.Drawing.Point(3, 3);
             this.reportViewer2.Name = "reportViewer2";
@@ -472,6 +472,7 @@
             this.restoreButton.TabIndex = 4;
             this.restoreButton.Text = "Restore";
             this.restoreButton.UseVisualStyleBackColor = true;
+            this.restoreButton.Click += new System.EventHandler(this.restoreButton_Click);
             // 
             // checkBox1
             // 
@@ -624,7 +625,7 @@
             // logoutToolStripMenuItem
             // 
             this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.logoutToolStripMenuItem.Text = "Logout";
             this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
             // 

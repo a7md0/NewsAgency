@@ -5,6 +5,8 @@ using System.Windows.Forms;
 using NewsAgencyApp.Helper;
 using NewsAgencyApp.Models;
 
+using System.IO;
+
 namespace NewsAgencyApp.AdminPortal
 {
     public partial class AdminForm : Form
@@ -357,12 +359,31 @@ namespace NewsAgencyApp.AdminPortal
         #region BackupRestoreTab
         private void backupButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(String.Format("Backup have been save successfully to {0}", saveFileDialog1.FileName), "Backup");
+            FileInfo backupFile = new FileInfo(backupFilePath.Text);
+            if (backupFile == null)
+                return;
+
+            /*bool result = DBMgr.DatabaseFactory().BackupDatabase(backupFile);
+
+            if (result)*/
+                MessageBox.Show(String.Format("Backup have been saved successfully to {0}", saveFileDialog1.FileName), "Backup");
+        }
+
+        private void restoreButton_Click(object sender, EventArgs e)
+        {
+            FileInfo backupFile = new FileInfo(restoreFilePath.Text);
+            if (backupFile == null)
+                return;
+
+            /*bool result = DBMgr.DatabaseFactory().RestoreDatabase(backupFile);
+
+            if (result)*/
+                MessageBox.Show(String.Format("Backup have been restored successfully from {0}", saveFileDialog1.FileName), "Backup restore");
         }
 
         private void button9_Click(object sender, EventArgs e)
         {
-            openFileDialog1.Filter = "SQL files (*.sql)|*.sql|All files (*.*)|*.*";
+            openFileDialog1.Filter = "Backup files (*.bak)|*.bak";
             openFileDialog1.FilterIndex = 2;
             openFileDialog1.RestoreDirectory = true;
 
@@ -374,7 +395,7 @@ namespace NewsAgencyApp.AdminPortal
 
         private void pickBackupPath_Click(object sender, EventArgs e)
         {
-            saveFileDialog1.Filter = "SQL files (*.sql)|*.sql|All files (*.*)|*.*";
+            saveFileDialog1.Filter = "Backup files (*.bak)|*.bak";
             saveFileDialog1.FilterIndex = 2;
             saveFileDialog1.RestoreDirectory = true;
 
