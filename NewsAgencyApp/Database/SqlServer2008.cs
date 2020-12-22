@@ -46,5 +46,33 @@ namespace NewsAgencyApp
 
             return connection;
         }
+
+        public bool BackupDatabase(FileInfo outputFile)
+        {
+            using (var connection = Connection())
+            {
+                using (var command = new SqlCommand("BACKUP DATABASE [master] TO DISK = @outputFileName;", connection))
+                {
+                    command.Parameters.AddWithValue("outputFileName", outputFile.FullName);
+                    command.ExecuteNonQuery();
+
+                    return true;
+                }
+            }
+        }
+
+        public bool RestoreDatabase(FileInfo inputFile)
+        {
+            using (var connection = Connection())
+            {
+                using (var command = new SqlCommand("RESTORE DATABASE [master] FROM DISK = @inputFileName WITH REPLACE;", connection))
+                {
+                    command.Parameters.AddWithValue("inputFileName", inputFile.FullName);
+                    command.ExecuteNonQuery();
+
+                    return true;
+                }
+            }
+        }
     }
 }

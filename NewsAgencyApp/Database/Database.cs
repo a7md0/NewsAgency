@@ -10,5 +10,7 @@ namespace NewsAgencyApp
     public interface Database
     {
         SqlConnection Connection();
+        bool BackupDatabase(FileInfo outputFile);
+        bool RestoreDatabase(FileInfo inputFile);
     }
 }
