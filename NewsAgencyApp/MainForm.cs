@@ -27,49 +27,50 @@ namespace NewsAgencyApp
         }
 
         #region Menu
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e) // Handle menu exit option
         {
             Application.Exit();
         }
 
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e) // Handle menu about option
         {
             MessageBox.Show("(c) 2020, Ahmed Naser", "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void authStateChanged(AuthenticationState state)
+        private void authStateChanged(AuthenticationState state) // Handle auth state change (called from the observer class)
         {
-            if (state is AuthenticatedState)
+            if (state is AuthenticatedState) // if the state is authenticted
             {
-                loginLogoutToolStripMenuItem.Text = "Logout";
+                loginLogoutToolStripMenuItem.Text = "Logout"; // Change the option to logout
 
-                if (state.CurrentUser is SuperUser)
+                if (state.CurrentUser is SuperUser) // if the current user is superuser then enable the admin portal option
                 {
                     adminPortalToolStripMenuItem.Enabled = true;
                 }
-            } else
+            } else // if the state is not authenticted
             {
-                loginLogoutToolStripMenuItem.Text = "Login";
-                adminPortalToolStripMenuItem.Enabled = false;
+                loginLogoutToolStripMenuItem.Text = "Login"; // Make the option login
+                adminPortalToolStripMenuItem.Enabled = false; // Disable the admin portal
             }
         }
 
-        private void loginLogoutToolStripMenuItem_Click(object sender, EventArgs e)
+        private void loginLogoutToolStripMenuItem_Click(object sender, EventArgs e) // Handle menu login/logout option
         {
-            if (AuthenticationContext.Instance().State is UnauthenticatedState)
+            if (AuthenticationContext.Instance().State is UnauthenticatedState) // if currently unauthencitated
             {
                 LoginForm loginForm = new LoginForm();
-                loginForm.ShowDialog();
+                loginForm.ShowDialog(); // show the login form as dialog
             } else
             {
+                // prompt for logout
                 DialogResult dialogResult = MessageBox.Show("Are you sure you want to logout?", "Logout", MessageBoxButtons.YesNo);
 
-                if (dialogResult == DialogResult.Yes)
-                    AuthenticationContext.Instance().Logout();
+                if (dialogResult == DialogResult.Yes) // if response was yes
+                    AuthenticationContext.Instance().Logout(); // Logout using the auth context
             }
         }
 
-        private void adminPortalToolStripMenuItem_Click(object sender, EventArgs e)
+        private void adminPortalToolStripMenuItem_Click(object sender, EventArgs e) // Handle menu admin portal option
         {
             AdminPortal.AdminForm adminForm = new AdminPortal.AdminForm(this);
             adminForm.ShowDialog();
@@ -77,51 +78,51 @@ namespace NewsAgencyApp
         }
         #endregion
 
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e) // FormClosing event handle
         {
-            var connection = DBMgr.DatabaseFactory().Connection();
-            if (connection != null && connection.State != System.Data.ConnectionState.Closed)
+            var connection = DBMgr.DatabaseFactory().Connection(); // Get the db connection
+            if (connection != null && connection.State != System.Data.ConnectionState.Closed) // if the connection is not closed
             {
-                connection.Close();
+                connection.Close(); // Close the connection
             }
         }
 
         #region Articles
-        private List<Article> articlesList;
+        private List<Article> articlesList; // list of articles to display
 
-        private void setupArticlesListView()
+        private void setupArticlesListView() // Setup the articles list
         {
             articlesListView.View = View.Details; // Important to make the list view show details ( columns )
             articlesListView.FullRowSelect = true; // Select the whole row
-            articlesListView.GridLines = true;
+            articlesListView.GridLines = true; // Show grid lines on the list view
 
-            triggerFindArticles();
+            triggerFindArticles(); // trigger the query
         }
 
-        private void renderArticlesListView()
+        private void renderArticlesListView() // render the artciels
         {
             articlesListView.Items.Clear(); // Clear articles list view items
 
-            foreach (var article in articlesList)
+            foreach (var article in articlesList) // for each article in the list 
             {
                 ListViewItem item = new ListViewItem(article.Title); // Make title the 1st col
-                item.SubItems.Add(article.NumberOfViews.ToString());
-                item.SubItems.Add(article.User.FullName); // Add full name to 2nd col
-                item.SubItems.Add(article.Category.Name); // Add category name to 3rd col
-                item.SubItems.Add(article.CreatedAt); // Add date to 4th col
+                item.SubItems.Add(article.NumberOfViews.ToString()); // Add number of views
+                item.SubItems.Add(article.User.FullName); // Add full name
+                item.SubItems.Add(article.Category.Name); // Add category name
+                item.SubItems.Add(article.CreatedAt); // Add date
 
                 articlesListView.Items.Add(item); // Add the constructed item to the list
             }
         }
 
-        private void triggerFindArticles()
+        private void triggerFindArticles() // Trigger the select query
         {
-            articlesList = Article.FindAll(null);
+            articlesList = Article.FindAll(null); // find all
 
             this.renderArticlesListView(); // Re-render articles list view
         }
 
-        private Article selectedArticle()
+        private Article selectedArticle() // Get the selected article or show error message
         {
             if (articlesListView.SelectedItems.Count == 0)
             {
@@ -134,7 +135,7 @@ namespace NewsAgencyApp
             return article;
         }
 
-        private void viewArticleButton_Click(object sender, EventArgs e)
+        private void viewArticleButton_Click(object sender, EventArgs e) // on view article button click
         {
             Article article = selectedArticle();
 
@@ -144,7 +145,7 @@ namespace NewsAgencyApp
             this.showArticle(article);
         }
 
-        private void articlesListView_DoubleClick(object sender, EventArgs e)
+        private void articlesListView_DoubleClick(object sender, EventArgs e) // on double click on the list view
         {
             Article article = selectedArticle();
 
@@ -154,7 +155,7 @@ namespace NewsAgencyApp
             this.showArticle(article);
         }
 
-        private void showArticle(Article article)
+        private void showArticle(Article article) // the show article function to show th form
         {
             ViewArticle viewArticleForm = new ViewArticle();
             viewArticleForm.Article = article;
