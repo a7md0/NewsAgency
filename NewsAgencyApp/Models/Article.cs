@@ -281,7 +281,7 @@ namespace NewsAgencyApp.Models
             {
                 CommandText = "IncreaseArticleViewCount",
                 Connection = DBMgr.DatabaseFactory().Connection(),
-                CommandType = CommandType.StoredProcedure,
+                CommandType = CommandType.StoredProcedure, // Use stored procedures
             };
 
             query.Parameters.Add(new SqlParameter("@articleId", id));
@@ -298,7 +298,7 @@ namespace NewsAgencyApp.Models
         */
         public void GenerateKeywords()
         {
-            this.keywords = string.Format("{0} {1} {2} {3}", title.ToLower(), category.Name.ToLower(), user.FullName.ToLower(), content.ToLower());
+            this.keywords = string.Format("{0} {1} {2} {3} {4}", id, title.ToLower(), category.Name.ToLower(), user.FullName.ToLower(), content.ToLower());
         }
 
         private static List<Article> parseArticles(SqlDataReader sdr)
