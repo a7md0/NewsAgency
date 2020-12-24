@@ -61,7 +61,6 @@
             this.passwordTextBox.PasswordChar = '*';
             this.passwordTextBox.Size = new System.Drawing.Size(176, 20);
             this.passwordTextBox.TabIndex = 2;
-            this.passwordTextBox.Text = "admin";
             // 
             // label1
             // 
