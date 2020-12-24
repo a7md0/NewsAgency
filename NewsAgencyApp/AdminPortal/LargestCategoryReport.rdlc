@@ -249,7 +249,8 @@
               </Group>
               <SortExpressions>
                 <SortExpression>
-                  <Value>=Fields!Name.Value</Value>
+                  <Value>=Fields!N_OF_ARTICLES.Value</Value>
+                  <Direction>Descending</Direction>
                 </SortExpression>
               </SortExpressions>
               <TablixHeader>
