@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 
 namespace NewsAgencyApp
 {
+    /// <summary>Interface <c>Database</c> define the availbile methods that any database class should offer</summary>
     public interface Database
     {
         SqlConnection Connection();

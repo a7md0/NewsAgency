@@ -18,25 +18,27 @@ namespace NewsAgencyApp.AdminPortal
         {
             InitializeComponent();
 
-            this.parent = parent;
+            this.parent = parent; // Save refrence of parent
 
-            this.CenterToScreen();
+            this.CenterToScreen(); // Center form in the screen
 
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle; // Make the form non-resizable
+            this.MaximizeBox = false; // Disable the maximize button
         }
 
-        private void AdminForm_Load(object sender, EventArgs e)
+        private void AdminForm_Load(object sender, EventArgs e) // When form load
         {
-            var observer = AuthenticationContext.Instance().AuthenticationObserverInstance();
-            observer.nextDelegate = authStateChanged;
+            var observer = AuthenticationContext.Instance().AuthenticationObserverInstance(); // Get instance of the authentication observer
+            observer.nextDelegate = authStateChanged; // Delgate method "next" of the observer to local method here to handle changes
 
-            User user = AuthenticationContext.Instance().State.CurrentUser;
-            nametypeToolStripMenuItem.Text = String.Format("{0} ({1})", user.FullName, user.Username);
+            User user = AuthenticationContext.Instance().State.CurrentUser; // Get the current logged-in user from the authication state
+            nametypeToolStripMenuItem.Text = String.Format("{0} ({1})", user.FullName, user.Username); // Format the user full-name and username and display
 
+            // Change the tabs to last page and back to first one to trigger the fetech queries and rendering
             tabControl.SelectedIndex = tabControl.TabPages.Count - 1;
             tabControl.SelectedIndex = 0;
 
+            // If parent instance was provided, hide it for now
             if (this.parent != null)
             {
                 this.parent.Hide();

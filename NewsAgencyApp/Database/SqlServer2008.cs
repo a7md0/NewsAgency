@@ -7,27 +7,20 @@ using System.Data.SqlClient;
 
 namespace NewsAgencyApp
 {
+    /// <summary>Class <c>SqlServer2008</c> implements Database class and offer the connectivity to a SQL Server</summary>
     public class SqlServer2008 : Database
     {
-        private static Database instance;
-        private SqlConnection connection;
+        private static Database instance; // Singelton pattern
+        private SqlConnection connection; // Reference to the DB
 
         protected SqlServer2008()
         {
-            connection = new SqlConnection(Properties.Settings.Default.DatabaseConnectionString);
-            connection.Open();
+            connection = new SqlConnection(Properties.Settings.Default.DatabaseConnectionString); // Setup connection and use Settings db connection string
+            connection.Open(); // Open the connection
             Console.WriteLine("New connection created");
         }
 
-        ~SqlServer2008()
-        {
-            if (connection != null && connection.State != System.Data.ConnectionState.Closed)
-            {
-                //connection.Close();
-            }
-        }
-
-        public static Database Instance()
+        public static Database Instance() // Singelton pattern
         {
             if (instance == null)
             {
@@ -37,16 +30,17 @@ namespace NewsAgencyApp
             return instance;
         }
 
-        public SqlConnection Connection()
+        public SqlConnection Connection()  // Getter for the connection
         {
-            if (connection.State == System.Data.ConnectionState.Closed)
+            if (connection.State == System.Data.ConnectionState.Closed) // if the connection was closed
             {
-                connection.Open();
+                connection.Open(); // Re-open the connection
             }
 
-            return connection;
+            return connection; // return the instance
         }
 
+        /// <summary>This method will backup the database to the given file</summary>
         public bool BackupDatabase(FileInfo outputFile)
         {
             using (var connection = Connection())
@@ -61,6 +55,7 @@ namespace NewsAgencyApp
             }
         }
 
+        /// <summary>This method will restore a backup to the database from the given file</summary>
         public bool RestoreDatabase(FileInfo inputFile)
         {
             using (var connection = Connection())
