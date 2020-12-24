@@ -38,5 +38,10 @@ namespace NewsAgencyApp
                 }
             }
         }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
