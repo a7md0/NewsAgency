@@ -365,9 +365,9 @@ namespace NewsAgencyApp.AdminPortal
             if (backupFile == null)
                 return;
 
-            /*bool result = DBMgr.DatabaseFactory().BackupDatabase(backupFile);
+            bool result = DBMgr.DatabaseFactory().BackupDatabase(backupFile);
 
-            if (result)*/
+            if (result)
                 MessageBox.Show(String.Format("Backup have been saved successfully to {0}", saveFileDialog1.FileName), "Backup");
         }
 
@@ -377,16 +377,22 @@ namespace NewsAgencyApp.AdminPortal
             if (backupFile == null)
                 return;
 
-            /*bool result = DBMgr.DatabaseFactory().RestoreDatabase(backupFile);
+            try { 
+            bool result = DBMgr.DatabaseFactory().RestoreDatabase(backupFile);
 
-            if (result)*/
+            if (result)
                 MessageBox.Show(String.Format("Backup have been restored successfully from {0}", saveFileDialog1.FileName), "Backup restore");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void button9_Click(object sender, EventArgs e)
         {
             openFileDialog1.Filter = "Backup files (*.bak)|*.bak";
-            openFileDialog1.FilterIndex = 2;
+            //openFileDialog1.FilterIndex = 2;
             openFileDialog1.RestoreDirectory = true;
 
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
@@ -398,7 +404,7 @@ namespace NewsAgencyApp.AdminPortal
         private void pickBackupPath_Click(object sender, EventArgs e)
         {
             saveFileDialog1.Filter = "Backup files (*.bak)|*.bak";
-            saveFileDialog1.FilterIndex = 2;
+            //saveFileDialog1.FilterIndex = 2;
             saveFileDialog1.RestoreDirectory = true;
 
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
